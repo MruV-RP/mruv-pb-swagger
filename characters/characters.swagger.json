@@ -17,6 +17,7 @@
   "paths": {
     "/characters/v1/status": {
       "get": {
+        "summary": "Service status",
         "operationId": "GetServiceStatus",
         "responses": {
           "200": {
@@ -46,9 +47,176 @@
           "MruVCharactersService"
         ]
       }
+    },
+    "/v1/characters": {
+      "post": {
+        "summary": "CRUD",
+        "operationId": "Create",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvCharacterID"
+            }
+          }
+        },
+        "tags": [
+          "MruVCharactersService"
+        ]
+      }
+    },
+    "/v1/characters/kill/{id}": {
+      "delete": {
+        "summary": "Deaths",
+        "operationId": "KillCharacter",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvCharacterID"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "MruVCharactersService"
+        ]
+      }
+    },
+    "/v1/characters/{id}": {
+      "get": {
+        "operationId": "Get",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvCharacter"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "MruVCharactersService"
+        ]
+      },
+      "delete": {
+        "operationId": "Destroy",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvCharacterID"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "MruVCharactersService"
+        ]
+      },
+      "patch": {
+        "operationId": "Update",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvCharacterID"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "MruVCharactersService"
+        ]
+      }
     }
   },
   "definitions": {
+    "mruvCharacter": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "second_name": {
+          "type": "string"
+        },
+        "age": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "sex": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "mruvCharacterID": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "mruvDeathStreamResponse": {
+      "type": "object",
+      "properties": {
+        "character": {
+          "$ref": "#/definitions/mruvCharacter"
+        },
+        "death_type": {
+          "$ref": "#/definitions/mruvDeathType"
+        }
+      }
+    },
+    "mruvDeathType": {
+      "type": "string",
+      "enum": [
+        "DEATH_TYPE_NONE",
+        "DEATH_TYPE_BW",
+        "DEATH_TYPE_BW_KILL",
+        "DEATH_TYPE_CK"
+      ],
+      "default": "DEATH_TYPE_NONE"
+    },
     "mruvServiceStatusResponse": {
       "type": "object",
       "properties": {
@@ -73,6 +241,57 @@
           "type": "string"
         }
       }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "runtimeStreamError": {
+      "type": "object",
+      "properties": {
+        "grpc_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "http_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "http_status": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  },
+  "x-stream-definitions": {
+    "mruvDeathStreamResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/mruvDeathStreamResponse"
+        },
+        "error": {
+          "$ref": "#/definitions/runtimeStreamError"
+        }
+      },
+      "title": "Stream result of mruvDeathStreamResponse"
     }
   }
 }

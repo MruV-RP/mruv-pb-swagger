@@ -15,14 +15,38 @@
     "application/json"
   ],
   "paths": {
-    "/items/v1": {
-      "post": {
-        "operationId": "Create",
+    "/v1/containers": {
+      "get": {
+        "operationId": "GetContainers",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvCreateItemResponse"
+              "$ref": "#/definitions/mruvGetContainersResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "MruVItemService"
+        ]
+      },
+      "post": {
+        "summary": "CRUD containers",
+        "operationId": "CreateContainer",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvContainerID"
             }
           }
         },
@@ -31,7 +55,317 @@
         ]
       }
     },
-    "/items/v1/status": {
+    "/v1/containers/{container_id.id}/items/{item_id.id}": {
+      "delete": {
+        "operationId": "RemoveContainerItem",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvItem"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "container_id.id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "item_id.id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVItemService"
+        ]
+      },
+      "put": {
+        "operationId": "PutItem",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvItemID"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "container_id.id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "item_id.id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVItemService"
+        ]
+      }
+    },
+    "/v1/containers/{id}": {
+      "get": {
+        "operationId": "GetContainer",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvContainer"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "MruVItemService"
+        ]
+      },
+      "delete": {
+        "operationId": "DeleteContainer",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvContainerID"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "MruVItemService"
+        ]
+      },
+      "patch": {
+        "operationId": "UpdateContainer",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvContainerID"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "MruVItemService"
+        ]
+      }
+    },
+    "/v1/containers/{id}/items": {
+      "get": {
+        "summary": "Container Methods",
+        "operationId": "GetContainerItems",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvGetContainerItemsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "MruVItemService"
+        ]
+      }
+    },
+    "/v1/itemTypes": {
+      "get": {
+        "operationId": "GetItemTypes",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvGetItemTypesResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "MruVItemService"
+        ]
+      },
+      "post": {
+        "summary": "CRUD itemsTypes",
+        "operationId": "CreateItemType",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvItemTypeID"
+            }
+          }
+        },
+        "tags": [
+          "MruVItemService"
+        ]
+      }
+    },
+    "/v1/itemTypes/{id}": {
+      "get": {
+        "operationId": "GetItemType",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvItemType"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "MruVItemService"
+        ]
+      },
+      "delete": {
+        "operationId": "DeleteItemType",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvItemTypeID"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "MruVItemService"
+        ]
+      },
+      "patch": {
+        "operationId": "UpdateItemType",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvItemTypeID"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "MruVItemService"
+        ]
+      }
+    },
+    "/v1/items": {
+      "get": {
+        "operationId": "GetItems",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvGetItemsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "MruVItemService"
+        ]
+      },
+      "post": {
+        "summary": "CRUD items",
+        "operationId": "CreateItem",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvItemID"
+            }
+          }
+        },
+        "tags": [
+          "MruVItemService"
+        ]
+      }
+    },
+    "/v1/items/status": {
       "get": {
         "summary": "Service status",
         "operationId": "GetServiceStatus",
@@ -48,7 +382,7 @@
         ]
       }
     },
-    "/items/v1/version": {
+    "/v1/items/version": {
       "get": {
         "operationId": "GetServiceVersion",
         "responses": {
@@ -64,45 +398,20 @@
         ]
       }
     },
-    "/items/v1/{item.id}": {
-      "patch": {
-        "operationId": "Update",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/mruvUpdateItemResponse"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "item.id",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "MruVItemService"
-        ]
-      }
-    },
-    "/items/v1/{item_id}": {
+    "/v1/items/{id}": {
       "get": {
-        "operationId": "Get",
+        "operationId": "GetItem",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvGetItemResponse"
+              "$ref": "#/definitions/mruvItem"
             }
           }
         },
         "parameters": [
           {
-            "name": "item_id",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string",
@@ -114,18 +423,41 @@
         ]
       },
       "delete": {
-        "operationId": "Destroy",
+        "operationId": "DeleteItem",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvDestroyItemResponse"
+              "$ref": "#/definitions/mruvItemID"
             }
           }
         },
         "parameters": [
           {
-            "name": "item_id",
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVItemService"
+        ]
+      },
+      "patch": {
+        "operationId": "UpdateItem",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvItemID"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string",
@@ -139,29 +471,89 @@
     }
   },
   "definitions": {
-    "mruvCreateItemResponse": {
+    "mruvContainer": {
       "type": "object",
       "properties": {
-        "item_id": {
-          "type": "string",
-          "format": "int64"
-        }
-      }
-    },
-    "mruvDestroyItemResponse": {
-      "type": "object",
-      "properties": {
-        "success": {
-          "type": "boolean",
-          "format": "boolean"
-        }
-      }
-    },
-    "mruvGetItemResponse": {
-      "type": "object",
-      "properties": {
-        "item": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "container_item": {
           "$ref": "#/definitions/mruvItem"
+        },
+        "size_limit": {
+          "$ref": "#/definitions/mruvSizeLimit"
+        },
+        "volume_limit": {
+          "$ref": "#/definitions/mruvVolumeLimit"
+        },
+        "weight_limit": {
+          "$ref": "#/definitions/mruvWeightLimit"
+        },
+        "number_limit": {
+          "$ref": "#/definitions/mruvNumberLimit"
+        },
+        "item_type_validation": {
+          "$ref": "#/definitions/mruvItemTypeConstraint"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/mruvItem"
+          }
+        }
+      }
+    },
+    "mruvContainerID": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "mruvGetContainerItemsResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/mruvItem"
+          }
+        }
+      }
+    },
+    "mruvGetContainersResponse": {
+      "type": "object",
+      "properties": {
+        "containers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/mruvContainer"
+          }
+        }
+      }
+    },
+    "mruvGetItemTypesResponse": {
+      "type": "object",
+      "properties": {
+        "item_types": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/mruvItemType"
+          }
+        }
+      }
+    },
+    "mruvGetItemsResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/mruvItem"
+          }
         }
       }
     },
@@ -172,8 +564,121 @@
           "type": "string",
           "format": "int64"
         },
+        "item_type": {
+          "$ref": "#/definitions/mruvItemType"
+        },
         "name": {
           "type": "string"
+        },
+        "weight": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "volume": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "mruvItemID": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        }
+      },
+      "title": "Requests messages"
+    },
+    "mruvItemType": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "base_weight": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "base_volume": {
+          "type": "number",
+          "format": "double"
+        },
+        "stacks": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "icon_uri": {
+          "type": "string"
+        }
+      }
+    },
+    "mruvItemTypeConstraint": {
+      "type": "object",
+      "properties": {
+        "valid_item_types": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/mruvItemType"
+          }
+        }
+      }
+    },
+    "mruvItemTypeID": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "mruvNumberLimit": {
+      "type": "object",
+      "properties": {
+        "max_number": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "current_number": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "mruvPosition": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "number",
+          "format": "double"
+        },
+        "y": {
+          "type": "number",
+          "format": "double"
+        },
+        "z": {
+          "type": "number",
+          "format": "double"
+        },
+        "rx": {
+          "type": "number",
+          "format": "double"
+        },
+        "ry": {
+          "type": "number",
+          "format": "double"
+        },
+        "rz": {
+          "type": "number",
+          "format": "double"
         }
       }
     },
@@ -185,12 +690,16 @@
         }
       }
     },
-    "mruvUpdateItemResponse": {
+    "mruvSizeLimit": {
       "type": "object",
       "properties": {
-        "success": {
-          "type": "boolean",
-          "format": "boolean"
+        "max_x": {
+          "type": "number",
+          "format": "double"
+        },
+        "max_y": {
+          "type": "number",
+          "format": "double"
         }
       }
     },
@@ -208,6 +717,32 @@
         },
         "os_arch": {
           "type": "string"
+        }
+      }
+    },
+    "mruvVolumeLimit": {
+      "type": "object",
+      "properties": {
+        "max_volume": {
+          "type": "number",
+          "format": "double"
+        },
+        "current_volume": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "mruvWeightLimit": {
+      "type": "object",
+      "properties": {
+        "max_weight": {
+          "type": "number",
+          "format": "double"
+        },
+        "current_weight": {
+          "type": "number",
+          "format": "double"
         }
       }
     }
