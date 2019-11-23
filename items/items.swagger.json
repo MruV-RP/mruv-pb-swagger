@@ -15,6 +15,94 @@
     "application/json"
   ],
   "paths": {
+    "/v1/containerTypes": {
+      "get": {
+        "operationId": "GetContainerTypes",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "$ref": "#/x-stream-definitions/mruvContainerType"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "MruVItemService"
+        ]
+      },
+      "post": {
+        "summary": "CRUD container types",
+        "operationId": "CreateContainerType",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvContainerTypeID"
+            }
+          }
+        },
+        "tags": [
+          "MruVItemService"
+        ]
+      }
+    },
+    "/v1/containerTypes/{id}": {
+      "get": {
+        "operationId": "GetContainerType",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvContainerType"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "MruVItemService"
+        ]
+      },
+      "delete": {
+        "operationId": "DeleteContainerType",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvContainerID"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "MruVItemService"
+        ]
+      }
+    },
     "/v1/containers": {
       "get": {
         "operationId": "GetContainers",
@@ -242,29 +330,6 @@
         "tags": [
           "MruVItemService"
         ]
-      },
-      "patch": {
-        "operationId": "UpdateContainer",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/mruvContainerID"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "integer",
-            "format": "int32"
-          }
-        ],
-        "tags": [
-          "MruVItemService"
-        ]
       }
     },
     "/v1/containers/{id}/items": {
@@ -359,29 +424,6 @@
       },
       "delete": {
         "operationId": "DeleteItemType",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/mruvItemTypeID"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "integer",
-            "format": "int32"
-          }
-        ],
-        "tags": [
-          "MruVItemService"
-        ]
-      },
-      "patch": {
-        "operationId": "UpdateItemType",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -523,29 +565,6 @@
         "tags": [
           "MruVItemService"
         ]
-      },
-      "patch": {
-        "operationId": "UpdateItem",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/mruvItemID"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "MruVItemService"
-        ]
       }
     },
     "/v1/items/{item_id.id}/use": {
@@ -603,6 +622,47 @@
       }
     },
     "mruvContainerID": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "mruvContainerType": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "container_item_type_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "max_number": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "max_volume": {
+          "type": "number",
+          "format": "float"
+        },
+        "max_weight": {
+          "type": "number",
+          "format": "float"
+        },
+        "valid_item_types": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      }
+    },
+    "mruvContainerTypeID": {
       "type": "object",
       "properties": {
         "id": {
@@ -832,6 +892,57 @@
           "type": "string"
         }
       }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "runtimeStreamError": {
+      "type": "object",
+      "properties": {
+        "grpc_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "http_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "http_status": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  },
+  "x-stream-definitions": {
+    "mruvContainerType": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/mruvContainerType"
+        },
+        "error": {
+          "$ref": "#/definitions/runtimeStreamError"
+        }
+      },
+      "title": "Stream result of mruvContainerType"
     }
   }
 }
