@@ -143,6 +143,39 @@
         ]
       }
     },
+    "/v1/containers/{container_id.id}/items": {
+      "get": {
+        "summary": "Container Methods",
+        "operationId": "GetContainerItems",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvGetContainerItemsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "container_id.id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "MruVItemService"
+        ]
+      }
+    },
     "/v1/containers/{container_id.id}/items/nearest/x/{player_position.x}/y/{player_position.y}/z/{player_position.z}": {
       "get": {
         "summary": "TODO: GetNearestItemsStream",
@@ -315,32 +348,6 @@
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/mruvContainerID"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "integer",
-            "format": "int32"
-          }
-        ],
-        "tags": [
-          "MruVItemService"
-        ]
-      }
-    },
-    "/v1/containers/{id}/items": {
-      "get": {
-        "summary": "Container Methods",
-        "operationId": "GetContainerItems",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/mruvGetContainerItemsResponse"
             }
           }
         },
@@ -677,7 +684,7 @@
         "items": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/mruvItem"
+            "$ref": "#/definitions/mruvInsideItem"
           }
         }
       }
@@ -745,14 +752,14 @@
           "format": "int32"
         },
         "item_id": {
-          "type": "string",
-          "format": "int64"
+          "$ref": "#/definitions/mruvItemID"
+        },
+        "item": {
+          "$ref": "#/definitions/mruvItem"
         },
         "position": {
-          "$ref": "#/definitions/mruvPosition"
-        },
-        "rotation": {
-          "$ref": "#/definitions/mruvRotation"
+          "type": "integer",
+          "format": "int32"
         }
       }
     },
@@ -837,23 +844,6 @@
           "format": "double"
         },
         "z": {
-          "type": "number",
-          "format": "double"
-        }
-      }
-    },
-    "mruvRotation": {
-      "type": "object",
-      "properties": {
-        "rx": {
-          "type": "number",
-          "format": "double"
-        },
-        "ry": {
-          "type": "number",
-          "format": "double"
-        },
-        "rz": {
           "type": "number",
           "format": "double"
         }
