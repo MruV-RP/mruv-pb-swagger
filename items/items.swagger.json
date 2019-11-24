@@ -20,9 +20,9 @@
         "operationId": "GetContainerTypes",
         "responses": {
           "200": {
-            "description": "A successful response.(streaming responses)",
+            "description": "A successful response.",
             "schema": {
-              "$ref": "#/x-stream-definitions/mruvContainerType"
+              "$ref": "#/definitions/mruvGetContainerTypesResponse"
             }
           }
         },
@@ -682,6 +682,17 @@
         }
       }
     },
+    "mruvGetContainerTypesResponse": {
+      "type": "object",
+      "properties": {
+        "container_types": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/mruvContainerType"
+          }
+        }
+      }
+    },
     "mruvGetContainersResponse": {
       "type": "object",
       "properties": {
@@ -892,57 +903,6 @@
           "type": "string"
         }
       }
-    },
-    "protobufAny": {
-      "type": "object",
-      "properties": {
-        "type_url": {
-          "type": "string"
-        },
-        "value": {
-          "type": "string",
-          "format": "byte"
-        }
-      }
-    },
-    "runtimeStreamError": {
-      "type": "object",
-      "properties": {
-        "grpc_code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "http_code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "message": {
-          "type": "string"
-        },
-        "http_status": {
-          "type": "string"
-        },
-        "details": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/protobufAny"
-          }
-        }
-      }
-    }
-  },
-  "x-stream-definitions": {
-    "mruvContainerType": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/mruvContainerType"
-        },
-        "error": {
-          "$ref": "#/definitions/runtimeStreamError"
-        }
-      },
-      "title": "Stream result of mruvContainerType"
     }
   }
 }
