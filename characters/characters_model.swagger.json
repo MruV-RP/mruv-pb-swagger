@@ -4,10 +4,6 @@
     "title": "characters/characters_model.proto",
     "version": "version not set"
   },
-  "schemes": [
-    "http",
-    "https"
-  ],
   "consumes": [
     "application/json"
   ],
