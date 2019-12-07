@@ -13,6 +13,7 @@
   "paths": {
     "/v1/containerTypes": {
       "get": {
+        "summary": "Get all container types.",
         "operationId": "GetContainerTypes",
         "responses": {
           "200": {
@@ -25,10 +26,11 @@
         "parameters": [
           {
             "name": "limit",
+            "description": "Limit of the returned container types.",
             "in": "query",
             "required": false,
             "type": "integer",
-            "format": "int32"
+            "format": "int64"
           }
         ],
         "tags": [
@@ -36,7 +38,7 @@
         ]
       },
       "post": {
-        "summary": "CRUD container types",
+        "summary": "Create container type.",
         "operationId": "CreateContainerType",
         "responses": {
           "200": {
@@ -53,6 +55,7 @@
     },
     "/v1/containerTypes/{id}": {
       "get": {
+        "summary": "Get container type by id.",
         "operationId": "GetContainerType",
         "responses": {
           "200": {
@@ -68,7 +71,7 @@
             "in": "path",
             "required": true,
             "type": "integer",
-            "format": "int32"
+            "format": "int64"
           }
         ],
         "tags": [
@@ -76,6 +79,7 @@
         ]
       },
       "delete": {
+        "summary": "Detele container type by id.",
         "operationId": "DeleteContainerType",
         "responses": {
           "200": {
@@ -91,7 +95,7 @@
             "in": "path",
             "required": true,
             "type": "integer",
-            "format": "int32"
+            "format": "int64"
           }
         ],
         "tags": [
@@ -101,6 +105,7 @@
     },
     "/v1/containers": {
       "get": {
+        "summary": "Get all containers.",
         "operationId": "GetContainers",
         "responses": {
           "200": {
@@ -113,10 +118,11 @@
         "parameters": [
           {
             "name": "limit",
+            "description": "Limit of the returned containers.",
             "in": "query",
             "required": false,
             "type": "integer",
-            "format": "int32"
+            "format": "int64"
           }
         ],
         "tags": [
@@ -124,7 +130,7 @@
         ]
       },
       "post": {
-        "summary": "CRUD containers",
+        "summary": "Create container.",
         "operationId": "CreateContainer",
         "responses": {
           "200": {
@@ -141,7 +147,7 @@
     },
     "/v1/containers/{container_id.id}/items": {
       "get": {
-        "summary": "Container Methods",
+        "summary": "Get items inside a container.",
         "operationId": "GetContainerItems",
         "responses": {
           "200": {
@@ -157,14 +163,15 @@
             "in": "path",
             "required": true,
             "type": "integer",
-            "format": "int32"
+            "format": "int64"
           },
           {
             "name": "limit",
+            "description": "Limit of the returned items.",
             "in": "query",
             "required": false,
             "type": "integer",
-            "format": "int32"
+            "format": "int64"
           }
         ],
         "tags": [
@@ -172,9 +179,9 @@
         ]
       }
     },
-    "/v1/containers/{container_id.id}/items/nearest/x/{player_position.x}/y/{player_position.y}/z/{player_position.z}": {
+    "/v1/containers/{container_id.id}/items/nearest/x/{position.x}/y/{position.y}/z/{position.z}": {
       "get": {
-        "summary": "TODO: GetNearestItemsStream",
+        "summary": "Retrieves from the container the list of items nearest to the given position.",
         "operationId": "GetNearestItems",
         "responses": {
           "200": {
@@ -190,26 +197,34 @@
             "in": "path",
             "required": true,
             "type": "integer",
-            "format": "int32"
+            "format": "int64"
           },
           {
-            "name": "player_position.x",
+            "name": "position.x",
             "in": "path",
             "required": true,
             "type": "number",
             "format": "double"
           },
           {
-            "name": "player_position.y",
+            "name": "position.y",
             "in": "path",
             "required": true,
             "type": "number",
             "format": "double"
           },
           {
-            "name": "player_position.z",
+            "name": "position.z",
             "in": "path",
             "required": true,
+            "type": "number",
+            "format": "double"
+          },
+          {
+            "name": "distance_limit",
+            "description": "The distance over which the items are ignored.",
+            "in": "query",
+            "required": false,
             "type": "number",
             "format": "double"
           }
@@ -221,7 +236,7 @@
     },
     "/v1/containers/{container_id.id}/items/sort/{sort_by}": {
       "get": {
-        "summary": "TODO: SortItemsStream",
+        "summary": "Sort items inside container.\r\nThis procedure change order of items inside container.",
         "operationId": "SortItems",
         "responses": {
           "200": {
@@ -237,10 +252,11 @@
             "in": "path",
             "required": true,
             "type": "integer",
-            "format": "int32"
+            "format": "int64"
           },
           {
             "name": "sort_by",
+            "description": "Sorting mode. TODO.",
             "in": "path",
             "required": true,
             "type": "string"
@@ -253,7 +269,8 @@
     },
     "/v1/containers/{container_id.id}/items/{item_id.id}": {
       "delete": {
-        "operationId": "RemoveContainerItem",
+        "summary": "Pull item from container.",
+        "operationId": "PullItem",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -268,14 +285,14 @@
             "in": "path",
             "required": true,
             "type": "integer",
-            "format": "int32"
+            "format": "int64"
           },
           {
             "name": "item_id.id",
             "in": "path",
             "required": true,
             "type": "string",
-            "format": "int64"
+            "format": "uint64"
           }
         ],
         "tags": [
@@ -283,6 +300,7 @@
         ]
       },
       "put": {
+        "summary": "Put item into container.",
         "operationId": "PutItem",
         "responses": {
           "200": {
@@ -298,14 +316,14 @@
             "in": "path",
             "required": true,
             "type": "integer",
-            "format": "int32"
+            "format": "int64"
           },
           {
             "name": "item_id.id",
             "in": "path",
             "required": true,
             "type": "string",
-            "format": "int64"
+            "format": "uint64"
           }
         ],
         "tags": [
@@ -315,6 +333,7 @@
     },
     "/v1/containers/{id}": {
       "get": {
+        "summary": "Get container by id.",
         "operationId": "GetContainer",
         "responses": {
           "200": {
@@ -330,7 +349,7 @@
             "in": "path",
             "required": true,
             "type": "integer",
-            "format": "int32"
+            "format": "int64"
           }
         ],
         "tags": [
@@ -338,6 +357,7 @@
         ]
       },
       "delete": {
+        "summary": "Delete container by id.",
         "operationId": "DeleteContainer",
         "responses": {
           "200": {
@@ -353,7 +373,7 @@
             "in": "path",
             "required": true,
             "type": "integer",
-            "format": "int32"
+            "format": "int64"
           }
         ],
         "tags": [
@@ -363,6 +383,7 @@
     },
     "/v1/itemTypes": {
       "get": {
+        "summary": "Gets all item types.",
         "operationId": "GetItemTypes",
         "responses": {
           "200": {
@@ -375,10 +396,11 @@
         "parameters": [
           {
             "name": "limit",
+            "description": "Limit of the returned item types.",
             "in": "query",
             "required": false,
             "type": "integer",
-            "format": "int32"
+            "format": "int64"
           }
         ],
         "tags": [
@@ -386,7 +408,7 @@
         ]
       },
       "post": {
-        "summary": "CRUD itemsTypes",
+        "summary": "Create item type.",
         "operationId": "CreateItemType",
         "responses": {
           "200": {
@@ -403,6 +425,7 @@
     },
     "/v1/itemTypes/{id}": {
       "get": {
+        "summary": "Get item type by id.",
         "operationId": "GetItemType",
         "responses": {
           "200": {
@@ -418,7 +441,7 @@
             "in": "path",
             "required": true,
             "type": "integer",
-            "format": "int32"
+            "format": "int64"
           }
         ],
         "tags": [
@@ -426,6 +449,7 @@
         ]
       },
       "delete": {
+        "summary": "Delete item type by id.",
         "operationId": "DeleteItemType",
         "responses": {
           "200": {
@@ -441,7 +465,7 @@
             "in": "path",
             "required": true,
             "type": "integer",
-            "format": "int32"
+            "format": "int64"
           }
         ],
         "tags": [
@@ -451,6 +475,7 @@
     },
     "/v1/items": {
       "get": {
+        "summary": "Gets all items.",
         "operationId": "GetItems",
         "responses": {
           "200": {
@@ -463,10 +488,11 @@
         "parameters": [
           {
             "name": "limit",
+            "description": "Limit of the returned items.",
             "in": "query",
             "required": false,
             "type": "integer",
-            "format": "int32"
+            "format": "int64"
           }
         ],
         "tags": [
@@ -474,7 +500,7 @@
         ]
       },
       "post": {
-        "summary": "CRUD items",
+        "summary": "Create new item.",
         "operationId": "CreateItem",
         "responses": {
           "200": {
@@ -491,7 +517,7 @@
     },
     "/v1/items/status": {
       "get": {
-        "summary": "Service status",
+        "summary": "Get service health status.",
         "operationId": "GetServiceStatus",
         "responses": {
           "200": {
@@ -508,6 +534,7 @@
     },
     "/v1/items/version": {
       "get": {
+        "summary": "Get service current version.",
         "operationId": "GetServiceVersion",
         "responses": {
           "200": {
@@ -524,6 +551,7 @@
     },
     "/v1/items/{id}": {
       "get": {
+        "summary": "Get item by id.",
         "operationId": "GetItem",
         "responses": {
           "200": {
@@ -539,7 +567,7 @@
             "in": "path",
             "required": true,
             "type": "string",
-            "format": "int64"
+            "format": "uint64"
           }
         ],
         "tags": [
@@ -547,6 +575,7 @@
         ]
       },
       "delete": {
+        "summary": "Delete item by id.",
         "operationId": "DeleteItem",
         "responses": {
           "200": {
@@ -562,7 +591,7 @@
             "in": "path",
             "required": true,
             "type": "string",
-            "format": "int64"
+            "format": "uint64"
           }
         ],
         "tags": [
@@ -572,6 +601,7 @@
     },
     "/v1/items/{item_id.id}/use": {
       "get": {
+        "summary": "Trigger action associated with the item usage.",
         "operationId": "UseItem",
         "responses": {
           "200": {
@@ -587,7 +617,7 @@
             "in": "path",
             "required": true,
             "type": "string",
-            "format": "int64"
+            "format": "uint64"
           }
         ],
         "tags": [
@@ -601,78 +631,84 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "integer",
-          "format": "int32"
+          "$ref": "#/definitions/mruvContainerID"
         },
         "type_id": {
-          "type": "integer",
-          "format": "int32"
+          "$ref": "#/definitions/mruvContainerTypeID",
+          "description": "ID of an container type."
         },
         "item_id": {
-          "type": "string",
-          "format": "int64"
+          "$ref": "#/definitions/mruvItemID",
+          "description": "ID of container item representing container."
         },
         "items_inside": {
           "type": "integer",
-          "format": "int32"
+          "format": "int64",
+          "description": "Number of items inside container."
         },
         "items": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/mruvInsideItem"
-          }
+          },
+          "description": "List of items inside container."
         }
-      }
+      },
+      "description": "Container data structure."
     },
     "mruvContainerID": {
       "type": "object",
       "properties": {
         "id": {
           "type": "integer",
-          "format": "int32"
+          "format": "int64"
         }
-      }
+      },
+      "description": "Container ID."
     },
     "mruvContainerType": {
       "type": "object",
       "properties": {
         "id": {
-          "type": "integer",
-          "format": "int32"
+          "$ref": "#/definitions/mruvContainerTypeID"
         },
         "container_item_type_id": {
-          "type": "integer",
-          "format": "int32"
+          "$ref": "#/definitions/mruvItemTypeID",
+          "description": "ID of an item type."
         },
         "max_number": {
           "type": "integer",
-          "format": "int32"
+          "format": "int64",
+          "description": "Max items in the container."
         },
         "max_volume": {
           "type": "number",
-          "format": "float"
+          "format": "float",
+          "description": "Max volume of items in the container."
         },
         "max_weight": {
           "type": "number",
-          "format": "float"
+          "format": "float",
+          "description": "Max weight of items in the container."
         },
         "valid_item_types": {
           "type": "array",
           "items": {
-            "type": "integer",
-            "format": "int32"
+            "$ref": "#/definitions/mruvItemTypeID"
           }
         }
-      }
+      },
+      "description": "Container type data structure."
     },
     "mruvContainerTypeID": {
       "type": "object",
       "properties": {
         "id": {
           "type": "integer",
-          "format": "int32"
+          "format": "int64"
         }
-      }
+      },
+      "description": "Container type ID."
     },
     "mruvGetContainerItemsResponse": {
       "type": "object",
@@ -681,9 +717,11 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/mruvInsideItem"
-          }
+          },
+          "description": "List of items inside containers."
         }
-      }
+      },
+      "description": "Request message for `MruVItemsService.GetContainerItems`."
     },
     "mruvGetContainerTypesResponse": {
       "type": "object",
@@ -692,9 +730,11 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/mruvContainerType"
-          }
+          },
+          "description": "List of container types."
         }
-      }
+      },
+      "description": "Response message for `MruVItemsService.GetContainers`."
     },
     "mruvGetContainersResponse": {
       "type": "object",
@@ -703,9 +743,11 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/mruvContainer"
-          }
+          },
+          "description": "List of containers."
         }
-      }
+      },
+      "description": "Response message for `MruVItemsService.GetContainers`."
     },
     "mruvGetItemTypesResponse": {
       "type": "object",
@@ -714,9 +756,11 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/mruvItemType"
-          }
+          },
+          "description": "List of item types."
         }
-      }
+      },
+      "description": "Response message for `MruVItemsService.GetItemTypes`."
     },
     "mruvGetItemsResponse": {
       "type": "object",
@@ -725,9 +769,11 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/mruvItem"
-          }
+          },
+          "description": "List of items."
         }
-      }
+      },
+      "description": "Response message for `MruVItemsService.GetItems`."
     },
     "mruvGetNearestItemsResponse": {
       "type": "object",
@@ -736,16 +782,18 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/mruvInsideItem"
-          }
+          },
+          "description": "List of items sorted from nearest to farthest."
         }
-      }
+      },
+      "description": "Response message for `MruVItemsService.GetNearestItems`."
     },
     "mruvInsideItem": {
       "type": "object",
       "properties": {
         "container_id": {
-          "type": "integer",
-          "format": "int32"
+          "$ref": "#/definitions/mruvContainerID",
+          "description": "ID of container containing the item."
         },
         "item_id": {
           "$ref": "#/definitions/mruvItemID"
@@ -755,78 +803,90 @@
         },
         "position": {
           "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "description": "Position representing order in container. In ascending manner."
         }
-      }
+      },
+      "description": "Item inside container data structure."
     },
     "mruvItem": {
       "type": "object",
       "properties": {
         "id": {
-          "type": "string",
-          "format": "int64"
+          "$ref": "#/definitions/mruvItemID"
         },
         "item_type_id": {
-          "type": "integer",
-          "format": "int32"
+          "$ref": "#/definitions/mruvItemTypeID",
+          "description": "ID of an item type."
         },
         "weight": {
           "type": "number",
-          "format": "float"
+          "format": "float",
+          "description": "Current weight of the item."
         },
         "volume": {
           "type": "number",
-          "format": "float"
+          "format": "float",
+          "description": "Current volume of the item."
         }
-      }
+      },
+      "description": "Item data structure."
     },
     "mruvItemID": {
       "type": "object",
       "properties": {
         "id": {
           "type": "string",
-          "format": "int64"
+          "format": "uint64"
         }
-      }
+      },
+      "description": "Item ID."
     },
     "mruvItemType": {
       "type": "object",
       "properties": {
         "id": {
-          "type": "integer",
-          "format": "int32"
+          "$ref": "#/definitions/mruvItemTypeID"
         },
         "name": {
-          "type": "string"
+          "type": "string",
+          "description": "Short name of item type."
         },
         "description": {
-          "type": "string"
+          "type": "string",
+          "description": "Description of item type."
         },
         "base_weight": {
           "type": "number",
-          "format": "float"
+          "format": "float",
+          "description": "Default weight of items created with that item type."
         },
         "base_volume": {
           "type": "number",
-          "format": "float"
+          "format": "float",
+          "description": "Default volume of items created with that item type."
         },
         "model_name": {
-          "type": "string"
+          "type": "string",
+          "description": "GTA V model name."
         },
         "model_hash": {
           "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "description": "GTA V model hash."
         }
-      }
+      },
+      "title": "Item type data structure"
     },
     "mruvItemTypeID": {
       "type": "object",
       "properties": {
         "id": {
           "type": "integer",
-          "format": "int32"
+          "format": "int64"
         }
-      }
+      },
+      "description": "Item type ID."
     },
     "mruvPosition": {
       "type": "object",
@@ -860,18 +920,22 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/mruvItem"
-          }
+          },
+          "description": "List of items in given order."
         }
-      }
+      },
+      "description": "Response message for `MruVItemsService.SortItems`."
     },
     "mruvUseItemResponse": {
       "type": "object",
       "properties": {
         "success": {
           "type": "boolean",
-          "format": "boolean"
+          "format": "boolean",
+          "description": "Is item usage was successful."
         }
-      }
+      },
+      "description": "Response message for `MruVItemsService.UseItem`."
     },
     "mruvVersionResponse": {
       "type": "object",

@@ -61,10 +61,10 @@
         ]
       }
     },
-    "/v1/characters/kill/{id}": {
+    "/v1/characters/permanentKill/{id}": {
       "delete": {
         "summary": "Deaths",
-        "operationId": "KillCharacter",
+        "operationId": "PermanentCharacterKill",
         "responses": {
           "200": {
             "description": "A successful response.",
