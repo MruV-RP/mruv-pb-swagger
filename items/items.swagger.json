@@ -256,10 +256,17 @@
           },
           {
             "name": "sort_by",
-            "description": "Sorting mode. TODO.",
+            "description": "Sorting mode.",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "UNKNOWN",
+              "WEIGHT_DESC",
+              "WEIGHT_ASC",
+              "VOLUME_DESC",
+              "VOLUME_ASC"
+            ]
           }
         ],
         "tags": [
@@ -306,7 +313,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvItemID"
+              "$ref": "#/definitions/mruvPutItemResponse"
             }
           }
         },
@@ -905,6 +912,16 @@
         }
       }
     },
+    "mruvPutItemResponse": {
+      "type": "object",
+      "properties": {
+        "inside_item": {
+          "$ref": "#/definitions/mruvInsideItem",
+          "description": "Container with items inside."
+        }
+      },
+      "title": "Response message for `MruVItemsService.PutItem`"
+    },
     "mruvServiceStatusResponse": {
       "type": "object",
       "properties": {
@@ -916,15 +933,24 @@
     "mruvSortItemsResponse": {
       "type": "object",
       "properties": {
-        "items": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/mruvItem"
-          },
-          "description": "List of items in given order."
+        "container": {
+          "$ref": "#/definitions/mruvContainer",
+          "description": "Container with sorted items inside."
         }
       },
       "description": "Response message for `MruVItemsService.SortItems`."
+    },
+    "mruvSortingMode": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "WEIGHT_DESC",
+        "WEIGHT_ASC",
+        "VOLUME_DESC",
+        "VOLUME_ASC"
+      ],
+      "default": "UNKNOWN",
+      "description": "Sorting modes for container items.\n\n - UNKNOWN: undefined behaviour\n - WEIGHT_DESC: sort by weight descending\n - WEIGHT_ASC: sort by weight ascending\n - VOLUME_DESC: sort by volume descending\n - VOLUME_ASC: sort by volume ascending"
     },
     "mruvUseItemResponse": {
       "type": "object",
