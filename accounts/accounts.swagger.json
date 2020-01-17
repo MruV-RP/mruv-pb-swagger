@@ -1,0 +1,66 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "accounts/accounts.proto",
+    "version": "version not set"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {
+    "mruvAccount": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/mruvAccountID"
+        },
+        "login": {
+          "type": "string"
+        },
+        "nick": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "mruvAccountID": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "mruvLogInResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "id": {
+          "$ref": "#/definitions/mruvAccountID"
+        }
+      }
+    },
+    "mruvRegisterAccountResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "id": {
+          "$ref": "#/definitions/mruvAccountID"
+        }
+      }
+    }
+  }
+}

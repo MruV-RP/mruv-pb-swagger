@@ -4,10 +4,6 @@
     "title": "characters/characters.proto",
     "version": "version not set"
   },
-  "schemes": [
-    "http",
-    "https"
-  ],
   "consumes": [
     "application/json"
   ],
@@ -15,43 +11,10 @@
     "application/json"
   ],
   "paths": {
-    "/characters/v1/status": {
-      "get": {
-        "summary": "Service status",
-        "operationId": "GetServiceStatus",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/mruvServiceStatusResponse"
-            }
-          }
-        },
-        "tags": [
-          "MruVCharactersService"
-        ]
-      }
-    },
-    "/characters/v1/version": {
-      "get": {
-        "operationId": "GetServiceVersion",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/mruvVersionResponse"
-            }
-          }
-        },
-        "tags": [
-          "MruVCharactersService"
-        ]
-      }
-    },
     "/v1/characters": {
       "post": {
         "summary": "CRUD",
-        "operationId": "Create",
+        "operationId": "CreateCharacter",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -82,8 +45,8 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -91,9 +54,42 @@
         ]
       }
     },
+    "/v1/characters/status": {
+      "get": {
+        "summary": "Service status",
+        "operationId": "GetServiceStatus",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvServiceStatusResponse"
+            }
+          }
+        },
+        "tags": [
+          "MruVCharactersService"
+        ]
+      }
+    },
+    "/v1/characters/version": {
+      "get": {
+        "operationId": "GetServiceVersion",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvVersionResponse"
+            }
+          }
+        },
+        "tags": [
+          "MruVCharactersService"
+        ]
+      }
+    },
     "/v1/characters/{id}": {
       "get": {
-        "operationId": "Get",
+        "operationId": "GetCharacter",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -107,8 +103,8 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -116,7 +112,7 @@
         ]
       },
       "delete": {
-        "operationId": "Remove",
+        "operationId": "RemoveCharacter",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -130,31 +126,8 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "integer",
-            "format": "int32"
-          }
-        ],
-        "tags": [
-          "MruVCharactersService"
-        ]
-      },
-      "patch": {
-        "operationId": "Update",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/mruvCharacterID"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -164,12 +137,23 @@
     }
   },
   "definitions": {
+    "mruvAccountID": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "mruvCharacter": {
       "type": "object",
       "properties": {
         "id": {
-          "type": "integer",
-          "format": "int32"
+          "$ref": "#/definitions/mruvCharacterID"
+        },
+        "owner_id": {
+          "$ref": "#/definitions/mruvAccountID"
         },
         "first_name": {
           "type": "string"
@@ -184,6 +168,9 @@
         "sex": {
           "type": "integer",
           "format": "int64"
+        },
+        "position": {
+          "$ref": "#/definitions/mruvPosition"
         }
       }
     },
@@ -191,8 +178,8 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "integer",
-          "format": "int32"
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -216,6 +203,23 @@
         "DEATH_TYPE_CK"
       ],
       "default": "DEATH_TYPE_NONE"
+    },
+    "mruvPosition": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "number",
+          "format": "double"
+        },
+        "y": {
+          "type": "number",
+          "format": "double"
+        },
+        "z": {
+          "type": "number",
+          "format": "double"
+        }
+      }
     },
     "mruvServiceStatusResponse": {
       "type": "object",
