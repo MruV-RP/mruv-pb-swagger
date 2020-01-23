@@ -40,7 +40,7 @@
         ]
       },
       "post": {
-        "summary": "CRUD items",
+        "summary": "CRUD",
         "operationId": "CreateGroup",
         "responses": {
           "200": {
@@ -50,6 +50,31 @@
             }
           }
         },
+        "tags": [
+          "MruVGroupsService"
+        ]
+      }
+    },
+    "/v1/groups/{id.id}": {
+      "patch": {
+        "operationId": "UpdateGroup",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvGroupID"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id.id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
         "tags": [
           "MruVGroupsService"
         ]
@@ -81,29 +106,6 @@
       },
       "delete": {
         "operationId": "DeleteGroup",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/mruvGroupID"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "integer",
-            "format": "int32"
-          }
-        ],
-        "tags": [
-          "MruVGroupsService"
-        ]
-      },
-      "patch": {
-        "operationId": "UpdateGroup",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -161,6 +163,15 @@
     }
   },
   "definitions": {
+    "mruvAccountID": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "mruvGetGroupsResponse": {
       "type": "object",
       "properties": {
@@ -176,8 +187,7 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "integer",
-          "format": "int32"
+          "$ref": "#/definitions/mruvGroupID"
         },
         "name": {
           "type": "string"
@@ -191,10 +201,10 @@
             "$ref": "#/definitions/mruvPermission"
           }
         },
-        "users": {
+        "members": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/mruvUser"
+            "$ref": "#/definitions/mruvAccountID"
           }
         }
       }
@@ -211,6 +221,9 @@
     "mruvPermission": {
       "type": "object",
       "properties": {
+        "id": {
+          "$ref": "#/definitions/mruvPermissionID"
+        },
         "name": {
           "type": "string"
         },
@@ -219,22 +232,19 @@
         }
       }
     },
+    "mruvPermissionID": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "mruvServiceStatusResponse": {
       "type": "object",
       "properties": {
         "status": {
-          "type": "string"
-        }
-      }
-    },
-    "mruvUser": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "name": {
           "type": "string"
         }
       }
