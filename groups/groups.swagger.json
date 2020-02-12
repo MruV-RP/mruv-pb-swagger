@@ -55,26 +55,34 @@
         ]
       }
     },
-    "/v1/groups/{id.id}": {
-      "patch": {
-        "operationId": "UpdateGroup",
+    "/v1/groups/status": {
+      "get": {
+        "summary": "Service status",
+        "operationId": "GetServiceStatus",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvGroupID"
+              "$ref": "#/definitions/mruvServiceStatusResponse"
             }
           }
         },
-        "parameters": [
-          {
-            "name": "id.id",
-            "in": "path",
-            "required": true,
-            "type": "integer",
-            "format": "int32"
+        "tags": [
+          "MruVGroupsService"
+        ]
+      }
+    },
+    "/v1/groups/version": {
+      "get": {
+        "operationId": "GetServiceVersion",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvVersionResponse"
+            }
           }
-        ],
+        },
         "tags": [
           "MruVGroupsService"
         ]
@@ -127,39 +135,6 @@
           "MruVGroupsService"
         ]
       }
-    },
-    "/v1/items/status": {
-      "get": {
-        "summary": "Service status",
-        "operationId": "GetServiceStatus",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/mruvServiceStatusResponse"
-            }
-          }
-        },
-        "tags": [
-          "MruVGroupsService"
-        ]
-      }
-    },
-    "/v1/items/version": {
-      "get": {
-        "operationId": "GetServiceVersion",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/mruvVersionResponse"
-            }
-          }
-        },
-        "tags": [
-          "MruVGroupsService"
-        ]
-      }
     }
   },
   "definitions": {
@@ -171,6 +146,9 @@
           "format": "int64"
         }
       }
+    },
+    "mruvAddGroupMemberResponse": {
+      "type": "object"
     },
     "mruvGetGroupsResponse": {
       "type": "object",
@@ -240,6 +218,9 @@
           "format": "int64"
         }
       }
+    },
+    "mruvRemoveGroupMemberResponse": {
+      "type": "object"
     },
     "mruvServiceStatusResponse": {
       "type": "object",

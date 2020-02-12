@@ -42,6 +42,54 @@
         }
       }
     },
+    "mruvCharacter": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/mruvCharacterID"
+        },
+        "owner_id": {
+          "$ref": "#/definitions/mruvAccountID"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "second_name": {
+          "type": "string"
+        },
+        "age": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "sex": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "position": {
+          "$ref": "#/definitions/mruvPosition"
+        }
+      }
+    },
+    "mruvCharacterID": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "mruvGetAccountCharactersResponse": {
+      "type": "object",
+      "properties": {
+        "characters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/mruvCharacter"
+          }
+        }
+      }
+    },
     "mruvLogInResponse": {
       "type": "object",
       "properties": {
@@ -51,6 +99,23 @@
         },
         "id": {
           "$ref": "#/definitions/mruvAccountID"
+        }
+      }
+    },
+    "mruvPosition": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "number",
+          "format": "double"
+        },
+        "y": {
+          "type": "number",
+          "format": "double"
+        },
+        "z": {
+          "type": "number",
+          "format": "double"
         }
       }
     },
