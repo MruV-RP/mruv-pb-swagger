@@ -1,0 +1,540 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "devtools/devtools.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/devtools/animations": {
+      "get": {
+        "summary": "Get all saved animations.",
+        "operationId": "GetAnimations",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/devtoolsGetAnimationsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "dict",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "MruVDevToolsService"
+        ]
+      },
+      "post": {
+        "summary": "Save animation.",
+        "operationId": "SaveAnimation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/devtoolsSaveAnimationResponse"
+            }
+          }
+        },
+        "tags": [
+          "MruVDevToolsService"
+        ]
+      }
+    },
+    "/v1/devtools/animations/{name}": {
+      "get": {
+        "summary": "Get saved animation by name.",
+        "operationId": "GetAnimation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/devtoolsGetAnimationResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "dict",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "MruVDevToolsService"
+        ]
+      }
+    },
+    "/v1/devtools/outfits": {
+      "get": {
+        "summary": "Get saved outfit.",
+        "operationId": "GetOutfits",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/devtoolsGetOutfitsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "author",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "MruVDevToolsService"
+        ]
+      },
+      "post": {
+        "summary": "Save outfit.",
+        "operationId": "SaveOutfit",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/devtoolsSaveOutfitResponse"
+            }
+          }
+        },
+        "tags": [
+          "MruVDevToolsService"
+        ]
+      }
+    },
+    "/v1/devtools/position": {
+      "delete": {
+        "summary": "Delete position.",
+        "operationId": "DeletePosition",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/devtoolsDeletePositionResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "position.x",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "double"
+          },
+          {
+            "name": "position.y",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "double"
+          },
+          {
+            "name": "position.z",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "double"
+          },
+          {
+            "name": "position.name",
+            "description": "Short position name.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "position.description",
+            "description": "Description of the place which the position indicates.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "MruVDevToolsService"
+        ]
+      }
+    },
+    "/v1/devtools/positions": {
+      "get": {
+        "summary": "Get saved positions.",
+        "operationId": "GetPositions",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/devtoolsGetPositionsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "author.id",
+            "description": "Unique id.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "author.name",
+            "description": "Unique name.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "author.hash",
+            "description": "Password hash.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "MruVDevToolsService"
+        ]
+      },
+      "post": {
+        "summary": "Save position.",
+        "operationId": "SavePosition",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/devtoolsSavePositionResponse"
+            }
+          }
+        },
+        "tags": [
+          "MruVDevToolsService"
+        ]
+      }
+    },
+    "/v1/devtools/status": {
+      "get": {
+        "summary": "Get service status.",
+        "operationId": "GetServiceStatus",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvServiceStatusResponse"
+            }
+          }
+        },
+        "tags": [
+          "MruVDevToolsService"
+        ]
+      }
+    },
+    "/v1/devtools/version": {
+      "get": {
+        "summary": "Get service version.",
+        "operationId": "GetServiceVersion",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvVersionResponse"
+            }
+          }
+        },
+        "tags": [
+          "MruVDevToolsService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "devtoolsAnimation": {
+      "type": "object",
+      "properties": {
+        "dict": {
+          "type": "string",
+          "description": "Animation dictionary name."
+        },
+        "name": {
+          "type": "string",
+          "description": "Animation name."
+        },
+        "readable_category": {
+          "type": "string",
+          "description": "Animation category, specified by author."
+        },
+        "category": {
+          "type": "string"
+        }
+      },
+      "title": "GTA V animation structure.\r\nYou can find more information about RageMP outfits [here](https://wiki.rage.mp/index.php?title=Animations \"RageMP Animations\")"
+    },
+    "devtoolsDeletePositionResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      },
+      "description": "Delete position response message."
+    },
+    "devtoolsGetAnimationResponse": {
+      "type": "object",
+      "properties": {
+        "animation": {
+          "$ref": "#/definitions/devtoolsAnimation"
+        },
+        "author": {
+          "$ref": "#/definitions/devtoolsPlayer"
+        }
+      },
+      "description": "Get animation response message."
+    },
+    "devtoolsGetAnimationsResponse": {
+      "type": "object",
+      "properties": {
+        "animations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/devtoolsGetAnimationsResponseRow"
+          }
+        }
+      },
+      "description": "Get animations response message."
+    },
+    "devtoolsGetAnimationsResponseRow": {
+      "type": "object",
+      "properties": {
+        "animation": {
+          "$ref": "#/definitions/devtoolsAnimation"
+        },
+        "author": {
+          "$ref": "#/definitions/devtoolsPlayer"
+        }
+      }
+    },
+    "devtoolsGetOutfitsResponse": {
+      "type": "object",
+      "properties": {
+        "outfits": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/devtoolsGetOutfitsResponseRow"
+          }
+        }
+      },
+      "description": "Get outfits response message."
+    },
+    "devtoolsGetOutfitsResponseRow": {
+      "type": "object",
+      "properties": {
+        "outfit": {
+          "$ref": "#/definitions/devtoolsOutfit"
+        },
+        "author": {
+          "$ref": "#/definitions/devtoolsPlayer"
+        }
+      }
+    },
+    "devtoolsGetPositionsResponse": {
+      "type": "object",
+      "properties": {
+        "positions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/devtoolsGetPositionsResponseRow"
+          }
+        }
+      },
+      "description": "Get position response message."
+    },
+    "devtoolsGetPositionsResponseRow": {
+      "type": "object",
+      "properties": {
+        "position": {
+          "$ref": "#/definitions/devtoolsPosition"
+        },
+        "author": {
+          "$ref": "#/definitions/devtoolsPlayer"
+        }
+      }
+    },
+    "devtoolsOutfit": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the outfit."
+        },
+        "category": {
+          "type": "string",
+          "description": "Category of the outfit."
+        }
+      },
+      "title": "GTA V player outfit structure.\r\nYou can find more information about RageMP outfits [here](https://wiki.rage.mp/index.php?title=Clothes \"RageMP Clothes\")"
+    },
+    "devtoolsPlayer": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Unique id."
+        },
+        "name": {
+          "type": "string",
+          "description": "Unique name."
+        },
+        "hash": {
+          "type": "string",
+          "description": "Password hash."
+        }
+      },
+      "description": "Player structure for storing authors of devtools saved records."
+    },
+    "devtoolsPosition": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "number",
+          "format": "double"
+        },
+        "y": {
+          "type": "number",
+          "format": "double"
+        },
+        "z": {
+          "type": "number",
+          "format": "double"
+        },
+        "name": {
+          "type": "string",
+          "description": "Short position name."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the place which the position indicates."
+        }
+      },
+      "description": "Position structure."
+    },
+    "devtoolsSaveAnimationResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      },
+      "description": "Save animation response message."
+    },
+    "devtoolsSaveOutfitResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      },
+      "description": "Save outfit response message."
+    },
+    "devtoolsSavePositionResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      },
+      "description": "Save position response message."
+    },
+    "mruvServiceStatusResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "mruvVersionResponse": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string"
+        },
+        "build_date": {
+          "type": "string"
+        },
+        "commit": {
+          "type": "string"
+        },
+        "os_arch": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
