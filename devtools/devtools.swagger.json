@@ -237,7 +237,7 @@
             "in": "query",
             "required": false,
             "type": "integer",
-            "format": "int32"
+            "format": "int64"
           },
           {
             "name": "author.name",
@@ -441,7 +441,7 @@
       "properties": {
         "id": {
           "type": "integer",
-          "format": "int32",
+          "format": "int64",
           "description": "Unique id."
         },
         "name": {

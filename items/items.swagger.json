@@ -149,7 +149,7 @@
         ]
       }
     },
-    "/v1/containers/{container_id.id}/items": {
+    "/v1/containers/{container_id}/items": {
       "get": {
         "summary": "Get items inside a container.",
         "operationId": "GetContainerItems",
@@ -163,7 +163,8 @@
         },
         "parameters": [
           {
-            "name": "container_id.id",
+            "name": "container_id",
+            "description": "ID of container with items.",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -183,7 +184,7 @@
         ]
       }
     },
-    "/v1/containers/{container_id.id}/items/nearest/x/{position.x}/y/{position.y}/z/{position.z}": {
+    "/v1/containers/{container_id}/items/nearest/x/{position.x}/y/{position.y}/z/{position.z}": {
       "get": {
         "summary": "Retrieves from the container the list of items nearest to the given position.",
         "operationId": "GetNearestItems",
@@ -197,7 +198,8 @@
         },
         "parameters": [
           {
-            "name": "container_id.id",
+            "name": "container_id",
+            "description": "ID of container that contains items.",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -238,7 +240,7 @@
         ]
       }
     },
-    "/v1/containers/{container_id.id}/items/sort/{sort_by}": {
+    "/v1/containers/{container_id}/items/sort/{sort_by}": {
       "get": {
         "summary": "Sort items inside container.\r\nThis procedure change order of items inside container.",
         "operationId": "SortItems",
@@ -252,7 +254,8 @@
         },
         "parameters": [
           {
-            "name": "container_id.id",
+            "name": "container_id",
+            "description": "ID of the container which contain items.",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -278,7 +281,7 @@
         ]
       }
     },
-    "/v1/containers/{container_id.id}/items/{item_id.id}": {
+    "/v1/containers/{container_id}/items/{item_id}": {
       "delete": {
         "summary": "Pull item from container.",
         "operationId": "PullItem",
@@ -292,18 +295,20 @@
         },
         "parameters": [
           {
-            "name": "container_id.id",
+            "name": "container_id",
+            "description": "ID of the container from which we pull out a item.",
             "in": "path",
             "required": true,
             "type": "integer",
             "format": "int64"
           },
           {
-            "name": "item_id.id",
+            "name": "item_id",
+            "description": "ID of the item we want to pull out.\r\nThat item must be inside the container.",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "uint64"
+            "type": "integer",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -323,18 +328,20 @@
         },
         "parameters": [
           {
-            "name": "container_id.id",
+            "name": "container_id",
+            "description": "ID of container where to put item.",
             "in": "path",
             "required": true,
             "type": "integer",
             "format": "int64"
           },
           {
-            "name": "item_id.id",
+            "name": "item_id",
+            "description": "ID of item we wan to put in.",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "uint64"
+            "type": "integer",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -577,8 +584,8 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "uint64"
+            "type": "integer",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -601,8 +608,8 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "uint64"
+            "type": "integer",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -610,7 +617,7 @@
         ]
       }
     },
-    "/v1/items/{item_id.id}/use": {
+    "/v1/items/{item_id}/use": {
       "get": {
         "summary": "Trigger action associated with the item usage.",
         "operationId": "UseItem",
@@ -624,11 +631,11 @@
         },
         "parameters": [
           {
-            "name": "item_id.id",
+            "name": "item_id",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "uint64"
+            "type": "integer",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -642,14 +649,17 @@
       "type": "object",
       "properties": {
         "id": {
-          "$ref": "#/definitions/mruvContainerID"
+          "type": "integer",
+          "format": "int64"
         },
         "type_id": {
-          "$ref": "#/definitions/mruvContainerTypeID",
+          "type": "integer",
+          "format": "int64",
           "description": "ID of an container type."
         },
         "item_id": {
-          "$ref": "#/definitions/mruvItemID",
+          "type": "integer",
+          "format": "int64",
           "description": "ID of container item representing container."
         },
         "items_inside": {
@@ -681,10 +691,12 @@
       "type": "object",
       "properties": {
         "id": {
-          "$ref": "#/definitions/mruvContainerTypeID"
+          "type": "integer",
+          "format": "int64"
         },
         "container_item_type_id": {
-          "$ref": "#/definitions/mruvItemTypeID",
+          "type": "integer",
+          "format": "int64",
           "description": "ID of an item type."
         },
         "max_number": {
@@ -705,7 +717,8 @@
         "valid_item_types": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/mruvItemTypeID"
+            "type": "string",
+            "format": "int64"
           }
         }
       },
@@ -803,11 +816,13 @@
       "type": "object",
       "properties": {
         "container_id": {
-          "$ref": "#/definitions/mruvContainerID",
+          "type": "integer",
+          "format": "int64",
           "description": "ID of container containing the item."
         },
         "item_id": {
-          "$ref": "#/definitions/mruvItemID"
+          "type": "string",
+          "format": "int64"
         },
         "item": {
           "$ref": "#/definitions/mruvItem"
@@ -824,10 +839,12 @@
       "type": "object",
       "properties": {
         "id": {
-          "$ref": "#/definitions/mruvItemID"
+          "type": "integer",
+          "format": "int64"
         },
         "item_type_id": {
-          "$ref": "#/definitions/mruvItemTypeID",
+          "type": "integer",
+          "format": "int64",
           "description": "ID of an item type."
         },
         "weight": {
@@ -847,8 +864,8 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "string",
-          "format": "uint64"
+          "type": "integer",
+          "format": "int64"
         }
       },
       "description": "Item ID."
@@ -857,7 +874,8 @@
       "type": "object",
       "properties": {
         "id": {
-          "$ref": "#/definitions/mruvItemTypeID"
+          "type": "integer",
+          "format": "int64"
         },
         "name": {
           "type": "string",

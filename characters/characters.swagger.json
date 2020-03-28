@@ -49,7 +49,7 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string",
+            "type": "integer",
             "format": "int64"
           }
         ],
@@ -107,7 +107,7 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string",
+            "type": "integer",
             "format": "int64"
           }
         ],
@@ -130,7 +130,7 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string",
+            "type": "integer",
             "format": "int64"
           }
         ],
@@ -141,23 +141,16 @@
     }
   },
   "definitions": {
-    "mruvAccountID": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "int64"
-        }
-      }
-    },
     "mruvCharacter": {
       "type": "object",
       "properties": {
         "id": {
-          "$ref": "#/definitions/mruvCharacterID"
+          "type": "integer",
+          "format": "int64"
         },
         "owner_id": {
-          "$ref": "#/definitions/mruvAccountID"
+          "type": "integer",
+          "format": "int64"
         },
         "first_name": {
           "type": "string"
@@ -182,7 +175,7 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "string",
+          "type": "integer",
           "format": "int64"
         }
       }

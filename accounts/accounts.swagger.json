@@ -20,7 +20,8 @@
       "type": "object",
       "properties": {
         "id": {
-          "$ref": "#/definitions/mruvAccountID"
+          "type": "integer",
+          "format": "int64"
         },
         "login": {
           "type": "string"
@@ -33,23 +34,16 @@
         }
       }
     },
-    "mruvAccountID": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "int64"
-        }
-      }
-    },
     "mruvCharacter": {
       "type": "object",
       "properties": {
         "id": {
-          "$ref": "#/definitions/mruvCharacterID"
+          "type": "integer",
+          "format": "int64"
         },
         "owner_id": {
-          "$ref": "#/definitions/mruvAccountID"
+          "type": "integer",
+          "format": "int64"
         },
         "first_name": {
           "type": "string"
@@ -67,15 +61,6 @@
         },
         "position": {
           "$ref": "#/definitions/mruvPosition"
-        }
-      }
-    },
-    "mruvCharacterID": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "int64"
         }
       }
     },
@@ -97,8 +82,9 @@
           "type": "boolean",
           "format": "boolean"
         },
-        "id": {
-          "$ref": "#/definitions/mruvAccountID"
+        "account_id": {
+          "type": "integer",
+          "format": "int64"
         }
       }
     },
@@ -126,8 +112,9 @@
           "type": "boolean",
           "format": "boolean"
         },
-        "id": {
-          "$ref": "#/definitions/mruvAccountID"
+        "account_id": {
+          "type": "integer",
+          "format": "int64"
         }
       }
     }

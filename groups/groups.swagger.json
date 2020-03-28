@@ -105,7 +105,7 @@
             "in": "path",
             "required": true,
             "type": "integer",
-            "format": "int32"
+            "format": "int64"
           }
         ],
         "tags": [
@@ -128,7 +128,7 @@
             "in": "path",
             "required": true,
             "type": "integer",
-            "format": "int32"
+            "format": "int64"
           }
         ],
         "tags": [
@@ -138,15 +138,6 @@
     }
   },
   "definitions": {
-    "mruvAccountID": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "int64"
-        }
-      }
-    },
     "mruvAddGroupMemberResponse": {
       "type": "object"
     },
@@ -165,7 +156,8 @@
       "type": "object",
       "properties": {
         "id": {
-          "$ref": "#/definitions/mruvGroupID"
+          "type": "integer",
+          "format": "int64"
         },
         "name": {
           "type": "string"
@@ -182,7 +174,8 @@
         "members": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/mruvAccountID"
+            "type": "integer",
+            "format": "int64"
           }
         }
       }
@@ -192,7 +185,7 @@
       "properties": {
         "id": {
           "type": "integer",
-          "format": "int32"
+          "format": "int64"
         }
       }
     },
@@ -200,22 +193,14 @@
       "type": "object",
       "properties": {
         "id": {
-          "$ref": "#/definitions/mruvPermissionID"
+          "type": "integer",
+          "format": "int64"
         },
         "name": {
           "type": "string"
         },
         "role": {
           "type": "string"
-        }
-      }
-    },
-    "mruvPermissionID": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "int64"
         }
       }
     },
