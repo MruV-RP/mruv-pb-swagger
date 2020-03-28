@@ -821,7 +821,7 @@
           "description": "ID of container containing the item."
         },
         "item_id": {
-          "type": "string",
+          "type": "integer",
           "format": "int64"
         },
         "item": {
