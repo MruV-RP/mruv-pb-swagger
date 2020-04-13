@@ -4,10 +4,6 @@
     "title": "items/items.proto",
     "version": "version not set"
   },
-  "schemes": [
-    "http",
-    "https"
-  ],
   "consumes": [
     "application/json"
   ],
@@ -242,7 +238,7 @@
     },
     "/v1/containers/{container_id}/items/sort/{sort_by}": {
       "get": {
-        "summary": "Sort items inside container.\r\nThis procedure change order of items inside container.",
+        "summary": "Sort items inside container.\nThis procedure change order of items inside container.",
         "operationId": "SortItems",
         "responses": {
           "200": {
@@ -304,7 +300,7 @@
           },
           {
             "name": "item_id",
-            "description": "ID of the item we want to pull out.\r\nThat item must be inside the container.",
+            "description": "ID of the item we want to pull out.\nThat item must be inside the container.",
             "in": "path",
             "required": true,
             "type": "integer",

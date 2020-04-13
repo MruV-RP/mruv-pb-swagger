@@ -4,10 +4,6 @@
     "title": "devtools/devtools.proto",
     "version": "version not set"
   },
-  "schemes": [
-    "http",
-    "https"
-  ],
   "consumes": [
     "application/json"
   ],
@@ -329,7 +325,7 @@
           "type": "string"
         }
       },
-      "title": "GTA V animation structure.\r\nYou can find more information about RageMP outfits [here](https://wiki.rage.mp/index.php?title=Animations \"RageMP Animations\")"
+      "title": "GTA V animation structure.\nYou can find more information about RageMP outfits [here](https://wiki.rage.mp/index.php?title=Animations \"RageMP Animations\")"
     },
     "devtoolsDeletePositionResponse": {
       "type": "object",
@@ -434,7 +430,7 @@
           "description": "Category of the outfit."
         }
       },
-      "title": "GTA V player outfit structure.\r\nYou can find more information about RageMP outfits [here](https://wiki.rage.mp/index.php?title=Clothes \"RageMP Clothes\")"
+      "title": "GTA V player outfit structure.\nYou can find more information about RageMP outfits [here](https://wiki.rage.mp/index.php?title=Clothes \"RageMP Clothes\")"
     },
     "devtoolsPlayer": {
       "type": "object",
