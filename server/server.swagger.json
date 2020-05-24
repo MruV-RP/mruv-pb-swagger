@@ -10,27 +10,236 @@
   "produces": [
     "application/json"
   ],
-  "paths": {},
-  "definitions": {
-    "mruvRegisterServerResponse": {
-      "type": "object",
-      "title": "Response message for `MruVServerService`"
+  "paths": {
+    "/v1/servers": {
+      "get": {
+        "summary": "Get all registered servers.",
+        "operationId": "GetRegisteredServers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/serverGetRegisteredServersResponse"
+            }
+          }
+        },
+        "tags": [
+          "MruVServerService"
+        ]
+      },
+      "post": {
+        "summary": "Register instance of server for further managing.",
+        "operationId": "RegisterServer",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/serverServerID"
+            }
+          }
+        },
+        "tags": [
+          "MruVServerService"
+        ]
+      }
     },
-    "mruvServerStatus": {
+    "/v1/servers/{id}": {
+      "get": {
+        "summary": "Get game server status.",
+        "operationId": "GetServerInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/serverServerInfo"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVServerService"
+        ]
+      }
+    },
+    "/v1/servers/{id}/status": {
+      "patch": {
+        "summary": "Update game server status.",
+        "operationId": "UpdateServerStatus",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/serverUpdateServerStatusResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Id of the server.",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVServerService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "ServerEventServerEventType": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "REGISTERED",
+        "SERVER_DOWN",
+        "SERVER_UP",
+        "PLAYERS_CHANGED"
+      ],
+      "default": "UNKNOWN",
+      "description": "Types of server events."
+    },
+    "protobufAny": {
       "type": "object",
       "properties": {
-        "active": {
-          "type": "boolean",
-          "format": "boolean",
-          "title": "Is server active and working"
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "runtimeStreamError": {
+      "type": "object",
+      "properties": {
+        "grpc_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "http_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "http_status": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "serverGetRegisteredServersResponse": {
+      "type": "object",
+      "properties": {
+        "servers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/serverServerInfo"
+          }
+        }
+      },
+      "description": "Response message for `MruVServerService.GetRegisteredServers`."
+    },
+    "serverServerEvent": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/ServerEventServerEventType",
+          "description": "Type of a server event."
+        }
+      },
+      "description": "Server event.\nResponse message for `MruVServerService.ServerEventsStream`."
+    },
+    "serverServerID": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "serverServerInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "description": "Id of the server."
+        },
+        "name": {
+          "type": "string",
+          "description": "Short name of the server."
+        },
+        "host": {
+          "type": "string",
+          "description": "Host (ip) of the server."
+        },
+        "port": {
+          "type": "string",
+          "description": "Port of the server."
+        },
+        "platform": {
+          "type": "string",
+          "description": "Platform of the server."
+        },
+        "status": {
+          "$ref": "#/definitions/serverServerStatus",
+          "description": "Status of the server."
         },
         "players": {
           "type": "integer",
           "format": "int32",
-          "title": "How many players are registered on that server"
+          "description": "How many players are playing on the server."
         }
       },
-      "title": "State of the server"
+      "description": "Data that describe server."
+    },
+    "serverServerStatus": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "ON",
+        "OFF"
+      ],
+      "default": "UNKNOWN"
+    },
+    "serverUpdateServerStatusResponse": {
+      "type": "object",
+      "description": "Response message for `MruVServerService.UpdateServerStatus`."
+    }
+  },
+  "x-stream-definitions": {
+    "serverServerEvent": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/serverServerEvent"
+        },
+        "error": {
+          "$ref": "#/definitions/runtimeStreamError"
+        }
+      },
+      "title": "Stream result of serverServerEvent"
     }
   }
 }
