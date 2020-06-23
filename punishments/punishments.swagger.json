@@ -1,0 +1,1030 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "punishments/punishments.proto",
+    "version": "version not set"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/punishments/aj/{character}": {
+      "get": {
+        "summary": "Get player admin jail time.",
+        "operationId": "GetPlayerAdminJail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/economyGetPlayerAdminJailResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "character",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVPunishmentsService"
+        ]
+      },
+      "delete": {
+        "summary": "Remove player from admin jail.",
+        "operationId": "UnAdminJail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/economyUnAdminJailResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "character",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVPunishmentsService"
+        ]
+      },
+      "post": {
+        "summary": "Put player in an admin jail.",
+        "operationId": "AdminJail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/economyAdminJailResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "character",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVPunishmentsService"
+        ]
+      }
+    },
+    "/v1/punishments/ban/{ban_id}": {
+      "delete": {
+        "summary": "Deactivate a specific player ban.",
+        "operationId": "UnBan",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/economyUnBanResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ban_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVPunishmentsService"
+        ]
+      }
+    },
+    "/v1/punishments/ban/{player}": {
+      "post": {
+        "summary": "Ban player on account and/or ip.\nIf ban_time is 0, ban will never expire.",
+        "operationId": "Ban",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/economyBanResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "player",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVPunishmentsService"
+        ]
+      }
+    },
+    "/v1/punishments/bans/{id}": {
+      "get": {
+        "summary": "Get ban info.",
+        "operationId": "GetBan",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/economyBanMessage"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVPunishmentsService"
+        ]
+      }
+    },
+    "/v1/punishments/bans/{player}": {
+      "get": {
+        "summary": "Get all player bans.",
+        "operationId": "GetPlayerBans",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/economyGetPlayerBansResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "player",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "ip",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "MruVPunishmentsService"
+        ]
+      }
+    },
+    "/v1/punishments/bans/{player}/{ip}": {
+      "get": {
+        "summary": "Check is player or ip banned.",
+        "operationId": "IsPlayerBanned",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/economyIsPlayerBannedResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "player",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "ip",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "MruVPunishmentsService"
+        ]
+      }
+    },
+    "/v1/punishments/block/{character}": {
+      "post": {
+        "summary": "Block player character.",
+        "operationId": "Block",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/economyBlockResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "character",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVPunishmentsService"
+        ]
+      }
+    },
+    "/v1/punishments/blocks/{id}": {
+      "get": {
+        "summary": "Get block info.",
+        "operationId": "GetBlock",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/economyBlockMessage"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVPunishmentsService"
+        ]
+      }
+    },
+    "/v1/punishments/mute/{account}": {
+      "delete": {
+        "operationId": "UnMuteGlobalChats",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/economyUnMuteGlobalChatsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVPunishmentsService"
+        ]
+      },
+      "post": {
+        "summary": "Mute player global chats.",
+        "operationId": "MuteGlobalChats",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/economyMuteGlobalChatsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVPunishmentsService"
+        ]
+      }
+    },
+    "/v1/punishments/warn/{player}": {
+      "post": {
+        "summary": "Warn player.\nIf warn_time is 0, warn will never expire.",
+        "operationId": "Warn",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/economyWarnResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "player",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVPunishmentsService"
+        ]
+      }
+    },
+    "/v1/punishments/warn/{warn_id}": {
+      "delete": {
+        "summary": "Deactivate a specific player warning. If a player was banned by reaching the warning limit, a player will be unbanned.",
+        "operationId": "UnWarn",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/economyUnWarnResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "warn_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVPunishmentsService"
+        ]
+      }
+    },
+    "/v1/punishments/warns/{id}": {
+      "get": {
+        "summary": "Get warn info.",
+        "operationId": "GetWarn",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/economyWarnMessage"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVPunishmentsService"
+        ]
+      }
+    },
+    "/v1/punishments/warns/{player}": {
+      "get": {
+        "summary": "Get all player warns.",
+        "operationId": "GetPlayerWarns",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/economyGetPlayerWarnsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "player",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVPunishmentsService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "economyAdminJailMessage": {
+      "type": "object",
+      "properties": {
+        "player": {
+          "type": "integer",
+          "format": "int64",
+          "description": "A player, that owns a jailed character."
+        },
+        "character": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Character that has been jailed."
+        },
+        "reason": {
+          "type": "string",
+          "description": "An admin jail reason."
+        },
+        "admin": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Admin that jail a player. 0 = system jail."
+        },
+        "aj_date": {
+          "type": "string",
+          "format": "int64",
+          "description": "Date on which an admin jail was issued in Unix time."
+        },
+        "jail_time": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Time of admin jail in seconds."
+        }
+      }
+    },
+    "economyAdminJailResponse": {
+      "type": "object",
+      "description": "Response message for rpc `AdminJail`."
+    },
+    "economyBanMessage": {
+      "type": "object",
+      "properties": {
+        "player": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "character": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "ip": {
+          "type": "string"
+        },
+        "expiration_date": {
+          "type": "string",
+          "format": "int64",
+          "description": "Expiration date in Unix time."
+        },
+        "reason": {
+          "type": "string",
+          "description": "A ban reason."
+        },
+        "admin": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Admin that banned a player. 0 = system ban."
+        },
+        "ban_date": {
+          "type": "string",
+          "format": "int64",
+          "description": "Date on which a ban was issued in Unix time."
+        },
+        "active": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "Ban status. True = active, false = deactivated."
+        },
+        "unban_date": {
+          "type": "string",
+          "format": "int64",
+          "description": "Date of unban in Unix time.\nThis field is set only when ban was deactivated."
+        },
+        "unban_admin": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Admin that deactivated this ban.\nThis field is set only when ban was deactivated."
+        }
+      }
+    },
+    "economyBanResponse": {
+      "type": "object",
+      "properties": {
+        "ban_id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "description": "Response message for rpc `Ban`."
+    },
+    "economyBlockMessage": {
+      "type": "object",
+      "properties": {
+        "player": {
+          "type": "integer",
+          "format": "int64",
+          "description": "A player, that owns a blocked character."
+        },
+        "character": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Blocked character."
+        },
+        "reason": {
+          "type": "string",
+          "description": "A block reason."
+        },
+        "admin": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Admin that blocked a player. 0 = system block."
+        },
+        "block_date": {
+          "type": "string",
+          "format": "int64",
+          "description": "Date on which a block was issued in Unix time."
+        },
+        "active": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "unblock_date": {
+          "type": "string",
+          "format": "int64",
+          "description": "Date of unblock in Unix time.\nThis field is set only when a block was deactivated."
+        },
+        "unblock_admin": {
+          "type": "integer",
+          "format": "int64",
+          "description": "An admin that unblocked a player.\nThis field is set only when a block was deactivated."
+        }
+      }
+    },
+    "economyBlockResponse": {
+      "type": "object",
+      "properties": {
+        "block_id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "description": "Response message for rpc `Block`."
+    },
+    "economyGetPlayerAdminJailResponse": {
+      "type": "object",
+      "properties": {
+        "jail_time": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Time of admin jail in seconds."
+        },
+        "reason": {
+          "type": "string",
+          "description": "Admin jail reason."
+        },
+        "admin": {
+          "type": "integer",
+          "format": "int64",
+          "description": "An admin that put a player in the admin jail."
+        },
+        "date": {
+          "type": "string",
+          "format": "int64",
+          "description": "Date when the player was thrown into admin jail in Unix time."
+        }
+      },
+      "description": "Response message for rpc `GetPlayerAdminJail`."
+    },
+    "economyGetPlayerBansResponse": {
+      "type": "object",
+      "properties": {
+        "bans": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/economyBanMessage"
+          }
+        }
+      },
+      "description": "Response message for rpc `GetPlayerBans`."
+    },
+    "economyGetPlayerWarnsResponse": {
+      "type": "object",
+      "properties": {
+        "warns": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/economyWarnMessage"
+          }
+        }
+      },
+      "description": "Response message for rpc `GetPlayerWarns`."
+    },
+    "economyIsCharacterBlockedResponse": {
+      "type": "object",
+      "properties": {
+        "blocked": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "block_id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "description": "Response message for rpc `IsCharacterBlocked`."
+    },
+    "economyIsCharacterJailedResponse": {
+      "type": "object",
+      "properties": {
+        "jailed": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "jail_time": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "description": "Response message for rpc `IsCharacterJailed`."
+    },
+    "economyIsPlayerBannedResponse": {
+      "type": "object",
+      "properties": {
+        "banned": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "ban_id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "description": "Response message for rpc `IsPlayerBanned`."
+    },
+    "economyMuteGlobalChatsResponse": {
+      "type": "object",
+      "description": "Response message for rpc `MuteGlobalChats`."
+    },
+    "economyPunishmentType": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN_PUNISHMENT",
+        "BAN",
+        "BLOCK",
+        "WARN",
+        "ADMIN_JAIL"
+      ],
+      "default": "UNKNOWN_PUNISHMENT"
+    },
+    "economyUnAdminJailMessage": {
+      "type": "object",
+      "properties": {
+        "player": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "character": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "economyUnAdminJailResponse": {
+      "type": "object",
+      "description": "Response message for rpc `UnAdminJail`."
+    },
+    "economyUnBanMessage": {
+      "type": "object",
+      "properties": {
+        "player": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "ban_id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "economyUnBanResponse": {
+      "type": "object",
+      "description": "Response message for rpc `UnBan`."
+    },
+    "economyUnBlockMessage": {
+      "type": "object",
+      "properties": {
+        "player": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "block_id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "economyUnMuteGlobalChatsResponse": {
+      "type": "object",
+      "description": "Response message for rpc `UnMuteGlobalChats`."
+    },
+    "economyUnWarnMessage": {
+      "type": "object",
+      "properties": {
+        "player": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "warn_id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "economyUnWarnResponse": {
+      "type": "object",
+      "description": "Response message for rpc `UnWarn`."
+    },
+    "economyWarnMessage": {
+      "type": "object",
+      "properties": {
+        "player": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "character": {
+          "type": "integer",
+          "format": "int64",
+          "description": "A character, that was given a warning."
+        },
+        "expiration_date": {
+          "type": "string",
+          "format": "int64",
+          "description": "Expiration date in Unix time."
+        },
+        "reason": {
+          "type": "string",
+          "description": "A warn reason."
+        },
+        "admin": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Admin that warned a player. 0 = system warn."
+        },
+        "warn_date": {
+          "type": "string",
+          "format": "int64",
+          "description": "Date on which a warn was issued in Unix time."
+        },
+        "active": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "Warn status. True = active, false = deactivated."
+        },
+        "unwarn_date": {
+          "type": "string",
+          "format": "int64",
+          "description": "Date of unwarn in Unix time.\nThis field is set only when warn was deactivated."
+        },
+        "unwarn_admin": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Admin that deactivated a warn.\nThis field is set only when warn was deactivated."
+        }
+      }
+    },
+    "economyWarnResponse": {
+      "type": "object",
+      "properties": {
+        "warn_id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "description": "Response message for rpc `Warn`."
+    },
+    "economyWatchPlayerAcquittalsResponse": {
+      "type": "object",
+      "description": "Response message for rpc `WatchPlayerAcquittals`."
+    },
+    "economyWatchPlayerPunishmentsResponse": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/economyPunishmentType"
+        },
+        "punishment_id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "description": "Response message for rpc `WatchPlayerPunishments`."
+    },
+    "economyWatchPunishmentsResponse": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/economyPunishmentType"
+        },
+        "punishment_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "player": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "character": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "description": "Response message for rpc `WatchPunishments`."
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "runtimeStreamError": {
+      "type": "object",
+      "properties": {
+        "grpc_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "http_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "http_status": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  },
+  "x-stream-definitions": {
+    "economyAdminJailMessage": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/economyAdminJailMessage"
+        },
+        "error": {
+          "$ref": "#/definitions/runtimeStreamError"
+        }
+      },
+      "title": "Stream result of economyAdminJailMessage"
+    },
+    "economyBanMessage": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/economyBanMessage"
+        },
+        "error": {
+          "$ref": "#/definitions/runtimeStreamError"
+        }
+      },
+      "title": "Stream result of economyBanMessage"
+    },
+    "economyBlockMessage": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/economyBlockMessage"
+        },
+        "error": {
+          "$ref": "#/definitions/runtimeStreamError"
+        }
+      },
+      "title": "Stream result of economyBlockMessage"
+    },
+    "economyUnAdminJailMessage": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/economyUnAdminJailMessage"
+        },
+        "error": {
+          "$ref": "#/definitions/runtimeStreamError"
+        }
+      },
+      "title": "Stream result of economyUnAdminJailMessage"
+    },
+    "economyUnBanMessage": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/economyUnBanMessage"
+        },
+        "error": {
+          "$ref": "#/definitions/runtimeStreamError"
+        }
+      },
+      "title": "Stream result of economyUnBanMessage"
+    },
+    "economyUnBlockMessage": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/economyUnBlockMessage"
+        },
+        "error": {
+          "$ref": "#/definitions/runtimeStreamError"
+        }
+      },
+      "title": "Stream result of economyUnBlockMessage"
+    },
+    "economyUnWarnMessage": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/economyUnWarnMessage"
+        },
+        "error": {
+          "$ref": "#/definitions/runtimeStreamError"
+        }
+      },
+      "title": "Stream result of economyUnWarnMessage"
+    },
+    "economyWarnMessage": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/economyWarnMessage"
+        },
+        "error": {
+          "$ref": "#/definitions/runtimeStreamError"
+        }
+      },
+      "title": "Stream result of economyWarnMessage"
+    },
+    "economyWatchPlayerAcquittalsResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/economyWatchPlayerAcquittalsResponse"
+        },
+        "error": {
+          "$ref": "#/definitions/runtimeStreamError"
+        }
+      },
+      "title": "Stream result of economyWatchPlayerAcquittalsResponse"
+    },
+    "economyWatchPlayerPunishmentsResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/economyWatchPlayerPunishmentsResponse"
+        },
+        "error": {
+          "$ref": "#/definitions/runtimeStreamError"
+        }
+      },
+      "title": "Stream result of economyWatchPlayerPunishmentsResponse"
+    },
+    "economyWatchPunishmentsResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/economyWatchPunishmentsResponse"
+        },
+        "error": {
+          "$ref": "#/definitions/runtimeStreamError"
+        }
+      },
+      "title": "Stream result of economyWatchPunishmentsResponse"
+    }
+  }
+}

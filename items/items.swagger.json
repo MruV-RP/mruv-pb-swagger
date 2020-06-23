@@ -38,7 +38,7 @@
         ]
       },
       "post": {
-        "summary": "Create container type.",
+        "summary": "Create a container type.",
         "operationId": "CreateContainerType",
         "responses": {
           "200": {
@@ -55,7 +55,7 @@
     },
     "/v1/containerTypes/{id}": {
       "get": {
-        "summary": "Get container type by id.",
+        "summary": "Get a container type by id.",
         "operationId": "GetContainerType",
         "responses": {
           "200": {
@@ -79,7 +79,7 @@
         ]
       },
       "delete": {
-        "summary": "Detele container type by id.",
+        "summary": "Delete a container type by id.",
         "operationId": "DeleteContainerType",
         "responses": {
           "200": {
@@ -279,7 +279,7 @@
     },
     "/v1/containers/{container_id}/items/{item_id}": {
       "delete": {
-        "summary": "Pull item from container.",
+        "summary": "Pull an item from container.",
         "operationId": "PullItem",
         "responses": {
           "200": {
@@ -312,7 +312,7 @@
         ]
       },
       "put": {
-        "summary": "Put item into container.",
+        "summary": "Put an item into container.",
         "operationId": "PutItem",
         "responses": {
           "200": {

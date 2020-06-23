@@ -60,7 +60,7 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string",
+            "type": "integer",
             "format": "int64"
           }
         ],
@@ -87,7 +87,7 @@
             "description": "Id of the server.",
             "in": "path",
             "required": true,
-            "type": "string",
+            "type": "integer",
             "format": "int64"
           }
         ],
@@ -173,7 +173,7 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "string",
+          "type": "integer",
           "format": "int64"
         }
       }
@@ -182,7 +182,7 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "string",
+          "type": "integer",
           "format": "int64",
           "description": "Id of the server."
         },
@@ -208,7 +208,7 @@
         },
         "players": {
           "type": "integer",
-          "format": "int32",
+          "format": "int64",
           "description": "How many players are playing on the server."
         }
       },

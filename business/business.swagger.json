@@ -1,0 +1,398 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "business/business.proto",
+    "version": "version not set"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/business": {
+      "post": {
+        "summary": "Create a business.",
+        "operationId": "CreateBusiness",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/businessCreateBusinessResponse"
+            }
+          }
+        },
+        "tags": [
+          "MruVBusinessService"
+        ]
+      }
+    },
+    "/v1/business/{business_id}/estates": {
+      "post": {
+        "summary": "Assign an estate to a business.",
+        "operationId": "AssignEstate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/businessAssignEstateResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "business_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVBusinessService"
+        ]
+      }
+    },
+    "/v1/business/{business_id}/estates/{estate_id}": {
+      "delete": {
+        "operationId": "UnassignEstate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/businessUnassignEstateResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "business_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "estate_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVBusinessService"
+        ]
+      }
+    },
+    "/v1/business/{id}": {
+      "get": {
+        "summary": "Get a business.",
+        "operationId": "GetBusiness",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/businessBusiness"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVBusinessService"
+        ]
+      },
+      "delete": {
+        "summary": "Delete a business.",
+        "operationId": "DeleteBusiness",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/businessDeleteBusinessResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVBusinessService"
+        ]
+      },
+      "patch": {
+        "summary": "Update a business.",
+        "operationId": "UpdateBusiness",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/businessBusiness"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVBusinessService"
+        ]
+      }
+    },
+    "/v1/business/{id}/buy": {
+      "post": {
+        "summary": "Buy a business.",
+        "operationId": "BuyBusiness",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/businessBuyBusinessResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVBusinessService"
+        ]
+      }
+    },
+    "/v1/business/{id}/owner": {
+      "post": {
+        "summary": "Assign a business owner.",
+        "operationId": "AssignOwner",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/businessAssignOwnerResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVBusinessService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "businessAssignEstateResponse": {
+      "type": "object",
+      "properties": {
+        "estate_count": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "description": "Response message for rpc `AssignEstate`."
+    },
+    "businessAssignOwnerResponse": {
+      "type": "object",
+      "properties": {
+        "owner_type": {
+          "$ref": "#/definitions/businessOwnerType"
+        },
+        "owner_id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "description": "Response message for rpc `AssignOwner`."
+    },
+    "businessBusiness": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "estate_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          },
+          "description": "Estates that belongs to a business."
+        },
+        "product_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Purchase price in economy system."
+        },
+        "owner_type": {
+          "$ref": "#/definitions/businessOwnerType",
+          "description": "Owner type of the business."
+        },
+        "owner_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Owner of the business."
+        },
+        "business_items": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "description": "Items that belongs to business."
+        },
+        "business_group": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Business group"
+        }
+      },
+      "description": "Business data structure."
+    },
+    "businessBuyBusinessResponse": {
+      "type": "object",
+      "description": "Response message for rpc `BuyBusiness`."
+    },
+    "businessCreateBusinessResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "description": "Response message for rpc `CreateBusiness`."
+    },
+    "businessDeleteBusinessResponse": {
+      "type": "object",
+      "description": "Response message for rpc `DeleteBusiness`."
+    },
+    "businessOwnerType": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "PLAYER",
+        "GROUP",
+        "SYSTEM"
+      ],
+      "default": "UNKNOWN",
+      "description": "Owner type."
+    },
+    "businessUnassignEstateResponse": {
+      "type": "object",
+      "properties": {
+        "estate_count": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "description": "Response message for rpc `UnassignEstate`."
+    },
+    "businessWatchBusinessResponse": {
+      "type": "object",
+      "description": "Response message for rpc `WatchBusiness`."
+    },
+    "businessWatchBusinessesResponse": {
+      "type": "object",
+      "description": "Response message for rpc `WatchBusinesses`."
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "runtimeStreamError": {
+      "type": "object",
+      "properties": {
+        "grpc_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "http_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "http_status": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  },
+  "x-stream-definitions": {
+    "businessWatchBusinessResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/businessWatchBusinessResponse"
+        },
+        "error": {
+          "$ref": "#/definitions/runtimeStreamError"
+        }
+      },
+      "title": "Stream result of businessWatchBusinessResponse"
+    },
+    "businessWatchBusinessesResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/businessWatchBusinessesResponse"
+        },
+        "error": {
+          "$ref": "#/definitions/runtimeStreamError"
+        }
+      },
+      "title": "Stream result of businessWatchBusinessesResponse"
+    }
+  }
+}

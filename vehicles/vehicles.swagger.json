@@ -1,0 +1,124 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "vehicles/vehicles.proto",
+    "version": "version not set"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/vehicles": {
+      "post": {
+        "summary": "Create a vehicle.",
+        "operationId": "CreateVehicle",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/vehiclesCreateVehicleResponse"
+            }
+          }
+        },
+        "tags": [
+          "MruVVehiclesService"
+        ]
+      }
+    },
+    "/v1/vehicles/{id}": {
+      "get": {
+        "summary": "Get a vehicle.",
+        "operationId": "GetVehicle",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/vehiclesGetVehicleResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVVehiclesService"
+        ]
+      },
+      "delete": {
+        "summary": "Delete a vehicle.",
+        "operationId": "DeleteVehicle",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/vehiclesDeleteVehicleResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVVehiclesService"
+        ]
+      },
+      "patch": {
+        "summary": "Update a vehicle.",
+        "operationId": "UpdateVehicle",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/vehiclesUpdateVehicleResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVVehiclesService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "vehiclesCreateVehicleResponse": {
+      "type": "object",
+      "description": "Response message for rpc `CreateVehicle`."
+    },
+    "vehiclesDeleteVehicleResponse": {
+      "type": "object",
+      "description": "Response message for rpc `DeleteVehicle`."
+    },
+    "vehiclesGetVehicleResponse": {
+      "type": "object",
+      "description": "Response message for rpc `GetVehicle`."
+    },
+    "vehiclesUpdateVehicleResponse": {
+      "type": "object",
+      "description": "Response message for rpc `UpdateVehicle`."
+    }
+  }
+}

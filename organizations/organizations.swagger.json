@@ -1,0 +1,181 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "organizations/organizations.proto",
+    "version": "version not set"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/organizations": {
+      "post": {
+        "summary": "Create a organization.",
+        "operationId": "CreateOrganization",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/organizationsCreateOrganizationResponse"
+            }
+          }
+        },
+        "tags": [
+          "MruVOrganizationsService"
+        ]
+      }
+    },
+    "/v1/organizations/{id}": {
+      "get": {
+        "summary": "Get organization.",
+        "operationId": "GetOrganization",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/organizationsGetOrganizationResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVOrganizationsService"
+        ]
+      },
+      "delete": {
+        "summary": "Delete organization.",
+        "operationId": "DeleteOrganization",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/organizationsDeleteOrganizationResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVOrganizationsService"
+        ]
+      },
+      "patch": {
+        "summary": "Update organization.",
+        "operationId": "UpdateOrganization",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/organizationsUpdateOrganizationResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVOrganizationsService"
+        ]
+      }
+    },
+    "/v1/organizations/{id}/leader": {
+      "delete": {
+        "operationId": "UnassignLeader",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/organizationsUnassignLeaderResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVOrganizationsService"
+        ]
+      },
+      "put": {
+        "summary": "Assign an organization leader. Leader is a main administrator of a organization, have all rights to manage organization.\nIf the organization leader already exists, the leader will be overwritten.",
+        "operationId": "AssignLeader",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/organizationsAssignLeaderResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVOrganizationsService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "organizationsAssignLeaderResponse": {
+      "type": "object",
+      "description": "Response message for rpc `AssignLeader`."
+    },
+    "organizationsCreateOrganizationResponse": {
+      "type": "object",
+      "description": "Response message for rpc `CreateOrganization`."
+    },
+    "organizationsDeleteOrganizationResponse": {
+      "type": "object",
+      "description": "Response message for rpc `DeleteOrganization`."
+    },
+    "organizationsGetOrganizationResponse": {
+      "type": "object",
+      "description": "Response message for rpc `GetOrganization`."
+    },
+    "organizationsUnassignLeaderResponse": {
+      "type": "object",
+      "description": "Response message for rpc `UnassignLeader`."
+    },
+    "organizationsUpdateOrganizationResponse": {
+      "type": "object",
+      "description": "Response message for rpc `UpdateOrganization`."
+    }
+  }
+}

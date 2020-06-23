@@ -13,13 +13,13 @@
   "paths": {
     "/v1/characters": {
       "post": {
-        "summary": "CRUD",
+        "summary": "Create a character.",
         "operationId": "CreateCharacter",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvCharacterID"
+              "$ref": "#/definitions/mruvCreateCharacterResponse"
             }
           }
         },
@@ -30,7 +30,7 @@
     },
     "/v1/characters/permanentKill/{id}": {
       "delete": {
-        "summary": "Deaths",
+        "summary": "Kill a character. A character that is killed cannot be played anymore.",
         "operationId": "PermanentCharacterKill",
         "responses": {
           "200": {
@@ -89,12 +89,13 @@
     },
     "/v1/characters/{id}": {
       "get": {
+        "summary": "Get a character.",
         "operationId": "GetCharacter",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvCharacter"
+              "$ref": "#/definitions/mruvGetCharacterResponse"
             }
           }
         },
@@ -112,12 +113,37 @@
         ]
       },
       "delete": {
-        "operationId": "RemoveCharacter",
+        "summary": "Delete a character.",
+        "operationId": "DeleteCharacter",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvCharacterID"
+              "$ref": "#/definitions/mruvDeleteCharacterResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVCharactersService"
+        ]
+      },
+      "patch": {
+        "summary": "Update a character.",
+        "operationId": "UpdateCharacter",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvUpdateCharacterResponse"
             }
           }
         },
@@ -176,6 +202,10 @@
         }
       }
     },
+    "mruvCreateCharacterResponse": {
+      "type": "object",
+      "description": "Response message for rpc `CreateCharacter`."
+    },
     "mruvDeathStreamResponse": {
       "type": "object",
       "properties": {
@@ -196,6 +226,14 @@
         "DEATH_TYPE_CK"
       ],
       "default": "DEATH_TYPE_NONE"
+    },
+    "mruvDeleteCharacterResponse": {
+      "type": "object",
+      "description": "Response message for rpc `DeleteCharacter`."
+    },
+    "mruvGetCharacterResponse": {
+      "type": "object",
+      "description": "Response message for rpc `GetCharacter`."
     },
     "mruvPosition": {
       "type": "object",
@@ -221,6 +259,10 @@
           "type": "string"
         }
       }
+    },
+    "mruvUpdateCharacterResponse": {
+      "type": "object",
+      "description": "Response message for rpc `UpdateCharacter`."
     },
     "mruvVersionResponse": {
       "type": "object",

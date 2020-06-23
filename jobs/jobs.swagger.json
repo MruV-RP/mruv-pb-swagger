@@ -1,0 +1,124 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "jobs/jobs.proto",
+    "version": "version not set"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/jobs": {
+      "post": {
+        "summary": "Create a job.",
+        "operationId": "CreateJob",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/jobsCreateJobResponse"
+            }
+          }
+        },
+        "tags": [
+          "MruVJobsService"
+        ]
+      }
+    },
+    "/v1/jobs/{id}": {
+      "get": {
+        "summary": "Get a job.",
+        "operationId": "GetJob",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/jobsGetJobResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVJobsService"
+        ]
+      },
+      "delete": {
+        "summary": "Delete a job.",
+        "operationId": "DeleteJob",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/jobsDeleteJobResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVJobsService"
+        ]
+      },
+      "patch": {
+        "summary": "Update a job.",
+        "operationId": "UpdateJob",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/jobsUpdateJobResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVJobsService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "jobsCreateJobResponse": {
+      "type": "object",
+      "description": "Response message for rpc `CreateJob`."
+    },
+    "jobsDeleteJobResponse": {
+      "type": "object",
+      "description": "Response message for rpc `DeleteJob`."
+    },
+    "jobsGetJobResponse": {
+      "type": "object",
+      "description": "Response message for rpc `GetJob`."
+    },
+    "jobsUpdateJobResponse": {
+      "type": "object",
+      "description": "Response message for rpc `UpdateJob`."
+    }
+  }
+}

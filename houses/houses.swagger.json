@@ -1,0 +1,124 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "houses/houses.proto",
+    "version": "version not set"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/houses": {
+      "post": {
+        "summary": "Create a house.",
+        "operationId": "CreateHouse",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/housesCreateHouseResponse"
+            }
+          }
+        },
+        "tags": [
+          "MruVHousesService"
+        ]
+      }
+    },
+    "/v1/houses/{id}": {
+      "get": {
+        "summary": "Get a house.",
+        "operationId": "GetHouse",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/housesGetHouseResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVHousesService"
+        ]
+      },
+      "delete": {
+        "summary": "Delete a house.",
+        "operationId": "DeleteHouse",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/housesDeleteHouseResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVHousesService"
+        ]
+      },
+      "patch": {
+        "summary": "Update a house.",
+        "operationId": "UpdateHouse",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/housesUpdateHouseResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVHousesService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "housesCreateHouseResponse": {
+      "type": "object",
+      "description": "Response message for rpc `CreateHouse`."
+    },
+    "housesDeleteHouseResponse": {
+      "type": "object",
+      "description": "Response message for rpc `DeleteHouse`."
+    },
+    "housesGetHouseResponse": {
+      "type": "object",
+      "description": "Response message for rpc `GetHouse`."
+    },
+    "housesUpdateHouseResponse": {
+      "type": "object",
+      "description": "Response message for rpc `UpdateHouse`."
+    }
+  }
+}
