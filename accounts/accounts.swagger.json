@@ -10,7 +10,33 @@
   "produces": [
     "application/json"
   ],
-  "paths": {},
+  "paths": {
+    "/v1/accounts/{login}/registered": {
+      "get": {
+        "summary": "Check, is account with specified login exists. If yes, it returns account id.",
+        "operationId": "IsAccountExists",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvIsAccountExistsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "login",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "MruVAccountsService"
+        ]
+      }
+    }
+  },
   "definitions": {
     "mruvAccount": {
       "type": "object",
@@ -70,6 +96,20 @@
           }
         }
       }
+    },
+    "mruvIsAccountExistsResponse": {
+      "type": "object",
+      "properties": {
+        "exists": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "description": "Response message for rpc `IsAccountExists`."
     },
     "mruvLogInResponse": {
       "type": "object",

@@ -1,0 +1,311 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "gates/gates.proto",
+    "version": "version not set"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/gates": {
+      "post": {
+        "summary": "Create a gate or a moving objects objects group.",
+        "operationId": "CreateGate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gatesCreateGateResponse"
+            }
+          }
+        },
+        "tags": [
+          "MruVGatesService"
+        ]
+      }
+    },
+    "/v1/gates/nearest": {
+      "get": {
+        "summary": "Find gate that is closest to a specific position.",
+        "operationId": "FindNearestGate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gatesFindNearestGateResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "x",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "float"
+          },
+          {
+            "name": "y",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "float"
+          },
+          {
+            "name": "z",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "float"
+          },
+          {
+            "name": "max_distance",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "float"
+          }
+        ],
+        "tags": [
+          "MruVGatesService"
+        ]
+      }
+    },
+    "/v1/gates/{id}": {
+      "get": {
+        "summary": "Get a gate or a moving objects objects group.",
+        "operationId": "GetGate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gatesGetGateResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVGatesService"
+        ]
+      },
+      "delete": {
+        "summary": "Delete a gate or a moving objects objects group.",
+        "operationId": "DeleteGate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gatesDeleteGateResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVGatesService"
+        ]
+      },
+      "patch": {
+        "summary": "Update a gate or a moving objects objects group.",
+        "operationId": "UpdateGate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gatesUpdateGateResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVGatesService"
+        ]
+      }
+    },
+    "/v1/gates/{id}/close": {
+      "post": {
+        "summary": "Close a gate.",
+        "operationId": "Close",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gatesCloseResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVGatesService"
+        ]
+      }
+    },
+    "/v1/gates/{id}/lock": {
+      "post": {
+        "summary": "Lock a gate. Locked gate cannot be opened.",
+        "operationId": "Lock",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gatesLockResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVGatesService"
+        ]
+      }
+    },
+    "/v1/gates/{id}/open": {
+      "post": {
+        "summary": "Opens a gate.",
+        "operationId": "Open",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gatesOpenResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVGatesService"
+        ]
+      }
+    },
+    "/v1/gates/{id}/unlock": {
+      "post": {
+        "summary": "Unload a gate, so it can be open.",
+        "operationId": "Unlock",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gatesUnlockResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVGatesService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "gatesCloseResponse": {
+      "type": "object",
+      "description": "Response message for rpc `Close`."
+    },
+    "gatesCreateGateResponse": {
+      "type": "object",
+      "description": "Response message for rpc `CreateGate`."
+    },
+    "gatesDeleteGateResponse": {
+      "type": "object",
+      "description": "Response message for rpc `DeleteGate`."
+    },
+    "gatesFindNearestGateResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "distance": {
+          "type": "number",
+          "format": "float"
+        }
+      },
+      "description": "Response message for rpc `FindNearestGate`."
+    },
+    "gatesGetGateResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "description": "Response message for rpc `GetGate`."
+    },
+    "gatesLockResponse": {
+      "type": "object",
+      "description": "Response message for rpc `Lock`."
+    },
+    "gatesOpenResponse": {
+      "type": "object",
+      "description": "Response message for rpc `Open`."
+    },
+    "gatesUnlockResponse": {
+      "type": "object",
+      "description": "Response message for rpc `Unlock`."
+    },
+    "gatesUpdateGateResponse": {
+      "type": "object",
+      "description": "Response message for rpc `UpdateGate`."
+    }
+  }
+}
