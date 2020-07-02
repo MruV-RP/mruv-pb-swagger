@@ -11,15 +11,99 @@
     "application/json"
   ],
   "paths": {
-    "/v1/accounts/{login}/registered": {
-      "get": {
-        "summary": "Check, is account with specified login exists. If yes, it returns account id.",
-        "operationId": "IsAccountExists",
+    "/v1/accounts/login": {
+      "post": {
+        "summary": "Sign into an existing account.",
+        "operationId": "LogIn",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvIsAccountExistsResponse"
+              "$ref": "#/definitions/mruvLogInResponse"
+            }
+          }
+        },
+        "tags": [
+          "MruVAccountsService"
+        ]
+      }
+    },
+    "/v1/accounts/register": {
+      "post": {
+        "summary": "Register a new account.",
+        "operationId": "RegisterAccount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvRegisterAccountResponse"
+            }
+          }
+        },
+        "tags": [
+          "MruVAccountsService"
+        ]
+      }
+    },
+    "/v1/accounts/{login}": {
+      "get": {
+        "summary": "Get an account.",
+        "operationId": "GetAccount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvGetAccountResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "login",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "MruVAccountsService"
+        ]
+      }
+    },
+    "/v1/accounts/{login}/characters": {
+      "get": {
+        "summary": "Get an account characters.",
+        "operationId": "GetAccountCharacters",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvGetAccountCharactersResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "login",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "MruVAccountsService"
+        ]
+      }
+    },
+    "/v1/accounts/{login}/registered": {
+      "get": {
+        "summary": "Check, is account with specified login exist. If yes, it returns account id.",
+        "operationId": "IsAccountExist",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvIsAccountExistResponse"
             }
           }
         },
@@ -38,66 +122,32 @@
     }
   },
   "definitions": {
-    "mruvAccount": {
+    "mruvGetAccountCharactersResponse": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int64"
-        },
+        "character_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "description": "Response message for rpc `GetAccountCharacters`."
+    },
+    "mruvGetAccountResponse": {
+      "type": "object",
+      "properties": {
         "login": {
-          "type": "string"
-        },
-        "nick": {
           "type": "string"
         },
         "email": {
           "type": "string"
         }
-      }
+      },
+      "description": "Response message for rpc `GetAccount`."
     },
-    "mruvCharacter": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "owner_id": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "first_name": {
-          "type": "string"
-        },
-        "second_name": {
-          "type": "string"
-        },
-        "age": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "sex": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "position": {
-          "$ref": "#/definitions/mruvPosition"
-        }
-      }
-    },
-    "mruvGetAccountCharactersResponse": {
-      "type": "object",
-      "properties": {
-        "characters": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/mruvCharacter"
-          }
-        }
-      }
-    },
-    "mruvIsAccountExistsResponse": {
+    "mruvIsAccountExistResponse": {
       "type": "object",
       "properties": {
         "exists": {
@@ -109,7 +159,7 @@
           "format": "int64"
         }
       },
-      "description": "Response message for rpc `IsAccountExists`."
+      "description": "Response message for rpc `IsAccountExist`."
     },
     "mruvLogInResponse": {
       "type": "object",
@@ -122,24 +172,8 @@
           "type": "integer",
           "format": "int64"
         }
-      }
-    },
-    "mruvPosition": {
-      "type": "object",
-      "properties": {
-        "x": {
-          "type": "number",
-          "format": "double"
-        },
-        "y": {
-          "type": "number",
-          "format": "double"
-        },
-        "z": {
-          "type": "number",
-          "format": "double"
-        }
-      }
+      },
+      "description": "Response message for rpc `LogIn`."
     },
     "mruvRegisterAccountResponse": {
       "type": "object",
@@ -152,7 +186,8 @@
           "type": "integer",
           "format": "int64"
         }
-      }
+      },
+      "description": "Response message for rpc `RegisterAccount`."
     }
   }
 }
