@@ -11,6 +11,39 @@
     "application/json"
   ],
   "paths": {
+    "/v1/character/{id}/clothes/{clothes_id}": {
+      "put": {
+        "summary": "Change player clothes.",
+        "operationId": "ChangeClothes",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvChangeClothesResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "clothes_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVCharactersService"
+        ]
+      }
+    },
     "/v1/characters": {
       "post": {
         "summary": "Create a character.",
@@ -163,6 +196,10 @@
     }
   },
   "definitions": {
+    "mruvChangeClothesResponse": {
+      "type": "object",
+      "description": "Response message for rpc `ChangeClothes`."
+    },
     "mruvCharacter": {
       "type": "object",
       "properties": {
@@ -188,8 +225,21 @@
           "type": "integer",
           "format": "int64"
         },
-        "position": {
-          "$ref": "#/definitions/mruvPosition"
+        "clothes_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "x": {
+          "type": "number",
+          "format": "float"
+        },
+        "y": {
+          "type": "number",
+          "format": "float"
+        },
+        "z": {
+          "type": "number",
+          "format": "float"
         }
       }
     },
@@ -262,28 +312,24 @@
           "type": "integer",
           "format": "int64"
         },
-        "position": {
-          "$ref": "#/definitions/mruvPosition"
-        }
-      },
-      "description": "Response message for rpc `GetCharacter`."
-    },
-    "mruvPosition": {
-      "type": "object",
-      "properties": {
+        "clothes_id": {
+          "type": "integer",
+          "format": "int64"
+        },
         "x": {
           "type": "number",
-          "format": "double"
+          "format": "float"
         },
         "y": {
           "type": "number",
-          "format": "double"
+          "format": "float"
         },
         "z": {
           "type": "number",
-          "format": "double"
+          "format": "float"
         }
-      }
+      },
+      "description": "Response message for rpc `GetCharacter`."
     },
     "mruvServiceStatusResponse": {
       "type": "object",

@@ -13,6 +13,7 @@
   "paths": {
     "/v1/groups": {
       "get": {
+        "summary": "Get all groups.",
         "operationId": "GetGroups",
         "responses": {
           "200": {
@@ -22,30 +23,65 @@
             }
           }
         },
-        "parameters": [
-          {
-            "name": "limit",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int64"
-          }
-        ],
         "tags": [
           "MruVGroupsService"
         ]
       },
       "post": {
-        "summary": "CRUD",
+        "summary": "Create a group.",
         "operationId": "CreateGroup",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvGroupID"
+              "$ref": "#/definitions/mruvCreateGroupResponse"
             }
           }
         },
+        "tags": [
+          "MruVGroupsService"
+        ]
+      }
+    },
+    "/v1/groups/members/{member_id}/permitted": {
+      "get": {
+        "summary": "Check is member of a group is permitted to do specific action.",
+        "operationId": "IsPermitted",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvIsPermittedResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "member_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "member_type",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "MEMBER_TYPE_UNKNOWN",
+              "MEMBER_TYPE_ACCOUNT",
+              "MEMBER_TYPE_CHARACTER"
+            ],
+            "default": "MEMBER_TYPE_UNKNOWN"
+          },
+          {
+            "name": "action",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
         "tags": [
           "MruVGroupsService"
         ]
@@ -84,20 +120,21 @@
         ]
       }
     },
-    "/v1/groups/{id}": {
+    "/v1/groups/{group_id}": {
       "get": {
+        "summary": "Get a  group.",
         "operationId": "GetGroup",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvGroup"
+              "$ref": "#/definitions/mruvGetGroupResponse"
             }
           }
         },
         "parameters": [
           {
-            "name": "id",
+            "name": "group_id",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -109,18 +146,354 @@
         ]
       },
       "delete": {
+        "summary": "Delete a group.",
         "operationId": "DeleteGroup",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvGroupID"
+              "$ref": "#/definitions/mruvDeleteGroupResponse"
             }
           }
         },
         "parameters": [
           {
-            "name": "id",
+            "name": "group_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVGroupsService"
+        ]
+      },
+      "patch": {
+        "summary": "Update a group.",
+        "operationId": "UpdateGroup",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvUpdateGroupResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "group_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVGroupsService"
+        ]
+      }
+    },
+    "/v1/groups/{group_id}/members": {
+      "get": {
+        "summary": "Get a group member.",
+        "operationId": "GetMembers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvGetMembersResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "group_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVGroupsService"
+        ]
+      }
+    },
+    "/v1/groups/{group_id}/members/{member_id}": {
+      "delete": {
+        "summary": "Remove a group member.",
+        "operationId": "RemoveMember",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvRemoveMemberResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "group_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "member_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVGroupsService"
+        ]
+      },
+      "post": {
+        "summary": "Add a group member.",
+        "operationId": "AddMember",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvAddMemberResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "group_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "member_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVGroupsService"
+        ]
+      }
+    },
+    "/v1/groups/{group_id}/owner": {
+      "get": {
+        "summary": "Get group owner.",
+        "operationId": "GetOwner",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvGetOwnerResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "group_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVGroupsService"
+        ]
+      },
+      "put": {
+        "summary": "Assign an owner. Group can have only one owner. Owner can be a player, a group or an account.",
+        "operationId": "AssignOwner",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvAssignOwnerResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "group_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVGroupsService"
+        ]
+      }
+    },
+    "/v1/groups/{group_id}/permissions": {
+      "get": {
+        "summary": "Get all group permissions.",
+        "operationId": "GetPermissions",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvGetPermissionsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "group_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVGroupsService"
+        ]
+      },
+      "delete": {
+        "summary": "Remove group permission.",
+        "operationId": "RemovePermission",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvRemovePermissionResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "group_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "permission_id",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVGroupsService"
+        ]
+      },
+      "post": {
+        "summary": "Add a permission to a group.",
+        "operationId": "AddPermission",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvAddPermissionResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "group_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVGroupsService"
+        ]
+      }
+    },
+    "/v1/groups/{group_id}/subgroups": {
+      "get": {
+        "summary": "Get all subgroups.",
+        "operationId": "GetSubgroups",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvGetSubgroupsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "group_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVGroupsService"
+        ]
+      }
+    },
+    "/v1/groups/{group_id}/subgroups/{subgroup_id}": {
+      "delete": {
+        "summary": "Remove a subgroup from group.",
+        "operationId": "RemoveSubgroup",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvRemoveSubgroupResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "group_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "subgroup_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVGroupsService"
+        ]
+      },
+      "post": {
+        "summary": "Add a subgroup to a group.",
+        "operationId": "AddSubgroup",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mruvAddSubgroupResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "group_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "subgroup_id",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -134,8 +507,65 @@
     }
   },
   "definitions": {
-    "mruvAddGroupMemberResponse": {
-      "type": "object"
+    "GetPermissionsResponsePermission": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "definition": {
+          "type": "string"
+        }
+      }
+    },
+    "mruvAddMemberResponse": {
+      "type": "object",
+      "description": "Response message for rpc `AddMember`."
+    },
+    "mruvAddPermissionResponse": {
+      "type": "object",
+      "properties": {
+        "permission_id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "description": "Response message for rpc `AddPermission`."
+    },
+    "mruvAddSubgroupResponse": {
+      "type": "object",
+      "description": "Response message for rpc `AddSubgroup`."
+    },
+    "mruvAssignOwnerResponse": {
+      "type": "object",
+      "description": "Response message for rpc `AssignOwner`."
+    },
+    "mruvCreateGroupResponse": {
+      "type": "object",
+      "properties": {
+        "group_id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "description": "Response message for rpc `CreateGroup`."
+    },
+    "mruvDeleteGroupResponse": {
+      "type": "object",
+      "description": "Response message for rpc `DeleteGroup`."
+    },
+    "mruvGetGroupResponse": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "description": "Response message for rpc `GetGroup`."
     },
     "mruvGetGroupsResponse": {
       "type": "object",
@@ -143,65 +573,108 @@
         "groups": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/mruvGroup"
+            "$ref": "#/definitions/mruvGetGroupResponse"
           }
         }
-      }
+      },
+      "description": "Response message for rpc `GetGroups`."
     },
-    "mruvGroup": {
+    "mruvGetMembersResponse": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int64"
+        "member_type": {
+          "$ref": "#/definitions/mruvMemberType"
         },
-        "name": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "permissions": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/mruvPermission"
-          }
-        },
-        "members": {
+        "member_ids": {
           "type": "array",
           "items": {
             "type": "integer",
             "format": "int64"
           }
         }
-      }
+      },
+      "description": "Response message for rpc `GetMembers`."
     },
-    "mruvGroupID": {
+    "mruvGetOwnerResponse": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int64"
-        }
-      }
-    },
-    "mruvPermission": {
-      "type": "object",
-      "properties": {
-        "id": {
+        "owner_id": {
           "type": "integer",
           "format": "int64"
         },
-        "name": {
-          "type": "string"
-        },
-        "role": {
-          "type": "string"
+        "owner_type": {
+          "$ref": "#/definitions/mruvOwnerType"
         }
-      }
+      },
+      "description": "Response message for rpc `GetOwner`."
     },
-    "mruvRemoveGroupMemberResponse": {
-      "type": "object"
+    "mruvGetPermissionsResponse": {
+      "type": "object",
+      "properties": {
+        "permissions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GetPermissionsResponsePermission"
+          }
+        }
+      },
+      "description": "Response message for rpc `GetPermissions`."
+    },
+    "mruvGetSubgroupsResponse": {
+      "type": "object",
+      "properties": {
+        "subgroup_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "description": "Response message for rpc `GetSubgroups`."
+    },
+    "mruvIsPermittedResponse": {
+      "type": "object",
+      "properties": {
+        "permitted": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      },
+      "description": "Response message for rpc `IsPermitted`."
+    },
+    "mruvMemberType": {
+      "type": "string",
+      "enum": [
+        "MEMBER_TYPE_UNKNOWN",
+        "MEMBER_TYPE_ACCOUNT",
+        "MEMBER_TYPE_CHARACTER"
+      ],
+      "default": "MEMBER_TYPE_UNKNOWN",
+      "description": "Member type."
+    },
+    "mruvOwnerType": {
+      "type": "string",
+      "enum": [
+        "OWNER_TYPE_UNKNOWN",
+        "OWNER_TYPE_ACCOUNT",
+        "OWNER_TYPE_CHARACTER",
+        "OWNER_TYPE_GROUP"
+      ],
+      "default": "OWNER_TYPE_UNKNOWN",
+      "description": "Owner types."
+    },
+    "mruvRemoveMemberResponse": {
+      "type": "object",
+      "description": "Response message for rpc `RemoveMember`."
+    },
+    "mruvRemovePermissionResponse": {
+      "type": "object",
+      "description": "Response message for rpc `RemovePermission`."
+    },
+    "mruvRemoveSubgroupResponse": {
+      "type": "object",
+      "description": "Response message for rpc `RemoveSubgroup`."
     },
     "mruvServiceStatusResponse": {
       "type": "object",
@@ -210,6 +683,10 @@
           "type": "string"
         }
       }
+    },
+    "mruvUpdateGroupResponse": {
+      "type": "object",
+      "description": "Response message for rpc `UpdateGroup`."
     },
     "mruvVersionResponse": {
       "type": "object",
