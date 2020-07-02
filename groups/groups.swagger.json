@@ -23,6 +23,22 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "begin_from",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
         "tags": [
           "MruVGroupsService"
         ]
@@ -507,6 +523,21 @@
     }
   },
   "definitions": {
+    "GetGroupsResponseGroup": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
     "GetPermissionsResponsePermission": {
       "type": "object",
       "properties": {
@@ -563,6 +594,9 @@
       "properties": {
         "name": {
           "type": "string"
+        },
+        "description": {
+          "type": "string"
         }
       },
       "description": "Response message for rpc `GetGroup`."
@@ -573,7 +607,7 @@
         "groups": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/mruvGetGroupResponse"
+            "$ref": "#/definitions/GetGroupsResponseGroup"
           }
         }
       },
