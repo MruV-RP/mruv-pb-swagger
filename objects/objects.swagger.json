@@ -1,0 +1,398 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "objects/objects.proto",
+    "version": "version not set"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/object": {
+      "post": {
+        "summary": "Create an object.",
+        "operationId": "CreateObject",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gatesCreateObjectResponse"
+            }
+          }
+        },
+        "tags": [
+          "MruVObjectsService"
+        ]
+      }
+    },
+    "/v1/object/{id}": {
+      "get": {
+        "summary": "Get an object.",
+        "operationId": "GetObject",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gatesGetObjectResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVObjectsService"
+        ]
+      }
+    },
+    "/v1/objectTypes": {
+      "post": {
+        "summary": "Create an object model.",
+        "operationId": "CreateObjectModel",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gatesCreateObjectModelResponse"
+            }
+          }
+        },
+        "tags": [
+          "MruVObjectsService"
+        ]
+      }
+    },
+    "/v1/objectTypes/{model}": {
+      "get": {
+        "summary": "Get an object model.",
+        "operationId": "GetObjectModel",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gatesGetObjectModelResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "model",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVObjectsService"
+        ]
+      },
+      "delete": {
+        "summary": "Delete an object model.",
+        "operationId": "DeleteObjectModel",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gatesDeleteObjectModelResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "model",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVObjectsService"
+        ]
+      }
+    },
+    "/v1/objectTypes/{object_type.model}": {
+      "patch": {
+        "summary": "Update an object model.",
+        "operationId": "UpdateObjectModel",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gatesUpdateObjectModelResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "object_type.model",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVObjectsService"
+        ]
+      }
+    },
+    "/v1/objects/{id}": {
+      "delete": {
+        "summary": "Delete an object.",
+        "operationId": "DeleteObject",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gatesDeleteObjectResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVObjectsService"
+        ]
+      },
+      "patch": {
+        "summary": "Update an object.",
+        "operationId": "UpdateObject",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gatesUpdateObjectResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVObjectsService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "gatesCreateObjectModelResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "description": "Response message for rpc `CreateObjectModel`."
+    },
+    "gatesCreateObjectResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "description": "Response message for rpc `CreateObject`."
+    },
+    "gatesDeleteObjectModelResponse": {
+      "type": "object",
+      "description": "Response message for rpc `DeleteObjectModel`."
+    },
+    "gatesDeleteObjectResponse": {
+      "type": "object",
+      "description": "Response message for rpc `DeleteObject`."
+    },
+    "gatesGetObjectModelResponse": {
+      "type": "object",
+      "properties": {
+        "object_type": {
+          "$ref": "#/definitions/gatesObjectModel"
+        }
+      },
+      "description": "Response message for rpc `GetObjectModel`."
+    },
+    "gatesGetObjectResponse": {
+      "type": "object",
+      "properties": {
+        "object": {
+          "$ref": "#/definitions/gatesObject"
+        }
+      },
+      "description": "Response message for rpc `GetObject`."
+    },
+    "gatesObject": {
+      "type": "object",
+      "properties": {
+        "model": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "estate_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "x": {
+          "type": "number",
+          "format": "float"
+        },
+        "y": {
+          "type": "number",
+          "format": "float"
+        },
+        "z": {
+          "type": "number",
+          "format": "float"
+        },
+        "rx": {
+          "type": "number",
+          "format": "float"
+        },
+        "ry": {
+          "type": "number",
+          "format": "float"
+        },
+        "rz": {
+          "type": "number",
+          "format": "float"
+        },
+        "world_id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Virtual world id for which object will be visible. Set -1 to be visible for all."
+        },
+        "interior_id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Interior id for which object will be visible. Set -1 to be visible for all."
+        },
+        "player_id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "SA-MP player id for which object will be visible. Set -1 to be visible for all."
+        },
+        "area_id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Dynamic area id for which object will be visible. Set -1 to be visible for all."
+        },
+        "stream_distance": {
+          "type": "number",
+          "format": "float",
+          "title": "Default streamer setting is 300.0"
+        },
+        "draw_distance": {
+          "type": "number",
+          "format": "float",
+          "title": "Default streamer setting is 0.0 = default game draw distance"
+        },
+        "priority": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "description": "SA-MP Dynamic object data structure."
+    },
+    "gatesObjectModel": {
+      "type": "object",
+      "properties": {
+        "model": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "model_name": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "product_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "length": {
+          "type": "number",
+          "format": "double"
+        },
+        "width": {
+          "type": "number",
+          "format": "double"
+        },
+        "height": {
+          "type": "number",
+          "format": "double"
+        },
+        "size": {
+          "type": "number",
+          "format": "double"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "has_collision": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "breaks_on_hit": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "has_animation": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "visible_by_time": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "visible_from": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "visible_to": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "description": "SA-MP Object type data structure."
+    },
+    "gatesUpdateObjectModelResponse": {
+      "type": "object",
+      "description": "Response message for rpc `UpdateObjectModel`."
+    },
+    "gatesUpdateObjectResponse": {
+      "type": "object",
+      "description": "Response message for rpc `UpdateObject`."
+    }
+  }
+}

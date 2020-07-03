@@ -229,6 +229,49 @@
     }
   },
   "definitions": {
+    "EntranceEntranceDoor": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "marker": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "x": {
+          "type": "number",
+          "format": "float"
+        },
+        "y": {
+          "type": "number",
+          "format": "float"
+        },
+        "z": {
+          "type": "number",
+          "format": "float"
+        },
+        "vw": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "int": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "estate_id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
     "entrancesCreateEntranceResponse": {
       "type": "object",
       "description": "Response message for rpc `CreateEntrance`."
@@ -240,6 +283,25 @@
     "entrancesEnterResponse": {
       "type": "object",
       "description": "Response message for rpc `Enter`."
+    },
+    "entrancesEntrance": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "estate_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "out": {
+          "$ref": "#/definitions/EntranceEntranceDoor"
+        },
+        "in": {
+          "$ref": "#/definitions/EntranceEntranceDoor"
+        }
+      }
     },
     "entrancesFindNearestEntranceResponse": {
       "type": "object",

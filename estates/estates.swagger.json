@@ -375,6 +375,10 @@
             "type": "integer",
             "format": "int64"
           }
+        },
+        "product_id": {
+          "type": "integer",
+          "format": "int64"
         }
       }
     },
