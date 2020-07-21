@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "spots/spots.proto",
+    "title": "plots/plots.proto",
     "version": "version not set"
   },
   "consumes": [
@@ -11,32 +11,32 @@
     "application/json"
   ],
   "paths": {
-    "/v1/spots": {
+    "/v1/plots": {
       "post": {
-        "summary": "Create a spot.",
-        "operationId": "CreateSpot",
+        "summary": "Create a plot.",
+        "operationId": "CreatePlot",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/spotsCreateSpotResponse"
+              "$ref": "#/definitions/plotsCreatePlotResponse"
             }
           }
         },
         "tags": [
-          "MruVSpotsService"
+          "MruVPlotsService"
         ]
       }
     },
-    "/v1/spots/{id}": {
+    "/v1/plots/{id}": {
       "get": {
-        "summary": "Get a spot.",
-        "operationId": "GetSpot",
+        "summary": "Get a plot.",
+        "operationId": "GetPlot",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/spotsGetSpotResponse"
+              "$ref": "#/definitions/plotsGetPlotResponse"
             }
           }
         },
@@ -50,17 +50,17 @@
           }
         ],
         "tags": [
-          "MruVSpotsService"
+          "MruVPlotsService"
         ]
       },
       "delete": {
-        "summary": "Delete a spot.",
-        "operationId": "DeleteSpot",
+        "summary": "Delete a plot.",
+        "operationId": "DeletePlot",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/spotsDeleteSpotResponse"
+              "$ref": "#/definitions/plotsDeletePlotResponse"
             }
           }
         },
@@ -74,17 +74,17 @@
           }
         ],
         "tags": [
-          "MruVSpotsService"
+          "MruVPlotsService"
         ]
       },
       "patch": {
-        "summary": "Update a spot.",
-        "operationId": "UpdateSpot",
+        "summary": "Update a plot.",
+        "operationId": "UpdatePlot",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/spotsUpdateSpotResponse"
+              "$ref": "#/definitions/plotsUpdatePlotResponse"
             }
           }
         },
@@ -98,13 +98,30 @@
           }
         ],
         "tags": [
-          "MruVSpotsService"
+          "MruVPlotsService"
         ]
       }
     }
   },
   "definitions": {
-    "spotsCreateSpotResponse": {
+    "mruvPosition": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "number",
+          "format": "double"
+        },
+        "y": {
+          "type": "number",
+          "format": "double"
+        },
+        "z": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "plotsCreatePlotResponse": {
       "type": "object",
       "properties": {
         "id": {
@@ -112,64 +129,33 @@
           "format": "int64"
         }
       },
-      "description": "Response message for rpc `CreateSpot`."
+      "description": "Response message for rpc `CreatePlot`."
     },
-    "spotsDeleteSpotResponse": {
+    "plotsDeletePlotResponse": {
       "type": "object",
-      "description": "Response message for rpc `DeleteSpot`."
+      "description": "Response message for rpc `DeletePlot`."
     },
-    "spotsGetSpotResponse": {
-      "type": "object",
-      "properties": {
-        "spot": {
-          "$ref": "#/definitions/spotsSpot"
-        }
-      },
-      "description": "Response message for rpc `GetSpot`."
-    },
-    "spotsSpot": {
+    "plotsGetPlotResponse": {
       "type": "object",
       "properties": {
         "name": {
           "type": "string"
         },
-        "message": {
+        "description": {
           "type": "string"
         },
-        "icon": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "marker": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "x": {
-          "type": "number",
-          "format": "float"
-        },
-        "y": {
-          "type": "number",
-          "format": "float"
-        },
-        "z": {
-          "type": "number",
-          "format": "float"
-        },
-        "vw": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "int": {
-          "type": "integer",
-          "format": "int32"
+        "points": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/mruvPosition"
+          }
         }
       },
-      "description": "Spot."
+      "description": "Response message for rpc `GetPlot`."
     },
-    "spotsUpdateSpotResponse": {
+    "plotsUpdatePlotResponse": {
       "type": "object",
-      "description": "Response message for rpc `UpdateSpot`."
+      "description": "Response message for rpc `UpdatePlot`."
     }
   }
 }
