@@ -267,13 +267,11 @@
         "name": {
           "type": "string"
         },
-        "in_spot_id": {
-          "type": "integer",
-          "format": "int64"
+        "in_spot": {
+          "$ref": "#/definitions/spotsSpot"
         },
-        "out_spot_id": {
-          "type": "integer",
-          "format": "int64"
+        "out_spot": {
+          "$ref": "#/definitions/spotsSpot"
         }
       },
       "description": "Response message for rpc `GetEntrance`."

@@ -199,12 +199,12 @@
     "/v1/estates/{estate_id}/gates/{gate_id}": {
       "delete": {
         "summary": "Delete a gate from estate.",
-        "operationId": "DeleteGate",
+        "operationId": "RemoveGate",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/estatesDeleteGateResponse"
+              "$ref": "#/definitions/estatesRemoveGateResponse"
             }
           }
         },
@@ -305,24 +305,26 @@
     }
   },
   "definitions": {
-    "estatesAddEntranceResponse": {
+    "entrancesEntrance": {
       "type": "object",
       "properties": {
-        "entrance_count": {
-          "type": "integer",
-          "format": "int64"
+        "name": {
+          "type": "string"
+        },
+        "out": {
+          "$ref": "#/definitions/spotsSpot"
+        },
+        "in": {
+          "$ref": "#/definitions/spotsSpot"
         }
-      },
+      }
+    },
+    "estatesAddEntranceResponse": {
+      "type": "object",
       "description": "Response message for rpc `AddEntrance`."
     },
     "estatesAddGateResponse": {
       "type": "object",
-      "properties": {
-        "gate_count": {
-          "type": "integer",
-          "format": "int64"
-        }
-      },
       "description": "Response message for rpc `AddGate`."
     },
     "estatesCreateEstateResponse": {
@@ -338,16 +340,6 @@
     "estatesDeleteEstateResponse": {
       "type": "object",
       "description": "Response message for rpc `DeleteEstate`."
-    },
-    "estatesDeleteGateResponse": {
-      "type": "object",
-      "properties": {
-        "gate_count": {
-          "type": "integer",
-          "format": "int64"
-        }
-      },
-      "description": "Response message for rpc `DeleteGate`."
     },
     "estatesEstate": {
       "type": "object",
@@ -391,9 +383,29 @@
     },
     "estatesGetEstateEntrancesResponse": {
       "type": "object",
+      "properties": {
+        "entrances": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/entrancesEntrance"
+          }
+        }
+      },
       "description": "Response message for rpc `GetEstateEntrances`."
     },
     "estatesGetEstateGatesResponse": {
+      "type": "object",
+      "properties": {
+        "gates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gatesGate"
+          }
+        }
+      },
+      "description": "Response message for rpc `GetEstateGates`."
+    },
+    "estatesGetEstatesResponse": {
       "type": "object",
       "properties": {
         "estates": {
@@ -403,25 +415,72 @@
           }
         }
       },
-      "description": "Response message for rpc `GetEstateGates`."
-    },
-    "estatesGetEstatesResponse": {
-      "type": "object",
       "description": "Response message for rpc `GetEstates`."
     },
     "estatesRemoveEntranceResponse": {
       "type": "object",
-      "properties": {
-        "entrance_count": {
-          "type": "integer",
-          "format": "int64"
-        }
-      },
       "description": "Response message for rpc `RemoveEntrance`."
+    },
+    "estatesRemoveGateResponse": {
+      "type": "object",
+      "description": "Response message for rpc `RemoveGate`."
     },
     "estatesUpdateEstateResponse": {
       "type": "object",
       "description": "Response message for rpc `UpdateEstate`."
+    },
+    "gatesGate": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "estate_id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "spotsSpot": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "marker": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "x": {
+          "type": "number",
+          "format": "float"
+        },
+        "y": {
+          "type": "number",
+          "format": "float"
+        },
+        "z": {
+          "type": "number",
+          "format": "float"
+        },
+        "vw": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "int": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "description": "Spot."
     }
   }
 }
