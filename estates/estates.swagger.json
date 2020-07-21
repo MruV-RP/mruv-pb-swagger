@@ -77,7 +77,14 @@
         },
         "parameters": [
           {
-            "name": "id",
+            "name": "from",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "limit",
             "in": "query",
             "required": false,
             "type": "integer",
@@ -388,6 +395,14 @@
     },
     "estatesGetEstateGatesResponse": {
       "type": "object",
+      "properties": {
+        "estates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/estatesEstate"
+          }
+        }
+      },
       "description": "Response message for rpc `GetEstateGates`."
     },
     "estatesGetEstatesResponse": {
