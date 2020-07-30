@@ -1,0 +1,163 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "texturestudio/manage.proto",
+    "version": "version not set"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/texturestudio/servers": {
+      "get": {
+        "summary": "Get all existing servers",
+        "operationId": "GetServers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/texture_studioGetServersResponse"
+            }
+          }
+        },
+        "tags": [
+          "TextureStudioManagerService"
+        ]
+      },
+      "post": {
+        "summary": "Create a new texture studio server.",
+        "operationId": "CreateServer",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/texture_studioCreateServerResponse"
+            }
+          }
+        },
+        "tags": [
+          "TextureStudioManagerService"
+        ]
+      }
+    },
+    "/v1/texturestudio/servers/my": {
+      "get": {
+        "summary": "Get texture studio server id for current user.",
+        "operationId": "MyServer",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/texture_studioMyServerResponse"
+            }
+          }
+        },
+        "tags": [
+          "TextureStudioManagerService"
+        ]
+      }
+    },
+    "/v1/texturestudio/servers/{id}": {
+      "delete": {
+        "summary": "Delete a texture studio server.",
+        "operationId": "DeleteServer",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/texture_studioDeleteServerResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "TextureStudioManagerService"
+        ]
+      }
+    },
+    "/v1/texturestudio/servers/{server_id}": {
+      "patch": {
+        "summary": "Change owner of texture studio server.",
+        "operationId": "TransferOwnership",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/texture_studioTransferOwnershipResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "server_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "TextureStudioManagerService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "texture_studioCreateServerResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "port": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "description": "Response message for rpc `CreateServer`."
+    },
+    "texture_studioDeleteServerResponse": {
+      "type": "object",
+      "description": "Response message for rpc `DeleteServer`."
+    },
+    "texture_studioGetServersResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "description": "Response message for rpc `GetServers`."
+    },
+    "texture_studioMyServerResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "description": "Response message for rpc `MyServer`."
+    },
+    "texture_studioTransferOwnershipResponse": {
+      "type": "object",
+      "description": "Response message for rpc `TransferOwnership`."
+    }
+  }
+}
