@@ -350,10 +350,6 @@
           "type": "integer",
           "format": "int64"
         },
-        "estate_id": {
-          "type": "integer",
-          "format": "int64"
-        },
         "x": {
           "type": "number",
           "format": "float"
@@ -442,6 +438,10 @@
           "format": "float"
         },
         "rz": {
+          "type": "number",
+          "format": "float"
+        },
+        "transition_speed": {
           "type": "number",
           "format": "float"
         }
