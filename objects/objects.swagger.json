@@ -19,7 +19,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/gatesCreateObjectResponse"
+              "$ref": "#/definitions/objectsCreateObjectResponse"
             }
           }
         },
@@ -36,7 +36,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/gatesGetObjectResponse"
+              "$ref": "#/definitions/objectsGetObjectResponse"
             }
           }
         },
@@ -62,7 +62,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/gatesCreateObjectModelResponse"
+              "$ref": "#/definitions/objectsCreateObjectModelResponse"
             }
           }
         },
@@ -79,7 +79,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/gatesGetObjectModelResponse"
+              "$ref": "#/definitions/objectsGetObjectModelResponse"
             }
           }
         },
@@ -103,7 +103,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/gatesDeleteObjectModelResponse"
+              "$ref": "#/definitions/objectsDeleteObjectModelResponse"
             }
           }
         },
@@ -129,7 +129,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/gatesUpdateObjectModelResponse"
+              "$ref": "#/definitions/objectsUpdateObjectModelResponse"
             }
           }
         },
@@ -155,7 +155,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/gatesDeleteObjectResponse"
+              "$ref": "#/definitions/objectsDeleteObjectResponse"
             }
           }
         },
@@ -179,7 +179,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/gatesUpdateObjectResponse"
+              "$ref": "#/definitions/objectsUpdateObjectResponse"
             }
           }
         },
@@ -199,7 +199,7 @@
     }
   },
   "definitions": {
-    "gatesCreateObjectModelResponse": {
+    "objectsCreateObjectModelResponse": {
       "type": "object",
       "properties": {
         "id": {
@@ -209,7 +209,7 @@
       },
       "description": "Response message for rpc `CreateObjectModel`."
     },
-    "gatesCreateObjectResponse": {
+    "objectsCreateObjectResponse": {
       "type": "object",
       "properties": {
         "id": {
@@ -219,33 +219,33 @@
       },
       "description": "Response message for rpc `CreateObject`."
     },
-    "gatesDeleteObjectModelResponse": {
+    "objectsDeleteObjectModelResponse": {
       "type": "object",
       "description": "Response message for rpc `DeleteObjectModel`."
     },
-    "gatesDeleteObjectResponse": {
+    "objectsDeleteObjectResponse": {
       "type": "object",
       "description": "Response message for rpc `DeleteObject`."
     },
-    "gatesGetObjectModelResponse": {
+    "objectsGetObjectModelResponse": {
       "type": "object",
       "properties": {
         "object_type": {
-          "$ref": "#/definitions/gatesObjectModel"
+          "$ref": "#/definitions/objectsObjectModel"
         }
       },
       "description": "Response message for rpc `GetObjectModel`."
     },
-    "gatesGetObjectResponse": {
+    "objectsGetObjectResponse": {
       "type": "object",
       "properties": {
         "object": {
-          "$ref": "#/definitions/gatesObject"
+          "$ref": "#/definitions/objectsObject"
         }
       },
       "description": "Response message for rpc `GetObject`."
     },
-    "gatesObject": {
+    "objectsObject": {
       "type": "object",
       "properties": {
         "model": {
@@ -317,7 +317,7 @@
       },
       "description": "SA-MP Dynamic object data structure."
     },
-    "gatesObjectModel": {
+    "objectsObjectModel": {
       "type": "object",
       "properties": {
         "model": {
@@ -386,11 +386,11 @@
       },
       "description": "SA-MP Object type data structure."
     },
-    "gatesUpdateObjectModelResponse": {
+    "objectsUpdateObjectModelResponse": {
       "type": "object",
       "description": "Response message for rpc `UpdateObjectModel`."
     },
-    "gatesUpdateObjectResponse": {
+    "objectsUpdateObjectResponse": {
       "type": "object",
       "description": "Response message for rpc `UpdateObject`."
     }
