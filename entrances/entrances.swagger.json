@@ -151,13 +151,39 @@
     },
     "/v1/entrances/{id}/enter": {
       "post": {
-        "summary": "Enter an entrance",
+        "summary": "Enter an entrance (player teleport from in spot position to out spot position).",
         "operationId": "Enter",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/entrancesEnterResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVEntrancesService"
+        ]
+      }
+    },
+    "/v1/entrances/{id}/exit": {
+      "post": {
+        "summary": "Exit from entrance (player teleport from out spot position to in spot position).",
+        "operationId": "Exit",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/entrancesExitResponse"
             }
           }
         },
@@ -247,6 +273,10 @@
       "type": "object",
       "description": "Response message for rpc `Enter`."
     },
+    "entrancesExitResponse": {
+      "type": "object",
+      "description": "Response message for rpc `Exit`."
+    },
     "entrancesFindNearestEntranceResponse": {
       "type": "object",
       "properties": {
@@ -257,6 +287,11 @@
         "distance": {
           "type": "number",
           "format": "float"
+        },
+        "inside": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "Is found entrance position is in spot (out spot otherwise)"
         }
       },
       "description": "Response message for rpc `FindNearestEntrance`."

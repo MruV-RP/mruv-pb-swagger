@@ -293,11 +293,10 @@
         "name": {
           "type": "string"
         },
-        "gate_movable_objects": {
+        "movable_objects": {
           "type": "array",
           "items": {
-            "type": "integer",
-            "format": "int64"
+            "$ref": "#/definitions/objectsMovableObject"
           },
           "description": "List of objects to move on gate close/open. Every object should have only 2 states: opened, closed."
         },
