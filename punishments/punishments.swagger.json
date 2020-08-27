@@ -104,6 +104,12 @@
             "required": true,
             "type": "integer",
             "format": "int64"
+          },
+          {
+            "name": "reason",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -253,6 +259,38 @@
         ]
       }
     },
+    "/v1/punishments/blocks/{block_id}": {
+      "delete": {
+        "summary": "Deactivate a character block.",
+        "operationId": "UnBlock",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/economyUnBlockResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "block_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "reason",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "MruVPunishmentsService"
+        ]
+      }
+    },
     "/v1/punishments/blocks/{id}": {
       "get": {
         "summary": "Get block info.",
@@ -373,6 +411,12 @@
             "required": true,
             "type": "integer",
             "format": "int64"
+          },
+          {
+            "name": "reason",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -737,6 +781,10 @@
           "format": "int64"
         }
       }
+    },
+    "economyUnBlockResponse": {
+      "type": "object",
+      "description": "Response message for rpc `UnBlock`."
     },
     "economyUnMuteGlobalChatsResponse": {
       "type": "object",

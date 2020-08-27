@@ -274,6 +274,10 @@
         "priority": {
           "type": "integer",
           "format": "int32"
+        },
+        "estate_id": {
+          "type": "integer",
+          "format": "int64"
         }
       },
       "description": "SA-MP Dynamic object data structure."
