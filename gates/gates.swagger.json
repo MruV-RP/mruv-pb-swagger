@@ -330,6 +330,94 @@
       "type": "object",
       "description": "Response message for rpc `UpdateGate`."
     },
+    "objectsMaterial": {
+      "type": "object",
+      "properties": {
+        "model_id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The modelid on which the replacement texture is located. Use 0 for alpha. Use -1 to change the material color without altering the texture."
+        },
+        "txd_name": {
+          "type": "string",
+          "title": "The name of the txd file which contains the replacement texture (use \"none\" if not required)"
+        },
+        "texture_name": {
+          "type": "string",
+          "title": "The name of the texture to use as the replacement (use \"none\" if not required)"
+        },
+        "material_color": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The object color to set, as an integer or hex in ARGB color format. Using 0 keeps the existing material color."
+        }
+      },
+      "description": "Replace the texture of an object with the texture from another model in the game."
+    },
+    "objectsMaterialSize": {
+      "type": "string",
+      "enum": [
+        "OBJECT_MATERIAL_SIZE_0",
+        "OBJECT_MATERIAL_SIZE_32X32",
+        "OBJECT_MATERIAL_SIZE_64X32",
+        "OBJECT_MATERIAL_SIZE_64X64",
+        "OBJECT_MATERIAL_SIZE_128X32",
+        "OBJECT_MATERIAL_SIZE_128X64",
+        "OBJECT_MATERIAL_SIZE_128X128",
+        "OBJECT_MATERIAL_SIZE_256X32",
+        "OBJECT_MATERIAL_SIZE_256X64",
+        "OBJECT_MATERIAL_SIZE_256X128",
+        "OBJECT_MATERIAL_SIZE_256X256",
+        "OBJECT_MATERIAL_SIZE_512X64",
+        "OBJECT_MATERIAL_SIZE_512X128",
+        "OBJECT_MATERIAL_SIZE_512X256",
+        "OBJECT_MATERIAL_SIZE_512X512"
+      ],
+      "default": "OBJECT_MATERIAL_SIZE_0"
+    },
+    "objectsMaterialText": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "The text to show on the object (MAX 2048 characters)."
+        },
+        "material_size": {
+          "$ref": "#/definitions/objectsMaterialSize",
+          "description": "The size of the material (default: 256x128)."
+        },
+        "font_face": {
+          "type": "string",
+          "description": "The font to use (default: Arial)."
+        },
+        "font_size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The size of the text (default: 24) (MAX 255)."
+        },
+        "bold": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "Bold text. Set to 1 for bold, 0 for not (default: 1)."
+        },
+        "font_color": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The color of the text, in ARGB format (default: White)."
+        },
+        "back_color": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The background color, in ARGB format (default: None (transparent))."
+        },
+        "text_alignment": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The alignment of the text (default: left)."
+        }
+      },
+      "description": "Replace the texture of an object with text."
+    },
     "objectsMovableObject": {
       "type": "object",
       "properties": {
@@ -414,6 +502,18 @@
         "estate_id": {
           "type": "integer",
           "format": "int64"
+        },
+        "materials": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/objectsMaterial"
+          }
+        },
+        "material_texts": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/objectsMaterialText"
+          }
         }
       },
       "description": "SA-MP Dynamic object data structure."
