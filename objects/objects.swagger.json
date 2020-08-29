@@ -476,11 +476,6 @@
           "type": "integer",
           "format": "int32",
           "description": "The object color to set, as an integer or hex in ARGB color format. Using 0 keeps the existing material color."
-        },
-        "estate_id": {
-          "type": "integer",
-          "format": "int64",
-          "description": "Estate to with removed object belong."
         }
       },
       "description": "Replace the texture of an object with the texture from another model in the game."
@@ -660,6 +655,11 @@
           "type": "number",
           "format": "float",
           "description": "The radius around the specified point to remove objects with the specified model."
+        },
+        "estate_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Estate to with removed object belong."
         }
       },
       "description": "Removes a standard San Andreas model for a single player within a specified range."
