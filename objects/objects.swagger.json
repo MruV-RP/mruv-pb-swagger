@@ -17,12 +17,21 @@
         "operationId": "FetchAll",
         "responses": {
           "200": {
-            "description": "A successful response.",
+            "description": "A successful response.(streaming responses)",
             "schema": {
-              "$ref": "#/definitions/objectsFetchAllResponse"
+              "$ref": "#/x-stream-definitions/objectsFetchAllResponse"
             }
           }
         },
+        "parameters": [
+          {
+            "name": "chunk_size",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
         "tags": [
           "MruVObjectsService"
         ]
@@ -401,8 +410,8 @@
       "type": "object",
       "properties": {
         "objects": {
-          "type": "array",
-          "items": {
+          "type": "object",
+          "additionalProperties": {
             "$ref": "#/definitions/objectsObject"
           }
         }
@@ -667,6 +676,57 @@
     "objectsUpdateObjectResponse": {
       "type": "object",
       "description": "Response message for rpc `UpdateObject`."
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "runtimeStreamError": {
+      "type": "object",
+      "properties": {
+        "grpc_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "http_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "http_status": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  },
+  "x-stream-definitions": {
+    "objectsFetchAllResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/objectsFetchAllResponse"
+        },
+        "error": {
+          "$ref": "#/definitions/runtimeStreamError"
+        }
+      },
+      "title": "Stream result of objectsFetchAllResponse"
     }
   }
 }
