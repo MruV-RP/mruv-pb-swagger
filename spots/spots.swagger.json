@@ -104,6 +104,43 @@
     }
   },
   "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "runtimeStreamError": {
+      "type": "object",
+      "properties": {
+        "grpc_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "http_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "http_status": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
     "spotsCreateSpotResponse": {
       "type": "object",
       "properties": {
@@ -117,6 +154,18 @@
     "spotsDeleteSpotResponse": {
       "type": "object",
       "description": "Response message for rpc `DeleteSpot`."
+    },
+    "spotsFetchAllSpotsResponse": {
+      "type": "object",
+      "properties": {
+        "spots": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/spotsSpot"
+          }
+        }
+      },
+      "description": "Response message for rpc `FetchAllSpots`."
     },
     "spotsGetSpotResponse": {
       "type": "object",
@@ -170,6 +219,20 @@
     "spotsUpdateSpotResponse": {
       "type": "object",
       "description": "Response message for rpc `UpdateSpot`."
+    }
+  },
+  "x-stream-definitions": {
+    "spotsFetchAllSpotsResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/spotsFetchAllSpotsResponse"
+        },
+        "error": {
+          "$ref": "#/definitions/runtimeStreamError"
+        }
+      },
+      "title": "Stream result of spotsFetchAllSpotsResponse"
     }
   }
 }

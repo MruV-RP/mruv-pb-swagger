@@ -12,54 +12,6 @@
   ],
   "paths": {
     "/v1/movableObjects": {
-      "get": {
-        "summary": "Get a movable object.",
-        "operationId": "GetMovableObject",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/objectsGetMovableObjectResponse"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "MruVMovableObjectsService"
-        ]
-      },
-      "delete": {
-        "summary": "Delete a movable object.",
-        "operationId": "DeleteMovableObject",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/objectsDeleteMovableObjectResponse"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "MruVMovableObjectsService"
-        ]
-      },
       "post": {
         "summary": "Create a movable object.",
         "operationId": "CreateMovableObject",
@@ -68,21 +20,6 @@
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/objectsCreateMovableObjectResponse"
-            }
-          }
-        },
-        "tags": [
-          "MruVMovableObjectsService"
-        ]
-      },
-      "patch": {
-        "summary": "Update a movable object.",
-        "operationId": "UpdateMovableObject",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/objectsUpdateMovableObjectResponse"
             }
           }
         },
@@ -141,6 +78,80 @@
           "MruVMovableObjectsService"
         ]
       }
+    },
+    "/v1/movableObjects/{id}": {
+      "get": {
+        "summary": "Get a movable object.",
+        "operationId": "GetMovableObject",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/objectsGetMovableObjectResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVMovableObjectsService"
+        ]
+      },
+      "delete": {
+        "summary": "Delete a movable object.",
+        "operationId": "DeleteMovableObject",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/objectsDeleteMovableObjectResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVMovableObjectsService"
+        ]
+      },
+      "patch": {
+        "summary": "Update a movable object.",
+        "operationId": "UpdateMovableObject",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/objectsUpdateMovableObjectResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVMovableObjectsService"
+        ]
+      }
     }
   },
   "definitions": {
@@ -157,6 +168,18 @@
     "objectsDeleteMovableObjectResponse": {
       "type": "object",
       "description": "Response message for rpc `DeleteMovableObject`."
+    },
+    "objectsFetchAllMovableObjectsResponse": {
+      "type": "object",
+      "properties": {
+        "movable_objects": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/objectsMovableObject"
+          }
+        }
+      },
+      "description": "Response message for rpc `FetchAllMovableObjects`."
     },
     "objectsGetMovableObjectResponse": {
       "type": "object",
@@ -268,6 +291,22 @@
       },
       "description": "Replace the texture of an object with text."
     },
+    "objectsMovableObject": {
+      "type": "object",
+      "properties": {
+        "object": {
+          "$ref": "#/definitions/objectsObject"
+        },
+        "states": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/objectsState"
+          },
+          "description": "List of states that an object can take."
+        }
+      },
+      "description": "A movable object."
+    },
     "objectsMoveObjectNextResponse": {
       "type": "object",
       "properties": {
@@ -303,7 +342,7 @@
       "properties": {
         "model": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "x": {
           "type": "number",
@@ -422,6 +461,57 @@
     "objectsUpdateMovableObjectResponse": {
       "type": "object",
       "description": "Response message for rpc `UpdateMovableObject`."
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "runtimeStreamError": {
+      "type": "object",
+      "properties": {
+        "grpc_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "http_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "http_status": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  },
+  "x-stream-definitions": {
+    "objectsFetchAllMovableObjectsResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/objectsFetchAllMovableObjectsResponse"
+        },
+        "error": {
+          "$ref": "#/definitions/runtimeStreamError"
+        }
+      },
+      "title": "Stream result of objectsFetchAllMovableObjectsResponse"
     }
   }
 }

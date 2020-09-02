@@ -273,9 +273,35 @@
       "type": "object",
       "description": "Response message for rpc `Enter`."
     },
+    "entrancesEntrance": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "out": {
+          "$ref": "#/definitions/spotsSpot"
+        },
+        "in": {
+          "$ref": "#/definitions/spotsSpot"
+        }
+      }
+    },
     "entrancesExitResponse": {
       "type": "object",
       "description": "Response message for rpc `Exit`."
+    },
+    "entrancesFetchAllEntrancesResponse": {
+      "type": "object",
+      "properties": {
+        "entrances": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/entrancesEntrance"
+          }
+        }
+      },
+      "description": "Response message for rpc `FetchAllEntrances`."
     },
     "entrancesFindNearestEntranceResponse": {
       "type": "object",
@@ -323,6 +349,43 @@
       "type": "object",
       "description": "Response message for rpc `UpdateEntrance`."
     },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "runtimeStreamError": {
+      "type": "object",
+      "properties": {
+        "grpc_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "http_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "http_status": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
     "spotsSpot": {
       "type": "object",
       "properties": {
@@ -362,6 +425,20 @@
         }
       },
       "description": "Spot."
+    }
+  },
+  "x-stream-definitions": {
+    "entrancesFetchAllEntrancesResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/entrancesFetchAllEntrancesResponse"
+        },
+        "error": {
+          "$ref": "#/definitions/runtimeStreamError"
+        }
+      },
+      "title": "Stream result of entrancesFetchAllEntrancesResponse"
     }
   }
 }

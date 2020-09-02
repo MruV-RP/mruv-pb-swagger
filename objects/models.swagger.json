@@ -12,6 +12,30 @@
   ],
   "paths": {
     "/v1/objectTypes": {
+      "get": {
+        "summary": "Get all models.",
+        "operationId": "FetchAll",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "$ref": "#/x-stream-definitions/objectsFetchAllModelsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "chunk_size",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVObjectModelsService"
+        ]
+      },
       "post": {
         "summary": "Create an object model.",
         "operationId": "CreateObjectModel",
@@ -46,7 +70,7 @@
             "in": "path",
             "required": true,
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
           }
         ],
         "tags": [
@@ -70,7 +94,7 @@
             "in": "path",
             "required": true,
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
           }
         ],
         "tags": [
@@ -96,7 +120,7 @@
             "in": "path",
             "required": true,
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
           }
         ],
         "tags": [
@@ -120,6 +144,18 @@
       "type": "object",
       "description": "Response message for rpc `DeleteObjectModel`."
     },
+    "objectsFetchAllModelsResponse": {
+      "type": "object",
+      "properties": {
+        "models": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/objectsObjectModel"
+          }
+        }
+      },
+      "description": "Response message for rpc `FetchAll`."
+    },
     "objectsGetObjectModelResponse": {
       "type": "object",
       "properties": {
@@ -134,7 +170,7 @@
       "properties": {
         "model": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "model_name": {
           "type": "string"
@@ -198,6 +234,57 @@
     "objectsUpdateObjectModelResponse": {
       "type": "object",
       "description": "Response message for rpc `UpdateObjectModel`."
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "runtimeStreamError": {
+      "type": "object",
+      "properties": {
+        "grpc_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "http_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "http_status": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  },
+  "x-stream-definitions": {
+    "objectsFetchAllModelsResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/objectsFetchAllModelsResponse"
+        },
+        "error": {
+          "$ref": "#/definitions/runtimeStreamError"
+        }
+      },
+      "title": "Stream result of objectsFetchAllModelsResponse"
     }
   }
 }

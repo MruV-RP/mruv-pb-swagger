@@ -19,13 +19,21 @@
           "200": {
             "description": "A successful response.(streaming responses)",
             "schema": {
-              "$ref": "#/x-stream-definitions/objectsFetchAllResponse"
+              "$ref": "#/x-stream-definitions/objectsFetchAllObjectsResponse"
             }
           }
         },
         "parameters": [
           {
             "name": "chunk_size",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "estate_id",
+            "description": "optional filter for estate id.",
             "in": "query",
             "required": false,
             "type": "integer",
@@ -406,7 +414,7 @@
       "type": "object",
       "description": "Response message for rpc `DeleteRemoveBuilding`."
     },
-    "objectsFetchAllResponse": {
+    "objectsFetchAllObjectsResponse": {
       "type": "object",
       "properties": {
         "objects": {
@@ -456,7 +464,7 @@
     "objectsGetRemovedBuildingsResponse": {
       "type": "object",
       "properties": {
-        "removed_building": {
+        "removed_buildings": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/objectsRemovedBuilding"
@@ -558,7 +566,7 @@
       "properties": {
         "model": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "x": {
           "type": "number",
@@ -716,17 +724,17 @@
     }
   },
   "x-stream-definitions": {
-    "objectsFetchAllResponse": {
+    "objectsFetchAllObjectsResponse": {
       "type": "object",
       "properties": {
         "result": {
-          "$ref": "#/definitions/objectsFetchAllResponse"
+          "$ref": "#/definitions/objectsFetchAllObjectsResponse"
         },
         "error": {
           "$ref": "#/definitions/runtimeStreamError"
         }
       },
-      "title": "Stream result of objectsFetchAllResponse"
+      "title": "Stream result of objectsFetchAllObjectsResponse"
     }
   }
 }

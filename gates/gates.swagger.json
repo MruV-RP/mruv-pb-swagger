@@ -273,6 +273,18 @@
       "type": "object",
       "description": "Response message for rpc `DeleteGate`."
     },
+    "gatesFetchAllGatesResponse": {
+      "type": "object",
+      "properties": {
+        "gates": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/gatesGate"
+          }
+        }
+      },
+      "description": "Response message for rpc `FetchAllGates`."
+    },
     "gatesFindNearestGateResponse": {
       "type": "object",
       "properties": {
@@ -286,6 +298,31 @@
         }
       },
       "description": "Response message for rpc `FindNearestGate`."
+    },
+    "gatesGate": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "gate_objects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/objectsMovableObject"
+          }
+        },
+        "spot": {
+          "$ref": "#/definitions/spotsSpot"
+        },
+        "opened": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "locked": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
     },
     "gatesGetGateResponse": {
       "type": "object",
@@ -439,7 +476,7 @@
       "properties": {
         "model": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "x": {
           "type": "number",
@@ -555,6 +592,43 @@
       },
       "description": "Position and rotation state of moving object."
     },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "runtimeStreamError": {
+      "type": "object",
+      "properties": {
+        "grpc_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "http_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "http_status": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
     "spotsSpot": {
       "type": "object",
       "properties": {
@@ -594,6 +668,20 @@
         }
       },
       "description": "Spot."
+    }
+  },
+  "x-stream-definitions": {
+    "gatesFetchAllGatesResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/gatesFetchAllGatesResponse"
+        },
+        "error": {
+          "$ref": "#/definitions/runtimeStreamError"
+        }
+      },
+      "title": "Stream result of gatesFetchAllGatesResponse"
     }
   }
 }
