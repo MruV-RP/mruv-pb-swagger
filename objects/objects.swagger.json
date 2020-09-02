@@ -14,7 +14,7 @@
     "/v1/objects": {
       "get": {
         "summary": "Fetch all existing objects.",
-        "operationId": "FetchAll",
+        "operationId": "FetchAllObjects",
         "responses": {
           "200": {
             "description": "A successful response.(streaming responses)",

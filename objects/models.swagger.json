@@ -14,7 +14,7 @@
     "/v1/objectTypes": {
       "get": {
         "summary": "Get all models.",
-        "operationId": "FetchAll",
+        "operationId": "FetchAllModels",
         "responses": {
           "200": {
             "description": "A successful response.(streaming responses)",
