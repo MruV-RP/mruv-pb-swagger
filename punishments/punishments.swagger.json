@@ -19,7 +19,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/economyGetPlayerAdminJailResponse"
+              "$ref": "#/definitions/punishmentsGetPlayerAdminJailResponse"
             }
           }
         },
@@ -43,7 +43,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/economyUnAdminJailResponse"
+              "$ref": "#/definitions/punishmentsUnAdminJailResponse"
             }
           }
         },
@@ -52,6 +52,19 @@
             "name": "character",
             "in": "path",
             "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "reason",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "admin_id",
+            "in": "query",
+            "required": false,
             "type": "integer",
             "format": "int64"
           }
@@ -67,7 +80,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/economyAdminJailResponse"
+              "$ref": "#/definitions/punishmentsAdminJailResponse"
             }
           }
         },
@@ -93,7 +106,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/economyUnBanResponse"
+              "$ref": "#/definitions/punishmentsUnBanResponse"
             }
           }
         },
@@ -110,6 +123,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "admin_id",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -125,7 +145,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/economyBanResponse"
+              "$ref": "#/definitions/punishmentsBanResponse"
             }
           }
         },
@@ -151,7 +171,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/economyBanMessage"
+              "$ref": "#/definitions/punishmentsBanMessage"
             }
           }
         },
@@ -177,7 +197,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/economyGetPlayerBansResponse"
+              "$ref": "#/definitions/punishmentsGetPlayerBansResponse"
             }
           }
         },
@@ -209,7 +229,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/economyIsPlayerBannedResponse"
+              "$ref": "#/definitions/punishmentsIsPlayerBannedResponse"
             }
           }
         },
@@ -241,7 +261,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/economyBlockResponse"
+              "$ref": "#/definitions/punishmentsBlockResponse"
             }
           }
         },
@@ -267,7 +287,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/economyUnBlockResponse"
+              "$ref": "#/definitions/punishmentsUnBlockResponse"
             }
           }
         },
@@ -284,6 +304,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "admin_id",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -299,7 +326,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/economyBlockMessage"
+              "$ref": "#/definitions/punishmentsBlockMessage"
             }
           }
         },
@@ -324,7 +351,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/economyUnMuteGlobalChatsResponse"
+              "$ref": "#/definitions/punishmentsUnMuteGlobalChatsResponse"
             }
           }
         },
@@ -348,7 +375,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/economyMuteGlobalChatsResponse"
+              "$ref": "#/definitions/punishmentsMuteGlobalChatsResponse"
             }
           }
         },
@@ -374,7 +401,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/economyWarnResponse"
+              "$ref": "#/definitions/punishmentsWarnResponse"
             }
           }
         },
@@ -400,7 +427,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/economyUnWarnResponse"
+              "$ref": "#/definitions/punishmentsUnWarnResponse"
             }
           }
         },
@@ -417,6 +444,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "admin_id",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -432,7 +466,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/economyWarnMessage"
+              "$ref": "#/definitions/punishmentsWarnMessage"
             }
           }
         },
@@ -458,7 +492,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/economyGetPlayerWarnsResponse"
+              "$ref": "#/definitions/punishmentsGetPlayerWarnsResponse"
             }
           }
         },
@@ -475,10 +509,49 @@
           "MruVPunishmentsService"
         ]
       }
+    },
+    "/v1/punishments/{player}": {
+      "post": {
+        "summary": "Punish player with choosen punishment type.",
+        "operationId": "Punish",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/punishmentsPunishResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "player",
+            "description": "Player account.",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MruVPunishmentsService"
+        ]
+      }
     }
   },
   "definitions": {
-    "economyAdminJailMessage": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "punishmentsAdminJailMessage": {
       "type": "object",
       "properties": {
         "player": {
@@ -512,11 +585,11 @@
         }
       }
     },
-    "economyAdminJailResponse": {
+    "punishmentsAdminJailResponse": {
       "type": "object",
       "description": "Response message for rpc `AdminJail`."
     },
-    "economyBanMessage": {
+    "punishmentsBanMessage": {
       "type": "object",
       "properties": {
         "player": {
@@ -566,7 +639,7 @@
         }
       }
     },
-    "economyBanResponse": {
+    "punishmentsBanResponse": {
       "type": "object",
       "properties": {
         "ban_id": {
@@ -576,7 +649,7 @@
       },
       "description": "Response message for rpc `Ban`."
     },
-    "economyBlockMessage": {
+    "punishmentsBlockMessage": {
       "type": "object",
       "properties": {
         "player": {
@@ -619,7 +692,7 @@
         }
       }
     },
-    "economyBlockResponse": {
+    "punishmentsBlockResponse": {
       "type": "object",
       "properties": {
         "block_id": {
@@ -629,7 +702,7 @@
       },
       "description": "Response message for rpc `Block`."
     },
-    "economyGetPlayerAdminJailResponse": {
+    "punishmentsGetPlayerAdminJailResponse": {
       "type": "object",
       "properties": {
         "jail_time": {
@@ -654,31 +727,31 @@
       },
       "description": "Response message for rpc `GetPlayerAdminJail`."
     },
-    "economyGetPlayerBansResponse": {
+    "punishmentsGetPlayerBansResponse": {
       "type": "object",
       "properties": {
         "bans": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/economyBanMessage"
+            "$ref": "#/definitions/punishmentsBanMessage"
           }
         }
       },
       "description": "Response message for rpc `GetPlayerBans`."
     },
-    "economyGetPlayerWarnsResponse": {
+    "punishmentsGetPlayerWarnsResponse": {
       "type": "object",
       "properties": {
         "warns": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/economyWarnMessage"
+            "$ref": "#/definitions/punishmentsWarnMessage"
           }
         }
       },
       "description": "Response message for rpc `GetPlayerWarns`."
     },
-    "economyIsCharacterBlockedResponse": {
+    "punishmentsIsCharacterBlockedResponse": {
       "type": "object",
       "properties": {
         "blocked": {
@@ -692,7 +765,7 @@
       },
       "description": "Response message for rpc `IsCharacterBlocked`."
     },
-    "economyIsCharacterJailedResponse": {
+    "punishmentsIsCharacterJailedResponse": {
       "type": "object",
       "properties": {
         "jailed": {
@@ -706,7 +779,7 @@
       },
       "description": "Response message for rpc `IsCharacterJailed`."
     },
-    "economyIsPlayerBannedResponse": {
+    "punishmentsIsPlayerBannedResponse": {
       "type": "object",
       "properties": {
         "banned": {
@@ -720,22 +793,15 @@
       },
       "description": "Response message for rpc `IsPlayerBanned`."
     },
-    "economyMuteGlobalChatsResponse": {
+    "punishmentsMuteGlobalChatsResponse": {
       "type": "object",
       "description": "Response message for rpc `MuteGlobalChats`."
     },
-    "economyPunishmentType": {
-      "type": "string",
-      "enum": [
-        "UNKNOWN_PUNISHMENT",
-        "BAN",
-        "BLOCK",
-        "WARN",
-        "ADMIN_JAIL"
-      ],
-      "default": "UNKNOWN_PUNISHMENT"
+    "punishmentsPunishResponse": {
+      "type": "object",
+      "description": "Response message for rpc `Punish`."
     },
-    "economyUnAdminJailMessage": {
+    "punishmentsUnAdminJailMessage": {
       "type": "object",
       "properties": {
         "player": {
@@ -748,11 +814,11 @@
         }
       }
     },
-    "economyUnAdminJailResponse": {
+    "punishmentsUnAdminJailResponse": {
       "type": "object",
       "description": "Response message for rpc `UnAdminJail`."
     },
-    "economyUnBanMessage": {
+    "punishmentsUnBanMessage": {
       "type": "object",
       "properties": {
         "player": {
@@ -765,11 +831,11 @@
         }
       }
     },
-    "economyUnBanResponse": {
+    "punishmentsUnBanResponse": {
       "type": "object",
       "description": "Response message for rpc `UnBan`."
     },
-    "economyUnBlockMessage": {
+    "punishmentsUnBlockMessage": {
       "type": "object",
       "properties": {
         "player": {
@@ -782,15 +848,15 @@
         }
       }
     },
-    "economyUnBlockResponse": {
+    "punishmentsUnBlockResponse": {
       "type": "object",
       "description": "Response message for rpc `UnBlock`."
     },
-    "economyUnMuteGlobalChatsResponse": {
+    "punishmentsUnMuteGlobalChatsResponse": {
       "type": "object",
       "description": "Response message for rpc `UnMuteGlobalChats`."
     },
-    "economyUnWarnMessage": {
+    "punishmentsUnWarnMessage": {
       "type": "object",
       "properties": {
         "player": {
@@ -803,11 +869,11 @@
         }
       }
     },
-    "economyUnWarnResponse": {
+    "punishmentsUnWarnResponse": {
       "type": "object",
       "description": "Response message for rpc `UnWarn`."
     },
-    "economyWarnMessage": {
+    "punishmentsWarnMessage": {
       "type": "object",
       "properties": {
         "player": {
@@ -855,7 +921,7 @@
         }
       }
     },
-    "economyWarnResponse": {
+    "punishmentsWarnResponse": {
       "type": "object",
       "properties": {
         "warn_id": {
@@ -865,55 +931,77 @@
       },
       "description": "Response message for rpc `Warn`."
     },
-    "economyWatchPlayerAcquittalsResponse": {
-      "type": "object",
-      "description": "Response message for rpc `WatchPlayerAcquittals`."
-    },
-    "economyWatchPlayerPunishmentsResponse": {
+    "punishmentsWatchAcquittalsResponse": {
       "type": "object",
       "properties": {
-        "type": {
-          "$ref": "#/definitions/economyPunishmentType"
+        "unban": {
+          "$ref": "#/definitions/punishmentsUnBanMessage"
         },
-        "punishment_id": {
-          "type": "integer",
-          "format": "int64"
+        "unblock": {
+          "$ref": "#/definitions/punishmentsUnBlockMessage"
+        },
+        "unwarn": {
+          "$ref": "#/definitions/punishmentsUnWarnMessage"
+        },
+        "unaj": {
+          "$ref": "#/definitions/punishmentsUnAdminJailMessage"
+        }
+      },
+      "description": "Response message for rpc `WatchAcquittals`."
+    },
+    "punishmentsWatchPlayerAcquittalsResponse": {
+      "type": "object",
+      "properties": {
+        "unban": {
+          "$ref": "#/definitions/punishmentsUnBanMessage"
+        },
+        "unblock": {
+          "$ref": "#/definitions/punishmentsUnBlockMessage"
+        },
+        "unwarn": {
+          "$ref": "#/definitions/punishmentsUnWarnMessage"
+        },
+        "unaj": {
+          "$ref": "#/definitions/punishmentsUnAdminJailMessage"
+        }
+      },
+      "description": "Response message for rpc `WatchPlayerAcquittals`."
+    },
+    "punishmentsWatchPlayerPunishmentsResponse": {
+      "type": "object",
+      "properties": {
+        "ban": {
+          "$ref": "#/definitions/punishmentsBanMessage"
+        },
+        "block": {
+          "$ref": "#/definitions/punishmentsBlockMessage"
+        },
+        "warn": {
+          "$ref": "#/definitions/punishmentsWarnMessage"
+        },
+        "aj": {
+          "$ref": "#/definitions/punishmentsAdminJailMessage"
         }
       },
       "description": "Response message for rpc `WatchPlayerPunishments`."
     },
-    "economyWatchPunishmentsResponse": {
+    "punishmentsWatchPunishmentsResponse": {
       "type": "object",
       "properties": {
-        "type": {
-          "$ref": "#/definitions/economyPunishmentType"
+        "ban": {
+          "$ref": "#/definitions/punishmentsBanMessage"
         },
-        "punishment_id": {
-          "type": "integer",
-          "format": "int64"
+        "block": {
+          "$ref": "#/definitions/punishmentsBlockMessage"
         },
-        "player": {
-          "type": "integer",
-          "format": "int64"
+        "warn": {
+          "$ref": "#/definitions/punishmentsWarnMessage"
         },
-        "character": {
-          "type": "integer",
-          "format": "int64"
+        "aj": {
+          "$ref": "#/definitions/punishmentsAdminJailMessage"
         }
       },
       "description": "Response message for rpc `WatchPunishments`."
-    },
-    "protobufAny": {
-      "type": "object",
-      "properties": {
-        "type_url": {
-          "type": "string"
-        },
-        "value": {
-          "type": "string",
-          "format": "byte"
-        }
-      }
     },
     "runtimeStreamError": {
       "type": "object",
@@ -942,137 +1030,137 @@
     }
   },
   "x-stream-definitions": {
-    "economyAdminJailMessage": {
+    "punishmentsAdminJailMessage": {
       "type": "object",
       "properties": {
         "result": {
-          "$ref": "#/definitions/economyAdminJailMessage"
+          "$ref": "#/definitions/punishmentsAdminJailMessage"
         },
         "error": {
           "$ref": "#/definitions/runtimeStreamError"
         }
       },
-      "title": "Stream result of economyAdminJailMessage"
+      "title": "Stream result of punishmentsAdminJailMessage"
     },
-    "economyBanMessage": {
+    "punishmentsBanMessage": {
       "type": "object",
       "properties": {
         "result": {
-          "$ref": "#/definitions/economyBanMessage"
+          "$ref": "#/definitions/punishmentsBanMessage"
         },
         "error": {
           "$ref": "#/definitions/runtimeStreamError"
         }
       },
-      "title": "Stream result of economyBanMessage"
+      "title": "Stream result of punishmentsBanMessage"
     },
-    "economyBlockMessage": {
+    "punishmentsBlockMessage": {
       "type": "object",
       "properties": {
         "result": {
-          "$ref": "#/definitions/economyBlockMessage"
+          "$ref": "#/definitions/punishmentsBlockMessage"
         },
         "error": {
           "$ref": "#/definitions/runtimeStreamError"
         }
       },
-      "title": "Stream result of economyBlockMessage"
+      "title": "Stream result of punishmentsBlockMessage"
     },
-    "economyUnAdminJailMessage": {
+    "punishmentsUnAdminJailMessage": {
       "type": "object",
       "properties": {
         "result": {
-          "$ref": "#/definitions/economyUnAdminJailMessage"
+          "$ref": "#/definitions/punishmentsUnAdminJailMessage"
         },
         "error": {
           "$ref": "#/definitions/runtimeStreamError"
         }
       },
-      "title": "Stream result of economyUnAdminJailMessage"
+      "title": "Stream result of punishmentsUnAdminJailMessage"
     },
-    "economyUnBanMessage": {
+    "punishmentsUnBanMessage": {
       "type": "object",
       "properties": {
         "result": {
-          "$ref": "#/definitions/economyUnBanMessage"
+          "$ref": "#/definitions/punishmentsUnBanMessage"
         },
         "error": {
           "$ref": "#/definitions/runtimeStreamError"
         }
       },
-      "title": "Stream result of economyUnBanMessage"
+      "title": "Stream result of punishmentsUnBanMessage"
     },
-    "economyUnBlockMessage": {
+    "punishmentsUnBlockMessage": {
       "type": "object",
       "properties": {
         "result": {
-          "$ref": "#/definitions/economyUnBlockMessage"
+          "$ref": "#/definitions/punishmentsUnBlockMessage"
         },
         "error": {
           "$ref": "#/definitions/runtimeStreamError"
         }
       },
-      "title": "Stream result of economyUnBlockMessage"
+      "title": "Stream result of punishmentsUnBlockMessage"
     },
-    "economyUnWarnMessage": {
+    "punishmentsUnWarnMessage": {
       "type": "object",
       "properties": {
         "result": {
-          "$ref": "#/definitions/economyUnWarnMessage"
+          "$ref": "#/definitions/punishmentsUnWarnMessage"
         },
         "error": {
           "$ref": "#/definitions/runtimeStreamError"
         }
       },
-      "title": "Stream result of economyUnWarnMessage"
+      "title": "Stream result of punishmentsUnWarnMessage"
     },
-    "economyWarnMessage": {
+    "punishmentsWarnMessage": {
       "type": "object",
       "properties": {
         "result": {
-          "$ref": "#/definitions/economyWarnMessage"
+          "$ref": "#/definitions/punishmentsWarnMessage"
         },
         "error": {
           "$ref": "#/definitions/runtimeStreamError"
         }
       },
-      "title": "Stream result of economyWarnMessage"
+      "title": "Stream result of punishmentsWarnMessage"
     },
-    "economyWatchPlayerAcquittalsResponse": {
+    "punishmentsWatchPlayerAcquittalsResponse": {
       "type": "object",
       "properties": {
         "result": {
-          "$ref": "#/definitions/economyWatchPlayerAcquittalsResponse"
+          "$ref": "#/definitions/punishmentsWatchPlayerAcquittalsResponse"
         },
         "error": {
           "$ref": "#/definitions/runtimeStreamError"
         }
       },
-      "title": "Stream result of economyWatchPlayerAcquittalsResponse"
+      "title": "Stream result of punishmentsWatchPlayerAcquittalsResponse"
     },
-    "economyWatchPlayerPunishmentsResponse": {
+    "punishmentsWatchPlayerPunishmentsResponse": {
       "type": "object",
       "properties": {
         "result": {
-          "$ref": "#/definitions/economyWatchPlayerPunishmentsResponse"
+          "$ref": "#/definitions/punishmentsWatchPlayerPunishmentsResponse"
         },
         "error": {
           "$ref": "#/definitions/runtimeStreamError"
         }
       },
-      "title": "Stream result of economyWatchPlayerPunishmentsResponse"
+      "title": "Stream result of punishmentsWatchPlayerPunishmentsResponse"
     },
-    "economyWatchPunishmentsResponse": {
+    "punishmentsWatchPunishmentsResponse": {
       "type": "object",
       "properties": {
         "result": {
-          "$ref": "#/definitions/economyWatchPunishmentsResponse"
+          "$ref": "#/definitions/punishmentsWatchPunishmentsResponse"
         },
         "error": {
           "$ref": "#/definitions/runtimeStreamError"
         }
       },
-      "title": "Stream result of economyWatchPunishmentsResponse"
+      "title": "Stream result of punishmentsWatchPunishmentsResponse"
     }
   }
 }

@@ -19,7 +19,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvChangeClothesResponse"
+              "$ref": "#/definitions/charactersChangeClothesResponse"
             }
           }
         },
@@ -52,7 +52,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvCreateCharacterResponse"
+              "$ref": "#/definitions/charactersCreateCharacterResponse"
             }
           }
         },
@@ -69,7 +69,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvCharacterID"
+              "$ref": "#/definitions/charactersCharacterID"
             }
           }
         },
@@ -128,7 +128,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvGetCharacterResponse"
+              "$ref": "#/definitions/charactersGetCharacterResponse"
             }
           }
         },
@@ -152,7 +152,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvDeleteCharacterResponse"
+              "$ref": "#/definitions/charactersDeleteCharacterResponse"
             }
           }
         },
@@ -176,7 +176,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvUpdateCharacterResponse"
+              "$ref": "#/definitions/charactersUpdateCharacterResponse"
             }
           }
         },
@@ -196,11 +196,11 @@
     }
   },
   "definitions": {
-    "mruvChangeClothesResponse": {
+    "charactersChangeClothesResponse": {
       "type": "object",
       "description": "Response message for rpc `ChangeClothes`."
     },
-    "mruvCharacter": {
+    "charactersCharacter": {
       "type": "object",
       "properties": {
         "id": {
@@ -243,7 +243,7 @@
         }
       }
     },
-    "mruvCharacterID": {
+    "charactersCharacterID": {
       "type": "object",
       "properties": {
         "id": {
@@ -252,7 +252,7 @@
         }
       }
     },
-    "mruvCreateCharacterResponse": {
+    "charactersCreateCharacterResponse": {
       "type": "object",
       "properties": {
         "id": {
@@ -262,18 +262,18 @@
       },
       "description": "Response message for rpc `CreateCharacter`."
     },
-    "mruvDeathStreamResponse": {
+    "charactersDeathStreamResponse": {
       "type": "object",
       "properties": {
         "character": {
-          "$ref": "#/definitions/mruvCharacter"
+          "$ref": "#/definitions/charactersCharacter"
         },
         "death_type": {
-          "$ref": "#/definitions/mruvDeathType"
+          "$ref": "#/definitions/charactersDeathType"
         }
       }
     },
-    "mruvDeathType": {
+    "charactersDeathType": {
       "type": "string",
       "enum": [
         "DEATH_TYPE_NONE",
@@ -283,11 +283,11 @@
       ],
       "default": "DEATH_TYPE_NONE"
     },
-    "mruvDeleteCharacterResponse": {
+    "charactersDeleteCharacterResponse": {
       "type": "object",
       "description": "Response message for rpc `DeleteCharacter`."
     },
-    "mruvGetCharacterResponse": {
+    "charactersGetCharacterResponse": {
       "type": "object",
       "properties": {
         "id": {
@@ -331,6 +331,10 @@
       },
       "description": "Response message for rpc `GetCharacter`."
     },
+    "charactersUpdateCharacterResponse": {
+      "type": "object",
+      "description": "Response message for rpc `UpdateCharacter`."
+    },
     "mruvServiceStatusResponse": {
       "type": "object",
       "properties": {
@@ -338,10 +342,6 @@
           "type": "string"
         }
       }
-    },
-    "mruvUpdateCharacterResponse": {
-      "type": "object",
-      "description": "Response message for rpc `UpdateCharacter`."
     },
     "mruvVersionResponse": {
       "type": "object",
@@ -399,17 +399,17 @@
     }
   },
   "x-stream-definitions": {
-    "mruvDeathStreamResponse": {
+    "charactersDeathStreamResponse": {
       "type": "object",
       "properties": {
         "result": {
-          "$ref": "#/definitions/mruvDeathStreamResponse"
+          "$ref": "#/definitions/charactersDeathStreamResponse"
         },
         "error": {
           "$ref": "#/definitions/runtimeStreamError"
         }
       },
-      "title": "Stream result of mruvDeathStreamResponse"
+      "title": "Stream result of charactersDeathStreamResponse"
     }
   }
 }

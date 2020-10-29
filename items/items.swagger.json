@@ -19,7 +19,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvGetContainerTypesResponse"
+              "$ref": "#/definitions/itemsGetContainerTypesResponse"
             }
           }
         },
@@ -111,7 +111,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvGetContainersResponse"
+              "$ref": "#/definitions/itemsGetContainersResponse"
             }
           }
         },
@@ -153,7 +153,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvGetContainerItemsResponse"
+              "$ref": "#/definitions/itemsGetContainerItemsResponse"
             }
           }
         },
@@ -188,7 +188,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvGetNearestItemsResponse"
+              "$ref": "#/definitions/itemsGetNearestItemsResponse"
             }
           }
         },
@@ -244,7 +244,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvSortItemsResponse"
+              "$ref": "#/definitions/itemsSortItemsResponse"
             }
           }
         },
@@ -318,7 +318,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvPutItemResponse"
+              "$ref": "#/definitions/itemsPutItemResponse"
             }
           }
         },
@@ -403,7 +403,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvGetItemTypesResponse"
+              "$ref": "#/definitions/itemsGetItemTypesResponse"
             }
           }
         },
@@ -495,7 +495,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvGetItemsResponse"
+              "$ref": "#/definitions/itemsGetItemsResponse"
             }
           }
         },
@@ -621,7 +621,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvUseItemResponse"
+              "$ref": "#/definitions/itemsUseItemResponse"
             }
           }
         },
@@ -641,6 +641,115 @@
     }
   },
   "definitions": {
+    "itemsGetContainerItemsResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/mruvInsideItem"
+          },
+          "description": "List of items inside containers."
+        }
+      },
+      "description": "Request message for `MruVItemsService.GetContainerItems`."
+    },
+    "itemsGetContainerTypesResponse": {
+      "type": "object",
+      "properties": {
+        "container_types": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/mruvContainerType"
+          },
+          "description": "List of container types."
+        }
+      },
+      "description": "Response message for `MruVItemsService.GetContainers`."
+    },
+    "itemsGetContainersResponse": {
+      "type": "object",
+      "properties": {
+        "containers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/mruvContainer"
+          },
+          "description": "List of containers."
+        }
+      },
+      "description": "Response message for `MruVItemsService.GetContainers`."
+    },
+    "itemsGetItemTypesResponse": {
+      "type": "object",
+      "properties": {
+        "item_types": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/mruvItemType"
+          },
+          "description": "List of item types."
+        }
+      },
+      "description": "Response message for `MruVItemsService.GetItemTypes`."
+    },
+    "itemsGetItemsResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/mruvItem"
+          },
+          "description": "List of items."
+        }
+      },
+      "description": "Response message for `MruVItemsService.GetItems`."
+    },
+    "itemsGetNearestItemsResponse": {
+      "type": "object",
+      "properties": {
+        "item": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/mruvInsideItem"
+          },
+          "description": "List of items sorted from nearest to farthest."
+        }
+      },
+      "description": "Response message for `MruVItemsService.GetNearestItems`."
+    },
+    "itemsPutItemResponse": {
+      "type": "object",
+      "properties": {
+        "inside_item": {
+          "$ref": "#/definitions/mruvInsideItem",
+          "description": "Container with items inside."
+        }
+      },
+      "title": "Response message for `MruVItemsService.PutItem`"
+    },
+    "itemsSortItemsResponse": {
+      "type": "object",
+      "properties": {
+        "container": {
+          "$ref": "#/definitions/mruvContainer",
+          "description": "Container with sorted items inside."
+        }
+      },
+      "description": "Response message for `MruVItemsService.SortItems`."
+    },
+    "itemsUseItemResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "Is item usage was successful."
+        }
+      },
+      "description": "Response message for `MruVItemsService.UseItem`."
+    },
     "mruvContainer": {
       "type": "object",
       "properties": {
@@ -729,84 +838,6 @@
         }
       },
       "description": "Container type ID."
-    },
-    "mruvGetContainerItemsResponse": {
-      "type": "object",
-      "properties": {
-        "items": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/mruvInsideItem"
-          },
-          "description": "List of items inside containers."
-        }
-      },
-      "description": "Request message for `MruVItemsService.GetContainerItems`."
-    },
-    "mruvGetContainerTypesResponse": {
-      "type": "object",
-      "properties": {
-        "container_types": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/mruvContainerType"
-          },
-          "description": "List of container types."
-        }
-      },
-      "description": "Response message for `MruVItemsService.GetContainers`."
-    },
-    "mruvGetContainersResponse": {
-      "type": "object",
-      "properties": {
-        "containers": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/mruvContainer"
-          },
-          "description": "List of containers."
-        }
-      },
-      "description": "Response message for `MruVItemsService.GetContainers`."
-    },
-    "mruvGetItemTypesResponse": {
-      "type": "object",
-      "properties": {
-        "item_types": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/mruvItemType"
-          },
-          "description": "List of item types."
-        }
-      },
-      "description": "Response message for `MruVItemsService.GetItemTypes`."
-    },
-    "mruvGetItemsResponse": {
-      "type": "object",
-      "properties": {
-        "items": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/mruvItem"
-          },
-          "description": "List of items."
-        }
-      },
-      "description": "Response message for `MruVItemsService.GetItems`."
-    },
-    "mruvGetNearestItemsResponse": {
-      "type": "object",
-      "properties": {
-        "item": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/mruvInsideItem"
-          },
-          "description": "List of items sorted from nearest to farthest."
-        }
-      },
-      "description": "Response message for `MruVItemsService.GetNearestItems`."
     },
     "mruvInsideItem": {
       "type": "object",
@@ -930,16 +961,6 @@
         }
       }
     },
-    "mruvPutItemResponse": {
-      "type": "object",
-      "properties": {
-        "inside_item": {
-          "$ref": "#/definitions/mruvInsideItem",
-          "description": "Container with items inside."
-        }
-      },
-      "title": "Response message for `MruVItemsService.PutItem`"
-    },
     "mruvServiceStatusResponse": {
       "type": "object",
       "properties": {
@@ -947,16 +968,6 @@
           "type": "string"
         }
       }
-    },
-    "mruvSortItemsResponse": {
-      "type": "object",
-      "properties": {
-        "container": {
-          "$ref": "#/definitions/mruvContainer",
-          "description": "Container with sorted items inside."
-        }
-      },
-      "description": "Response message for `MruVItemsService.SortItems`."
     },
     "mruvSortingMode": {
       "type": "string",
@@ -969,17 +980,6 @@
       ],
       "default": "UNKNOWN",
       "description": "Sorting modes for container items.\n\n - UNKNOWN: undefined behaviour\n - WEIGHT_DESC: sort by weight descending\n - WEIGHT_ASC: sort by weight ascending\n - VOLUME_DESC: sort by volume descending\n - VOLUME_ASC: sort by volume ascending"
-    },
-    "mruvUseItemResponse": {
-      "type": "object",
-      "properties": {
-        "success": {
-          "type": "boolean",
-          "format": "boolean",
-          "description": "Is item usage was successful."
-        }
-      },
-      "description": "Response message for `MruVItemsService.UseItem`."
     },
     "mruvVersionResponse": {
       "type": "object",
