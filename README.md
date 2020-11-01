@@ -1,4 +1,4 @@
 # mruv-pb-swagger
-Generated MruV API swagger files
+This repository contains code generated from https://github.com/MruV-RP/mruv-protos protobuf files.
 
-Page: https://mruv-rp.github.io/mruv-pb-swagger
+You can play with those files with [Swagger CI](https://mruv-rp.github.io/mruv-pb-swagger).
