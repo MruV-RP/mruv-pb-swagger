@@ -14,12 +14,18 @@
     "/v1/texturestudio/servers": {
       "get": {
         "summary": "Get all existing servers",
-        "operationId": "GetServers",
+        "operationId": "TextureStudioManagerService_GetServers",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/texture_studioGetServersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -29,12 +35,18 @@
       },
       "post": {
         "summary": "Create a new texture studio server.",
-        "operationId": "CreateServer",
+        "operationId": "TextureStudioManagerService_CreateServer",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/texture_studioCreateServerResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -46,12 +58,18 @@
     "/v1/texturestudio/servers/my": {
       "get": {
         "summary": "Get texture studio server id for current user.",
-        "operationId": "MyServer",
+        "operationId": "TextureStudioManagerService_MyServer",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/texture_studioMyServerResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -63,12 +81,18 @@
     "/v1/texturestudio/servers/{id}": {
       "delete": {
         "summary": "Delete a texture studio server.",
-        "operationId": "DeleteServer",
+        "operationId": "TextureStudioManagerService_DeleteServer",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/texture_studioDeleteServerResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -86,21 +110,27 @@
         ]
       }
     },
-    "/v1/texturestudio/servers/{server_id}": {
+    "/v1/texturestudio/servers/{serverId}": {
       "patch": {
         "summary": "Change owner of texture studio server.",
-        "operationId": "TransferOwnership",
+        "operationId": "TextureStudioManagerService_TransferOwnership",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/texture_studioTransferOwnershipResponse"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
           }
         },
         "parameters": [
           {
-            "name": "server_id",
+            "name": "serverId",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -114,6 +144,36 @@
     }
   },
   "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "typeUrl": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
     "texture_studioCreateServerResponse": {
       "type": "object",
       "properties": {

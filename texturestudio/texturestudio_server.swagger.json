@@ -14,12 +14,18 @@
     "/v1/texturestudio/server/{id}/restart": {
       "post": {
         "summary": "Restart a texture studio server.",
-        "operationId": "RestartServer",
+        "operationId": "TextureStudioServerService_RestartServer",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/texture_studioRestartServerResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -40,12 +46,18 @@
     "/v1/texturestudio/server/{id}/start": {
       "post": {
         "summary": "Start a texture studio server.",
-        "operationId": "StartServer",
+        "operationId": "TextureStudioServerService_StartServer",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/texture_studioStartServerResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -66,12 +78,18 @@
     "/v1/texturestudio/server/{id}/status": {
       "get": {
         "summary": "Get texture studio server status.",
-        "operationId": "ServerStatus",
+        "operationId": "TextureStudioServerService_ServerStatus",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/texture_studioServerStatusResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -92,12 +110,18 @@
     "/v1/texturestudio/server/{id}/stop": {
       "post": {
         "summary": "Stop a texture studio server.",
-        "operationId": "StopServer",
+        "operationId": "TextureStudioServerService_StopServer",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/texture_studioStopServerResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -115,21 +139,27 @@
         ]
       }
     },
-    "/v1/texturestudio/server/{server_id}/projects": {
+    "/v1/texturestudio/server/{serverId}/projects": {
       "get": {
         "summary": "Get all projects.",
-        "operationId": "GetProjects",
+        "operationId": "TextureStudioServerService_GetProjects",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/texture_studioGetProjectsResponse"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
           }
         },
         "parameters": [
           {
-            "name": "server_id",
+            "name": "serverId",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -142,18 +172,24 @@
       },
       "post": {
         "summary": "Upload project to texture studio.",
-        "operationId": "UploadProject",
+        "operationId": "TextureStudioServerService_UploadProject",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/texture_studioUploadProjectResponse"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
           }
         },
         "parameters": [
           {
-            "name": "server_id",
+            "name": "serverId",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -173,21 +209,27 @@
         ]
       }
     },
-    "/v1/texturestudio/server/{server_id}/projects/{name}": {
+    "/v1/texturestudio/server/{serverId}/projects/{name}": {
       "get": {
         "summary": "Get texture-studio objects project.",
-        "operationId": "GetProject",
+        "operationId": "TextureStudioServerService_GetProject",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/texture_studioGetProjectResponse"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
           }
         },
         "parameters": [
           {
-            "name": "server_id",
+            "name": "serverId",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -210,7 +252,7 @@
     "protobufAny": {
       "type": "object",
       "properties": {
-        "type_url": {
+        "typeUrl": {
           "type": "string"
         },
         "value": {
@@ -219,21 +261,14 @@
         }
       }
     },
-    "runtimeStreamError": {
+    "rpcStatus": {
       "type": "object",
       "properties": {
-        "grpc_code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "http_code": {
+        "code": {
           "type": "integer",
           "format": "int32"
         },
         "message": {
-          "type": "string"
-        },
-        "http_status": {
           "type": "string"
         },
         "details": {
@@ -311,11 +346,11 @@
     "texture_studioUploadProjectRequest": {
       "type": "object",
       "properties": {
-        "server_id": {
+        "serverId": {
           "type": "integer",
           "format": "int64"
         },
-        "project_name": {
+        "projectName": {
           "type": "string"
         },
         "code": {
@@ -331,20 +366,6 @@
     "texture_studioUploadProjectResponse": {
       "type": "object",
       "description": "Response message for rpc `UploadProject`."
-    }
-  },
-  "x-stream-definitions": {
-    "texture_studioSubscribeToProjectsChangesResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/texture_studioSubscribeToProjectsChangesResponse"
-        },
-        "error": {
-          "$ref": "#/definitions/runtimeStreamError"
-        }
-      },
-      "title": "Stream result of texture_studioSubscribeToProjectsChangesResponse"
     }
   }
 }

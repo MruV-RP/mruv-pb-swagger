@@ -14,12 +14,18 @@
     "/v1/elevators": {
       "post": {
         "summary": "Create an elevator.",
-        "operationId": "CreateElevator",
+        "operationId": "MruVElevatorsService_CreateElevator",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/elevatorsCreateElevatorResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -31,12 +37,18 @@
     "/v1/elevators/{id}": {
       "get": {
         "summary": "Get an elevator.",
-        "operationId": "GetElevator",
+        "operationId": "MruVElevatorsService_GetElevator",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/elevatorsGetElevatorResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -55,12 +67,18 @@
       },
       "delete": {
         "summary": "Delete an elevator.",
-        "operationId": "DeleteElevator",
+        "operationId": "MruVElevatorsService_DeleteElevator",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/elevatorsDeleteElevatorResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -79,12 +97,18 @@
       },
       "patch": {
         "summary": "Update an elevator.",
-        "operationId": "UpdateElevator",
+        "operationId": "MruVElevatorsService_UpdateElevator",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/elevatorsUpdateElevatorResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -105,12 +129,18 @@
     "/v1/elevators/{id}/floors": {
       "get": {
         "summary": "Get available elevator floors.",
-        "operationId": "GetElevatorFloors",
+        "operationId": "MruVElevatorsService_GetElevatorFloors",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/elevatorsGetElevatorFloorsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -155,6 +185,36 @@
     "elevatorsUpdateElevatorResponse": {
       "type": "object",
       "description": "Response message for rpc `UpdateElevator`."
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "typeUrl": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
     }
   }
 }

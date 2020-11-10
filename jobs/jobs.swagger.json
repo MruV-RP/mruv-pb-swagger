@@ -14,12 +14,18 @@
     "/v1/jobs": {
       "post": {
         "summary": "Create a job.",
-        "operationId": "CreateJob",
+        "operationId": "MruVJobsService_CreateJob",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/jobsCreateJobResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -31,12 +37,18 @@
     "/v1/jobs/{id}": {
       "get": {
         "summary": "Get a job.",
-        "operationId": "GetJob",
+        "operationId": "MruVJobsService_GetJob",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/jobsGetJobResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -55,12 +67,18 @@
       },
       "delete": {
         "summary": "Delete a job.",
-        "operationId": "DeleteJob",
+        "operationId": "MruVJobsService_DeleteJob",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/jobsDeleteJobResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -79,12 +97,18 @@
       },
       "patch": {
         "summary": "Update a job.",
-        "operationId": "UpdateJob",
+        "operationId": "MruVJobsService_UpdateJob",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/jobsUpdateJobResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -119,6 +143,36 @@
     "jobsUpdateJobResponse": {
       "type": "object",
       "description": "Response message for rpc `UpdateJob`."
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "typeUrl": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
     }
   }
 }

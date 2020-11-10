@@ -14,12 +14,18 @@
     "/v1/spots": {
       "post": {
         "summary": "Create a spot.",
-        "operationId": "CreateSpot",
+        "operationId": "MruVSpotsService_CreateSpot",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/spotsCreateSpotResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -31,12 +37,18 @@
     "/v1/spots/{id}": {
       "get": {
         "summary": "Get a spot.",
-        "operationId": "GetSpot",
+        "operationId": "MruVSpotsService_GetSpot",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/spotsGetSpotResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -55,12 +67,18 @@
       },
       "delete": {
         "summary": "Delete a spot.",
-        "operationId": "DeleteSpot",
+        "operationId": "MruVSpotsService_DeleteSpot",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/spotsDeleteSpotResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -79,12 +97,18 @@
       },
       "patch": {
         "summary": "Update a spot.",
-        "operationId": "UpdateSpot",
+        "operationId": "MruVSpotsService_UpdateSpot",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/spotsUpdateSpotResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -107,7 +131,7 @@
     "protobufAny": {
       "type": "object",
       "properties": {
-        "type_url": {
+        "typeUrl": {
           "type": "string"
         },
         "value": {
@@ -116,21 +140,14 @@
         }
       }
     },
-    "runtimeStreamError": {
+    "rpcStatus": {
       "type": "object",
       "properties": {
-        "grpc_code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "http_code": {
+        "code": {
           "type": "integer",
           "format": "int32"
         },
         "message": {
-          "type": "string"
-        },
-        "http_status": {
           "type": "string"
         },
         "details": {
@@ -219,20 +236,6 @@
     "spotsUpdateSpotResponse": {
       "type": "object",
       "description": "Response message for rpc `UpdateSpot`."
-    }
-  },
-  "x-stream-definitions": {
-    "spotsFetchAllSpotsResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/spotsFetchAllSpotsResponse"
-        },
-        "error": {
-          "$ref": "#/definitions/runtimeStreamError"
-        }
-      },
-      "title": "Stream result of spotsFetchAllSpotsResponse"
     }
   }
 }

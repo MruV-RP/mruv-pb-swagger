@@ -14,12 +14,18 @@
     "/v1/offers": {
       "post": {
         "summary": "Create an offer.",
-        "operationId": "CreateOffer",
+        "operationId": "MruVOffersService_CreateOffer",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/offersCreateOfferResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -31,12 +37,18 @@
     "/v1/offers/{id}": {
       "get": {
         "summary": "Get an offer.",
-        "operationId": "GetOffer",
+        "operationId": "MruVOffersService_GetOffer",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/offersGetOfferResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -55,12 +67,18 @@
       },
       "delete": {
         "summary": "Delete an offer.",
-        "operationId": "DeleteOffer",
+        "operationId": "MruVOffersService_DeleteOffer",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/offersDeleteOfferResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -79,12 +97,18 @@
       },
       "patch": {
         "summary": "Update an offer.",
-        "operationId": "UpdateOffer",
+        "operationId": "MruVOffersService_UpdateOffer",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/offersUpdateOfferResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -105,12 +129,18 @@
     "/v1/offers/{id}/accept": {
       "post": {
         "summary": "Accept an offer and proceed transaction.",
-        "operationId": "AcceptOffer",
+        "operationId": "MruVOffersService_AcceptOffer",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/offersAcceptOfferResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -162,6 +192,36 @@
     "offersUpdateOfferResponse": {
       "type": "object",
       "description": "Response message for rpc `UpdateOffer`."
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "typeUrl": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
     }
   }
 }

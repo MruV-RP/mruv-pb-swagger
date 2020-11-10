@@ -14,12 +14,18 @@
     "/v1/economy/product/{name}/buy": {
       "post": {
         "summary": "Send information to the system, that the product has been purchased.\nThis rpc call can affect a product price.",
-        "operationId": "BuyProduct",
+        "operationId": "MruVEconomyService_BuyProduct",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/economyBuyProductResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -39,12 +45,18 @@
     "/v1/economy/product/{name}/price": {
       "get": {
         "summary": "Get current value for registered price.",
-        "operationId": "GetPrice",
+        "operationId": "MruVEconomyService_GetPrice",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/economyGetPriceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -71,12 +83,18 @@
     "/v1/economy/products": {
       "post": {
         "summary": "Register price in economy system.",
-        "operationId": "RegisterProduct",
+        "operationId": "MruVEconomyService_RegisterProduct",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/economyRegisterProductResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -88,12 +106,18 @@
     "/v1/economy/products/{name}": {
       "get": {
         "summary": "Get product information.",
-        "operationId": "GetProduct",
+        "operationId": "MruVEconomyService_GetProduct",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/economyGetProductResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -117,12 +141,18 @@
         ]
       },
       "delete": {
-        "operationId": "DeleteProduct",
+        "operationId": "MruVEconomyService_DeleteProduct",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/economyDeleteProductResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -147,12 +177,18 @@
       },
       "patch": {
         "summary": "Update product information.",
-        "operationId": "UpdateProduct",
+        "operationId": "MruVEconomyService_UpdateProduct",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/economyUpdateProductResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -172,12 +208,18 @@
     "/v1/economy/products/{name}/price": {
       "patch": {
         "summary": "Update product price.",
-        "operationId": "UpdatePrice",
+        "operationId": "MruVEconomyService_UpdatePrice",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/economyUpdatePriceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -231,21 +273,21 @@
         "name": {
           "type": "string"
         },
-        "full_name": {
+        "fullName": {
           "type": "string"
         },
         "description": {
           "type": "string"
         },
-        "price_class": {
+        "priceClass": {
           "type": "integer",
           "format": "int64"
         },
-        "price_ratio": {
+        "priceRatio": {
           "type": "number",
           "format": "float"
         },
-        "starting_price": {
+        "startingPrice": {
           "type": "integer",
           "format": "int64"
         },
@@ -296,7 +338,7 @@
     "protobufAny": {
       "type": "object",
       "properties": {
-        "type_url": {
+        "typeUrl": {
           "type": "string"
         },
         "value": {
@@ -305,21 +347,14 @@
         }
       }
     },
-    "runtimeStreamError": {
+    "rpcStatus": {
       "type": "object",
       "properties": {
-        "grpc_code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "http_code": {
+        "code": {
           "type": "integer",
           "format": "int32"
         },
         "message": {
-          "type": "string"
-        },
-        "http_status": {
           "type": "string"
         },
         "details": {
@@ -329,32 +364,6 @@
           }
         }
       }
-    }
-  },
-  "x-stream-definitions": {
-    "economyWatchPriceResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/economyWatchPriceResponse"
-        },
-        "error": {
-          "$ref": "#/definitions/runtimeStreamError"
-        }
-      },
-      "title": "Stream result of economyWatchPriceResponse"
-    },
-    "economyWatchProductResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/economyWatchProductResponse"
-        },
-        "error": {
-          "$ref": "#/definitions/runtimeStreamError"
-        }
-      },
-      "title": "Stream result of economyWatchProductResponse"
     }
   }
 }

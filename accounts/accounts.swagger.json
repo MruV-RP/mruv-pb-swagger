@@ -14,12 +14,18 @@
     "/v1/accounts/login": {
       "post": {
         "summary": "Sign into an existing account.",
-        "operationId": "LogIn",
+        "operationId": "MruVAccountsService_LogIn",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/mruvLogInResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -31,12 +37,18 @@
     "/v1/accounts/register": {
       "post": {
         "summary": "Register a new account.",
-        "operationId": "RegisterAccount",
+        "operationId": "MruVAccountsService_RegisterAccount",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/mruvRegisterAccountResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -48,12 +60,18 @@
     "/v1/accounts/{login}": {
       "get": {
         "summary": "Get an account.",
-        "operationId": "GetAccount",
+        "operationId": "MruVAccountsService_GetAccount",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/mruvGetAccountResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -73,12 +91,18 @@
     "/v1/accounts/{login}/characters": {
       "get": {
         "summary": "Get an account characters.",
-        "operationId": "GetAccountCharacters",
+        "operationId": "MruVAccountsService_GetAccountCharacters",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/mruvGetAccountCharactersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -98,12 +122,18 @@
     "/v1/accounts/{login}/registered": {
       "get": {
         "summary": "Check, is account with specified login exist. If yes, it returns account id.",
-        "operationId": "IsAccountExist",
+        "operationId": "MruVAccountsService_IsAccountExist",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/mruvIsAccountExistResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -125,7 +155,7 @@
     "mruvGetAccountCharactersResponse": {
       "type": "object",
       "properties": {
-        "character_ids": {
+        "characterIds": {
           "type": "array",
           "items": {
             "type": "integer",
@@ -151,8 +181,7 @@
       "type": "object",
       "properties": {
         "exists": {
-          "type": "boolean",
-          "format": "boolean"
+          "type": "boolean"
         },
         "id": {
           "type": "integer",
@@ -165,10 +194,9 @@
       "type": "object",
       "properties": {
         "success": {
-          "type": "boolean",
-          "format": "boolean"
+          "type": "boolean"
         },
-        "account_id": {
+        "accountId": {
           "type": "integer",
           "format": "int64"
         }
@@ -179,15 +207,44 @@
       "type": "object",
       "properties": {
         "success": {
-          "type": "boolean",
-          "format": "boolean"
+          "type": "boolean"
         },
-        "account_id": {
+        "accountId": {
           "type": "integer",
           "format": "int64"
         }
       },
       "description": "Response message for rpc `RegisterAccount`."
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "typeUrl": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
     }
   }
 }

@@ -14,12 +14,18 @@
     "/v1/servers": {
       "get": {
         "summary": "Get all registered servers.",
-        "operationId": "GetRegisteredServers",
+        "operationId": "MruVServerService_GetRegisteredServers",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/serverGetRegisteredServersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -29,12 +35,18 @@
       },
       "post": {
         "summary": "Register instance of server for further managing.",
-        "operationId": "RegisterServer",
+        "operationId": "MruVServerService_RegisterServer",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/serverServerID"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -46,12 +58,18 @@
     "/v1/servers/{id}": {
       "get": {
         "summary": "Get game server status.",
-        "operationId": "GetServerInfo",
+        "operationId": "MruVServerService_GetServerInfo",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/serverServerInfo"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -72,12 +90,18 @@
     "/v1/servers/{id}/status": {
       "patch": {
         "summary": "Update game server status.",
-        "operationId": "UpdateServerStatus",
+        "operationId": "MruVServerService_UpdateServerStatus",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/serverUpdateServerStatusResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -113,7 +137,7 @@
     "protobufAny": {
       "type": "object",
       "properties": {
-        "type_url": {
+        "typeUrl": {
           "type": "string"
         },
         "value": {
@@ -122,21 +146,14 @@
         }
       }
     },
-    "runtimeStreamError": {
+    "rpcStatus": {
       "type": "object",
       "properties": {
-        "grpc_code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "http_code": {
+        "code": {
           "type": "integer",
           "format": "int32"
         },
         "message": {
-          "type": "string"
-        },
-        "http_status": {
           "type": "string"
         },
         "details": {
@@ -226,20 +243,6 @@
     "serverUpdateServerStatusResponse": {
       "type": "object",
       "description": "Response message for `MruVServerService.UpdateServerStatus`."
-    }
-  },
-  "x-stream-definitions": {
-    "serverServerEvent": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/serverServerEvent"
-        },
-        "error": {
-          "$ref": "#/definitions/runtimeStreamError"
-        }
-      },
-      "title": "Stream result of serverServerEvent"
     }
   }
 }
