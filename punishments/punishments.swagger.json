@@ -54,19 +54,6 @@
             "required": true,
             "type": "integer",
             "format": "int64"
-          },
-          {
-            "name": "reason",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "admin_id",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int64"
           }
         ],
         "tags": [
@@ -123,13 +110,6 @@
             "in": "query",
             "required": false,
             "type": "string"
-          },
-          {
-            "name": "admin_id",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int64"
           }
         ],
         "tags": [
@@ -304,13 +284,6 @@
             "in": "query",
             "required": false,
             "type": "string"
-          },
-          {
-            "name": "admin_id",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int64"
           }
         ],
         "tags": [
@@ -444,13 +417,6 @@
             "in": "query",
             "required": false,
             "type": "string"
-          },
-          {
-            "name": "admin_id",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int64"
           }
         ],
         "tags": [
@@ -499,33 +465,6 @@
         "parameters": [
           {
             "name": "player",
-            "in": "path",
-            "required": true,
-            "type": "integer",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "MruVPunishmentsService"
-        ]
-      }
-    },
-    "/v1/punishments/{player}": {
-      "post": {
-        "summary": "Punish player with choosen punishment type.",
-        "operationId": "Punish",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/punishmentsPunishResponse"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "player",
-            "description": "Player account.",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -797,9 +736,16 @@
       "type": "object",
       "description": "Response message for rpc `MuteGlobalChats`."
     },
-    "punishmentsPunishResponse": {
-      "type": "object",
-      "description": "Response message for rpc `Punish`."
+    "punishmentsPunishmentType": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN_PUNISHMENT",
+        "BAN",
+        "BLOCK",
+        "WARN",
+        "ADMIN_JAIL"
+      ],
+      "default": "UNKNOWN_PUNISHMENT"
     },
     "punishmentsUnAdminJailMessage": {
       "type": "object",
@@ -931,56 +877,19 @@
       },
       "description": "Response message for rpc `Warn`."
     },
-    "punishmentsWatchAcquittalsResponse": {
-      "type": "object",
-      "properties": {
-        "unban": {
-          "$ref": "#/definitions/punishmentsUnBanMessage"
-        },
-        "unblock": {
-          "$ref": "#/definitions/punishmentsUnBlockMessage"
-        },
-        "unwarn": {
-          "$ref": "#/definitions/punishmentsUnWarnMessage"
-        },
-        "unaj": {
-          "$ref": "#/definitions/punishmentsUnAdminJailMessage"
-        }
-      },
-      "description": "Response message for rpc `WatchAcquittals`."
-    },
     "punishmentsWatchPlayerAcquittalsResponse": {
       "type": "object",
-      "properties": {
-        "unban": {
-          "$ref": "#/definitions/punishmentsUnBanMessage"
-        },
-        "unblock": {
-          "$ref": "#/definitions/punishmentsUnBlockMessage"
-        },
-        "unwarn": {
-          "$ref": "#/definitions/punishmentsUnWarnMessage"
-        },
-        "unaj": {
-          "$ref": "#/definitions/punishmentsUnAdminJailMessage"
-        }
-      },
       "description": "Response message for rpc `WatchPlayerAcquittals`."
     },
     "punishmentsWatchPlayerPunishmentsResponse": {
       "type": "object",
       "properties": {
-        "ban": {
-          "$ref": "#/definitions/punishmentsBanMessage"
+        "type": {
+          "$ref": "#/definitions/punishmentsPunishmentType"
         },
-        "block": {
-          "$ref": "#/definitions/punishmentsBlockMessage"
-        },
-        "warn": {
-          "$ref": "#/definitions/punishmentsWarnMessage"
-        },
-        "aj": {
-          "$ref": "#/definitions/punishmentsAdminJailMessage"
+        "punishment_id": {
+          "type": "integer",
+          "format": "int64"
         }
       },
       "description": "Response message for rpc `WatchPlayerPunishments`."
@@ -988,17 +897,20 @@
     "punishmentsWatchPunishmentsResponse": {
       "type": "object",
       "properties": {
-        "ban": {
-          "$ref": "#/definitions/punishmentsBanMessage"
+        "type": {
+          "$ref": "#/definitions/punishmentsPunishmentType"
         },
-        "block": {
-          "$ref": "#/definitions/punishmentsBlockMessage"
+        "punishment_id": {
+          "type": "integer",
+          "format": "int64"
         },
-        "warn": {
-          "$ref": "#/definitions/punishmentsWarnMessage"
+        "player": {
+          "type": "integer",
+          "format": "int64"
         },
-        "aj": {
-          "$ref": "#/definitions/punishmentsAdminJailMessage"
+        "character": {
+          "type": "integer",
+          "format": "int64"
         }
       },
       "description": "Response message for rpc `WatchPunishments`."

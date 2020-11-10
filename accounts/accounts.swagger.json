@@ -19,7 +19,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/accountsLogInResponse"
+              "$ref": "#/definitions/mruvLogInResponse"
             }
           }
         },
@@ -36,7 +36,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/accountsRegisterAccountResponse"
+              "$ref": "#/definitions/mruvRegisterAccountResponse"
             }
           }
         },
@@ -53,7 +53,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/accountsGetAccountResponse"
+              "$ref": "#/definitions/mruvGetAccountResponse"
             }
           }
         },
@@ -78,7 +78,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/accountsGetAccountCharactersResponse"
+              "$ref": "#/definitions/mruvGetAccountCharactersResponse"
             }
           }
         },
@@ -103,7 +103,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/accountsIsAccountExistResponse"
+              "$ref": "#/definitions/mruvIsAccountExistResponse"
             }
           }
         },
@@ -122,7 +122,7 @@
     }
   },
   "definitions": {
-    "accountsGetAccountCharactersResponse": {
+    "mruvGetAccountCharactersResponse": {
       "type": "object",
       "properties": {
         "character_ids": {
@@ -135,7 +135,7 @@
       },
       "description": "Response message for rpc `GetAccountCharacters`."
     },
-    "accountsGetAccountResponse": {
+    "mruvGetAccountResponse": {
       "type": "object",
       "properties": {
         "login": {
@@ -147,7 +147,7 @@
       },
       "description": "Response message for rpc `GetAccount`."
     },
-    "accountsIsAccountExistResponse": {
+    "mruvIsAccountExistResponse": {
       "type": "object",
       "properties": {
         "exists": {
@@ -161,7 +161,7 @@
       },
       "description": "Response message for rpc `IsAccountExist`."
     },
-    "accountsLogInResponse": {
+    "mruvLogInResponse": {
       "type": "object",
       "properties": {
         "success": {
@@ -175,7 +175,7 @@
       },
       "description": "Response message for rpc `LogIn`."
     },
-    "accountsRegisterAccountResponse": {
+    "mruvRegisterAccountResponse": {
       "type": "object",
       "properties": {
         "success": {
