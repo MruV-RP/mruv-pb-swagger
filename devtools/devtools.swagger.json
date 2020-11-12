@@ -326,7 +326,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvServiceStatusResponse"
+              "$ref": "#/definitions/commonServiceStatusResponse"
             }
           },
           "default": {
@@ -349,7 +349,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvVersionResponse"
+              "$ref": "#/definitions/commonVersionResponse"
             }
           },
           "default": {
@@ -366,6 +366,31 @@
     }
   },
   "definitions": {
+    "commonServiceStatusResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "commonVersionResponse": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string"
+        },
+        "buildDate": {
+          "type": "string"
+        },
+        "commit": {
+          "type": "string"
+        },
+        "osArch": {
+          "type": "string"
+        }
+      }
+    },
     "devtoolsAnimation": {
       "type": "object",
       "properties": {
@@ -562,31 +587,6 @@
         }
       },
       "description": "Save position response message."
-    },
-    "mruvServiceStatusResponse": {
-      "type": "object",
-      "properties": {
-        "status": {
-          "type": "string"
-        }
-      }
-    },
-    "mruvVersionResponse": {
-      "type": "object",
-      "properties": {
-        "version": {
-          "type": "string"
-        },
-        "buildDate": {
-          "type": "string"
-        },
-        "commit": {
-          "type": "string"
-        },
-        "osArch": {
-          "type": "string"
-        }
-      }
     },
     "protobufAny": {
       "type": "object",

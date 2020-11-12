@@ -19,7 +19,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvGetGroupsResponse"
+              "$ref": "#/definitions/groupsGetGroupsResponse"
             }
           },
           "default": {
@@ -56,7 +56,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvCreateGroupResponse"
+              "$ref": "#/definitions/groupsCreateGroupResponse"
             }
           },
           "default": {
@@ -79,7 +79,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvIsPermittedResponse"
+              "$ref": "#/definitions/groupsIsPermittedResponse"
             }
           },
           "default": {
@@ -129,7 +129,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvServiceStatusResponse"
+              "$ref": "#/definitions/commonServiceStatusResponse"
             }
           },
           "default": {
@@ -151,7 +151,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvVersionResponse"
+              "$ref": "#/definitions/commonVersionResponse"
             }
           },
           "default": {
@@ -174,7 +174,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvGetGroupResponse"
+              "$ref": "#/definitions/groupsGetGroupResponse"
             }
           },
           "default": {
@@ -204,7 +204,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvDeleteGroupResponse"
+              "$ref": "#/definitions/groupsDeleteGroupResponse"
             }
           },
           "default": {
@@ -234,7 +234,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvUpdateGroupResponse"
+              "$ref": "#/definitions/groupsUpdateGroupResponse"
             }
           },
           "default": {
@@ -266,7 +266,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvGetMembersResponse"
+              "$ref": "#/definitions/groupsGetMembersResponse"
             }
           },
           "default": {
@@ -298,7 +298,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvRemoveMemberResponse"
+              "$ref": "#/definitions/groupsRemoveMemberResponse"
             }
           },
           "default": {
@@ -335,7 +335,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvAddMemberResponse"
+              "$ref": "#/definitions/groupsAddMemberResponse"
             }
           },
           "default": {
@@ -374,7 +374,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvGetOwnerResponse"
+              "$ref": "#/definitions/groupsGetOwnerResponse"
             }
           },
           "default": {
@@ -404,7 +404,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvAssignOwnerResponse"
+              "$ref": "#/definitions/groupsAssignOwnerResponse"
             }
           },
           "default": {
@@ -436,7 +436,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvGetPermissionsResponse"
+              "$ref": "#/definitions/groupsGetPermissionsResponse"
             }
           },
           "default": {
@@ -466,7 +466,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvRemovePermissionResponse"
+              "$ref": "#/definitions/groupsRemovePermissionResponse"
             }
           },
           "default": {
@@ -503,7 +503,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvAddPermissionResponse"
+              "$ref": "#/definitions/groupsAddPermissionResponse"
             }
           },
           "default": {
@@ -535,7 +535,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvGetSubgroupsResponse"
+              "$ref": "#/definitions/groupsGetSubgroupsResponse"
             }
           },
           "default": {
@@ -567,7 +567,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvRemoveSubgroupResponse"
+              "$ref": "#/definitions/groupsRemoveSubgroupResponse"
             }
           },
           "default": {
@@ -604,7 +604,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/mruvAddSubgroupResponse"
+              "$ref": "#/definitions/groupsAddSubgroupResponse"
             }
           },
           "default": {
@@ -667,163 +667,7 @@
         }
       }
     },
-    "mruvAddMemberResponse": {
-      "type": "object",
-      "description": "Response message for rpc `AddMember`."
-    },
-    "mruvAddPermissionResponse": {
-      "type": "object",
-      "properties": {
-        "permissionId": {
-          "type": "integer",
-          "format": "int64"
-        }
-      },
-      "description": "Response message for rpc `AddPermission`."
-    },
-    "mruvAddSubgroupResponse": {
-      "type": "object",
-      "description": "Response message for rpc `AddSubgroup`."
-    },
-    "mruvAssignOwnerResponse": {
-      "type": "object",
-      "description": "Response message for rpc `AssignOwner`."
-    },
-    "mruvCreateGroupResponse": {
-      "type": "object",
-      "properties": {
-        "groupId": {
-          "type": "integer",
-          "format": "int64"
-        }
-      },
-      "description": "Response message for rpc `CreateGroup`."
-    },
-    "mruvDeleteGroupResponse": {
-      "type": "object",
-      "description": "Response message for rpc `DeleteGroup`."
-    },
-    "mruvGetGroupResponse": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        }
-      },
-      "description": "Response message for rpc `GetGroup`."
-    },
-    "mruvGetGroupsResponse": {
-      "type": "object",
-      "properties": {
-        "groups": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/GetGroupsResponseGroup"
-          }
-        }
-      },
-      "description": "Response message for rpc `GetGroups`."
-    },
-    "mruvGetMembersResponse": {
-      "type": "object",
-      "properties": {
-        "memberType": {
-          "$ref": "#/definitions/mruvMemberType"
-        },
-        "memberIds": {
-          "type": "array",
-          "items": {
-            "type": "integer",
-            "format": "int64"
-          }
-        }
-      },
-      "description": "Response message for rpc `GetMembers`."
-    },
-    "mruvGetOwnerResponse": {
-      "type": "object",
-      "properties": {
-        "ownerId": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "ownerType": {
-          "$ref": "#/definitions/mruvOwnerType"
-        }
-      },
-      "description": "Response message for rpc `GetOwner`."
-    },
-    "mruvGetPermissionsResponse": {
-      "type": "object",
-      "properties": {
-        "permissions": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/GetPermissionsResponsePermission"
-          }
-        }
-      },
-      "description": "Response message for rpc `GetPermissions`."
-    },
-    "mruvGetSubgroupsResponse": {
-      "type": "object",
-      "properties": {
-        "subgroupIds": {
-          "type": "array",
-          "items": {
-            "type": "integer",
-            "format": "int64"
-          }
-        }
-      },
-      "description": "Response message for rpc `GetSubgroups`."
-    },
-    "mruvIsPermittedResponse": {
-      "type": "object",
-      "properties": {
-        "permitted": {
-          "type": "boolean"
-        }
-      },
-      "description": "Response message for rpc `IsPermitted`."
-    },
-    "mruvMemberType": {
-      "type": "string",
-      "enum": [
-        "MEMBER_TYPE_UNKNOWN",
-        "MEMBER_TYPE_ACCOUNT",
-        "MEMBER_TYPE_CHARACTER"
-      ],
-      "default": "MEMBER_TYPE_UNKNOWN",
-      "description": "Member type."
-    },
-    "mruvOwnerType": {
-      "type": "string",
-      "enum": [
-        "OWNER_TYPE_UNKNOWN",
-        "OWNER_TYPE_ACCOUNT",
-        "OWNER_TYPE_CHARACTER",
-        "OWNER_TYPE_GROUP"
-      ],
-      "default": "OWNER_TYPE_UNKNOWN",
-      "description": "Owner types."
-    },
-    "mruvRemoveMemberResponse": {
-      "type": "object",
-      "description": "Response message for rpc `RemoveMember`."
-    },
-    "mruvRemovePermissionResponse": {
-      "type": "object",
-      "description": "Response message for rpc `RemovePermission`."
-    },
-    "mruvRemoveSubgroupResponse": {
-      "type": "object",
-      "description": "Response message for rpc `RemoveSubgroup`."
-    },
-    "mruvServiceStatusResponse": {
+    "commonServiceStatusResponse": {
       "type": "object",
       "properties": {
         "status": {
@@ -831,11 +675,7 @@
         }
       }
     },
-    "mruvUpdateGroupResponse": {
-      "type": "object",
-      "description": "Response message for rpc `UpdateGroup`."
-    },
-    "mruvVersionResponse": {
+    "commonVersionResponse": {
       "type": "object",
       "properties": {
         "version": {
@@ -851,6 +691,166 @@
           "type": "string"
         }
       }
+    },
+    "groupsAddMemberResponse": {
+      "type": "object",
+      "description": "Response message for rpc `AddMember`."
+    },
+    "groupsAddPermissionResponse": {
+      "type": "object",
+      "properties": {
+        "permissionId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "description": "Response message for rpc `AddPermission`."
+    },
+    "groupsAddSubgroupResponse": {
+      "type": "object",
+      "description": "Response message for rpc `AddSubgroup`."
+    },
+    "groupsAssignOwnerResponse": {
+      "type": "object",
+      "description": "Response message for rpc `AssignOwner`."
+    },
+    "groupsCreateGroupResponse": {
+      "type": "object",
+      "properties": {
+        "groupId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "description": "Response message for rpc `CreateGroup`."
+    },
+    "groupsDeleteGroupResponse": {
+      "type": "object",
+      "description": "Response message for rpc `DeleteGroup`."
+    },
+    "groupsGetGroupResponse": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "description": "Response message for rpc `GetGroup`."
+    },
+    "groupsGetGroupsResponse": {
+      "type": "object",
+      "properties": {
+        "groups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GetGroupsResponseGroup"
+          }
+        }
+      },
+      "description": "Response message for rpc `GetGroups`."
+    },
+    "groupsGetMembersResponse": {
+      "type": "object",
+      "properties": {
+        "memberType": {
+          "$ref": "#/definitions/groupsMemberType"
+        },
+        "memberIds": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "description": "Response message for rpc `GetMembers`."
+    },
+    "groupsGetOwnerResponse": {
+      "type": "object",
+      "properties": {
+        "ownerId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "ownerType": {
+          "$ref": "#/definitions/groupsOwnerType"
+        }
+      },
+      "description": "Response message for rpc `GetOwner`."
+    },
+    "groupsGetPermissionsResponse": {
+      "type": "object",
+      "properties": {
+        "permissions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GetPermissionsResponsePermission"
+          }
+        }
+      },
+      "description": "Response message for rpc `GetPermissions`."
+    },
+    "groupsGetSubgroupsResponse": {
+      "type": "object",
+      "properties": {
+        "subgroupIds": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "description": "Response message for rpc `GetSubgroups`."
+    },
+    "groupsIsPermittedResponse": {
+      "type": "object",
+      "properties": {
+        "permitted": {
+          "type": "boolean"
+        }
+      },
+      "description": "Response message for rpc `IsPermitted`."
+    },
+    "groupsMemberType": {
+      "type": "string",
+      "enum": [
+        "MEMBER_TYPE_UNKNOWN",
+        "MEMBER_TYPE_ACCOUNT",
+        "MEMBER_TYPE_CHARACTER"
+      ],
+      "default": "MEMBER_TYPE_UNKNOWN",
+      "description": "Member type."
+    },
+    "groupsOwnerType": {
+      "type": "string",
+      "enum": [
+        "OWNER_TYPE_UNKNOWN",
+        "OWNER_TYPE_ACCOUNT",
+        "OWNER_TYPE_CHARACTER",
+        "OWNER_TYPE_GROUP"
+      ],
+      "default": "OWNER_TYPE_UNKNOWN",
+      "description": "Owner types."
+    },
+    "groupsRemoveMemberResponse": {
+      "type": "object",
+      "description": "Response message for rpc `RemoveMember`."
+    },
+    "groupsRemovePermissionResponse": {
+      "type": "object",
+      "description": "Response message for rpc `RemovePermission`."
+    },
+    "groupsRemoveSubgroupResponse": {
+      "type": "object",
+      "description": "Response message for rpc `RemoveSubgroup`."
+    },
+    "groupsUpdateGroupResponse": {
+      "type": "object",
+      "description": "Response message for rpc `UpdateGroup`."
     },
     "protobufAny": {
       "type": "object",
