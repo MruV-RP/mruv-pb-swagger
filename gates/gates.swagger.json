@@ -14,18 +14,12 @@
     "/v1/gates": {
       "post": {
         "summary": "Create a gate or a moving objects objects group.",
-        "operationId": "MruVGatesService_CreateGate",
+        "operationId": "CreateGate",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/gatesCreateGateResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -37,18 +31,12 @@
     "/v1/gates/nearest": {
       "get": {
         "summary": "Find gate that is closest to a specific position.",
-        "operationId": "MruVGatesService_FindNearestGate",
+        "operationId": "FindNearestGate",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/gatesFindNearestGateResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -75,7 +63,7 @@
             "format": "float"
           },
           {
-            "name": "maxDistance",
+            "name": "max_distance",
             "in": "query",
             "required": false,
             "type": "number",
@@ -90,18 +78,12 @@
     "/v1/gates/{id}": {
       "get": {
         "summary": "Get a gate or a moving objects objects group.",
-        "operationId": "MruVGatesService_GetGate",
+        "operationId": "GetGate",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/gatesGetGateResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -120,18 +102,12 @@
       },
       "delete": {
         "summary": "Delete a gate or a moving objects objects group.",
-        "operationId": "MruVGatesService_DeleteGate",
+        "operationId": "DeleteGate",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/gatesDeleteGateResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -150,18 +126,12 @@
       },
       "patch": {
         "summary": "Update a gate or a moving objects objects group.",
-        "operationId": "MruVGatesService_UpdateGate",
+        "operationId": "UpdateGate",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/gatesUpdateGateResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -182,18 +152,12 @@
     "/v1/gates/{id}/close": {
       "post": {
         "summary": "Close a gate.",
-        "operationId": "MruVGatesService_Close",
+        "operationId": "Close",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/gatesCloseResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -214,18 +178,12 @@
     "/v1/gates/{id}/lock": {
       "post": {
         "summary": "Lock a gate. Locked gate cannot be opened.",
-        "operationId": "MruVGatesService_Lock",
+        "operationId": "Lock",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/gatesLockResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -246,18 +204,12 @@
     "/v1/gates/{id}/open": {
       "post": {
         "summary": "Opens a gate.",
-        "operationId": "MruVGatesService_Open",
+        "operationId": "Open",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/gatesOpenResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -278,18 +230,12 @@
     "/v1/gates/{id}/unlock": {
       "post": {
         "summary": "Unload a gate, so it can be open.",
-        "operationId": "MruVGatesService_Unlock",
+        "operationId": "Unlock",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/gatesUnlockResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -359,7 +305,7 @@
         "name": {
           "type": "string"
         },
-        "gateObjects": {
+        "gate_objects": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/objectsMovableObject"
@@ -369,10 +315,12 @@
           "$ref": "#/definitions/spotsSpot"
         },
         "opened": {
-          "type": "boolean"
+          "type": "boolean",
+          "format": "boolean"
         },
         "locked": {
-          "type": "boolean"
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -382,7 +330,7 @@
         "name": {
           "type": "string"
         },
-        "movableObjects": {
+        "movable_objects": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/objectsMovableObject"
@@ -393,10 +341,12 @@
           "$ref": "#/definitions/spotsSpot"
         },
         "opened": {
-          "type": "boolean"
+          "type": "boolean",
+          "format": "boolean"
         },
         "locked": {
-          "type": "boolean"
+          "type": "boolean",
+          "format": "boolean"
         }
       },
       "description": "Response message for rpc `GetGate`."
@@ -420,20 +370,20 @@
     "objectsMaterial": {
       "type": "object",
       "properties": {
-        "modelId": {
+        "model_id": {
           "type": "integer",
           "format": "int32",
           "description": "The modelid on which the replacement texture is located. Use 0 for alpha. Use -1 to change the material color without altering the texture."
         },
-        "txdName": {
+        "txd_name": {
           "type": "string",
           "title": "The name of the txd file which contains the replacement texture (use \"none\" if not required)"
         },
-        "textureName": {
+        "texture_name": {
           "type": "string",
           "title": "The name of the texture to use as the replacement (use \"none\" if not required)"
         },
-        "materialColor": {
+        "material_color": {
           "type": "integer",
           "format": "int32",
           "description": "The object color to set, as an integer or hex in ARGB color format. Using 0 keeps the existing material color."
@@ -469,34 +419,35 @@
           "type": "string",
           "description": "The text to show on the object (MAX 2048 characters)."
         },
-        "materialSize": {
+        "material_size": {
           "$ref": "#/definitions/objectsMaterialSize",
           "description": "The size of the material (default: 256x128)."
         },
-        "fontFace": {
+        "font_face": {
           "type": "string",
           "description": "The font to use (default: Arial)."
         },
-        "fontSize": {
+        "font_size": {
           "type": "integer",
           "format": "int64",
           "description": "The size of the text (default: 24) (MAX 255)."
         },
         "bold": {
           "type": "boolean",
+          "format": "boolean",
           "description": "Bold text. Set to 1 for bold, 0 for not (default: 1)."
         },
-        "fontColor": {
+        "font_color": {
           "type": "integer",
           "format": "int32",
           "description": "The color of the text, in ARGB format (default: White)."
         },
-        "backColor": {
+        "back_color": {
           "type": "integer",
           "format": "int32",
           "description": "The background color, in ARGB format (default: None (transparent))."
         },
-        "textAlignment": {
+        "text_alignment": {
           "type": "integer",
           "format": "int32",
           "description": "The alignment of the text (default: left)."
@@ -551,32 +502,32 @@
           "type": "number",
           "format": "float"
         },
-        "worldId": {
+        "world_id": {
           "type": "integer",
           "format": "int32",
           "description": "Virtual world id for which object will be visible. Set -1 to be visible for all."
         },
-        "interiorId": {
+        "interior_id": {
           "type": "integer",
           "format": "int32",
           "description": "Interior id for which object will be visible. Set -1 to be visible for all."
         },
-        "playerId": {
+        "player_id": {
           "type": "integer",
           "format": "int32",
           "description": "SA-MP player id for which object will be visible. Set -1 to be visible for all."
         },
-        "areaId": {
+        "area_id": {
           "type": "integer",
           "format": "int32",
           "description": "Dynamic area id for which object will be visible. Set -1 to be visible for all."
         },
-        "streamDistance": {
+        "stream_distance": {
           "type": "number",
           "format": "float",
           "title": "Default streamer setting is 300.0"
         },
-        "drawDistance": {
+        "draw_distance": {
           "type": "number",
           "format": "float",
           "title": "Default streamer setting is 0.0 = default game draw distance"
@@ -585,7 +536,7 @@
           "type": "integer",
           "format": "int32"
         },
-        "estateId": {
+        "estate_id": {
           "type": "integer",
           "format": "int64"
         },
@@ -595,7 +546,7 @@
             "$ref": "#/definitions/objectsMaterial"
           }
         },
-        "materialTexts": {
+        "material_texts": {
           "type": "object",
           "additionalProperties": {
             "$ref": "#/definitions/objectsMaterialText"
@@ -634,7 +585,7 @@
           "type": "number",
           "format": "float"
         },
-        "transitionSpeed": {
+        "transition_speed": {
           "type": "number",
           "format": "float"
         }
@@ -644,7 +595,7 @@
     "protobufAny": {
       "type": "object",
       "properties": {
-        "typeUrl": {
+        "type_url": {
           "type": "string"
         },
         "value": {
@@ -653,14 +604,21 @@
         }
       }
     },
-    "rpcStatus": {
+    "runtimeStreamError": {
       "type": "object",
       "properties": {
-        "code": {
+        "grpc_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "http_code": {
           "type": "integer",
           "format": "int32"
         },
         "message": {
+          "type": "string"
+        },
+        "http_status": {
           "type": "string"
         },
         "details": {
@@ -710,6 +668,20 @@
         }
       },
       "description": "Spot."
+    }
+  },
+  "x-stream-definitions": {
+    "gatesFetchAllGatesResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/gatesFetchAllGatesResponse"
+        },
+        "error": {
+          "$ref": "#/definitions/runtimeStreamError"
+        }
+      },
+      "title": "Stream result of gatesFetchAllGatesResponse"
     }
   }
 }

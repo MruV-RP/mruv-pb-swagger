@@ -14,18 +14,12 @@
     "/v1/organizations": {
       "post": {
         "summary": "Create a organization.",
-        "operationId": "MruVOrganizationsService_CreateOrganization",
+        "operationId": "CreateOrganization",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/organizationsCreateOrganizationResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -37,18 +31,12 @@
     "/v1/organizations/{id}": {
       "get": {
         "summary": "Get organization.",
-        "operationId": "MruVOrganizationsService_GetOrganization",
+        "operationId": "GetOrganization",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/organizationsGetOrganizationResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -67,18 +55,12 @@
       },
       "delete": {
         "summary": "Delete organization.",
-        "operationId": "MruVOrganizationsService_DeleteOrganization",
+        "operationId": "DeleteOrganization",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/organizationsDeleteOrganizationResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -97,18 +79,12 @@
       },
       "patch": {
         "summary": "Update organization.",
-        "operationId": "MruVOrganizationsService_UpdateOrganization",
+        "operationId": "UpdateOrganization",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/organizationsUpdateOrganizationResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -128,18 +104,12 @@
     },
     "/v1/organizations/{id}/leader": {
       "delete": {
-        "operationId": "MruVOrganizationsService_UnassignLeader",
+        "operationId": "UnassignLeader",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/organizationsUnassignLeaderResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -158,18 +128,12 @@
       },
       "put": {
         "summary": "Assign an organization leader. Leader is a main administrator of a organization, have all rights to manage organization.\nIf the organization leader already exists, the leader will be overwritten.",
-        "operationId": "MruVOrganizationsService_AssignLeader",
+        "operationId": "AssignLeader",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/organizationsAssignLeaderResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -212,36 +176,6 @@
     "organizationsUpdateOrganizationResponse": {
       "type": "object",
       "description": "Response message for rpc `UpdateOrganization`."
-    },
-    "protobufAny": {
-      "type": "object",
-      "properties": {
-        "typeUrl": {
-          "type": "string"
-        },
-        "value": {
-          "type": "string",
-          "format": "byte"
-        }
-      }
-    },
-    "rpcStatus": {
-      "type": "object",
-      "properties": {
-        "code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "message": {
-          "type": "string"
-        },
-        "details": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/protobufAny"
-          }
-        }
-      }
     }
   }
 }

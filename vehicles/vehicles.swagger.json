@@ -14,18 +14,12 @@
     "/v1/vehicles": {
       "post": {
         "summary": "Create a vehicle.",
-        "operationId": "MruVVehiclesService_CreateVehicle",
+        "operationId": "CreateVehicle",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/vehiclesCreateVehicleResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -37,18 +31,12 @@
     "/v1/vehicles/{id}": {
       "get": {
         "summary": "Get a vehicle.",
-        "operationId": "MruVVehiclesService_GetVehicle",
+        "operationId": "GetVehicle",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/vehiclesGetVehicleResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -67,18 +55,12 @@
       },
       "delete": {
         "summary": "Delete a vehicle.",
-        "operationId": "MruVVehiclesService_DeleteVehicle",
+        "operationId": "DeleteVehicle",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/vehiclesDeleteVehicleResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -97,18 +79,12 @@
       },
       "patch": {
         "summary": "Update a vehicle.",
-        "operationId": "MruVVehiclesService_UpdateVehicle",
+        "operationId": "UpdateVehicle",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/vehiclesUpdateVehicleResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -128,36 +104,6 @@
     }
   },
   "definitions": {
-    "protobufAny": {
-      "type": "object",
-      "properties": {
-        "typeUrl": {
-          "type": "string"
-        },
-        "value": {
-          "type": "string",
-          "format": "byte"
-        }
-      }
-    },
-    "rpcStatus": {
-      "type": "object",
-      "properties": {
-        "code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "message": {
-          "type": "string"
-        },
-        "details": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/protobufAny"
-          }
-        }
-      }
-    },
     "vehiclesCreateVehicleResponse": {
       "type": "object",
       "description": "Response message for rpc `CreateVehicle`."

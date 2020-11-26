@@ -14,18 +14,12 @@
     "/v1/groups": {
       "get": {
         "summary": "Get all groups.",
-        "operationId": "MruVGroupsService_GetGroups",
+        "operationId": "GetGroups",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/groupsGetGroupsResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -38,7 +32,7 @@
             "format": "int64"
           },
           {
-            "name": "beginFrom",
+            "name": "begin_from",
             "in": "query",
             "required": false,
             "type": "integer",
@@ -51,18 +45,12 @@
       },
       "post": {
         "summary": "Create a group.",
-        "operationId": "MruVGroupsService_CreateGroup",
+        "operationId": "CreateGroup",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/groupsCreateGroupResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -71,34 +59,28 @@
         ]
       }
     },
-    "/v1/groups/members/{memberId}/permitted": {
+    "/v1/groups/members/{member_id}/permitted": {
       "get": {
         "summary": "Check is member of a group is permitted to do specific action.",
-        "operationId": "MruVGroupsService_IsPermitted",
+        "operationId": "IsPermitted",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/groupsIsPermittedResponse"
             }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
           {
-            "name": "memberId",
+            "name": "member_id",
             "in": "path",
             "required": true,
             "type": "integer",
             "format": "int64"
           },
           {
-            "name": "memberType",
+            "name": "member_type",
             "in": "query",
             "required": false,
             "type": "string",
@@ -124,18 +106,12 @@
     "/v1/groups/status": {
       "get": {
         "summary": "Service status",
-        "operationId": "MruVGroupsService_GetServiceStatus",
+        "operationId": "GetServiceStatus",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/commonServiceStatusResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -146,18 +122,12 @@
     },
     "/v1/groups/version": {
       "get": {
-        "operationId": "MruVGroupsService_GetServiceVersion",
+        "operationId": "GetServiceVersion",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/commonVersionResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -166,27 +136,21 @@
         ]
       }
     },
-    "/v1/groups/{groupId}": {
+    "/v1/groups/{group_id}": {
       "get": {
         "summary": "Get a  group.",
-        "operationId": "MruVGroupsService_GetGroup",
+        "operationId": "GetGroup",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/groupsGetGroupResponse"
             }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
           {
-            "name": "groupId",
+            "name": "group_id",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -199,24 +163,18 @@
       },
       "delete": {
         "summary": "Delete a group.",
-        "operationId": "MruVGroupsService_DeleteGroup",
+        "operationId": "DeleteGroup",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/groupsDeleteGroupResponse"
             }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
           {
-            "name": "groupId",
+            "name": "group_id",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -229,24 +187,18 @@
       },
       "patch": {
         "summary": "Update a group.",
-        "operationId": "MruVGroupsService_UpdateGroup",
+        "operationId": "UpdateGroup",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/groupsUpdateGroupResponse"
             }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
           {
-            "name": "groupId",
+            "name": "group_id",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -258,27 +210,21 @@
         ]
       }
     },
-    "/v1/groups/{groupId}/members": {
+    "/v1/groups/{group_id}/members": {
       "get": {
         "summary": "Get a group member.",
-        "operationId": "MruVGroupsService_GetMembers",
+        "operationId": "GetMembers",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/groupsGetMembersResponse"
             }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
           {
-            "name": "groupId",
+            "name": "group_id",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -290,34 +236,28 @@
         ]
       }
     },
-    "/v1/groups/{groupId}/members/{memberId}": {
+    "/v1/groups/{group_id}/members/{member_id}": {
       "delete": {
         "summary": "Remove a group member.",
-        "operationId": "MruVGroupsService_RemoveMember",
+        "operationId": "RemoveMember",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/groupsRemoveMemberResponse"
             }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
           {
-            "name": "groupId",
+            "name": "group_id",
             "in": "path",
             "required": true,
             "type": "integer",
             "format": "int64"
           },
           {
-            "name": "memberId",
+            "name": "member_id",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -330,31 +270,25 @@
       },
       "post": {
         "summary": "Add a group member.",
-        "operationId": "MruVGroupsService_AddMember",
+        "operationId": "AddMember",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/groupsAddMemberResponse"
             }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
           {
-            "name": "groupId",
+            "name": "group_id",
             "in": "path",
             "required": true,
             "type": "integer",
             "format": "int64"
           },
           {
-            "name": "memberId",
+            "name": "member_id",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -366,27 +300,21 @@
         ]
       }
     },
-    "/v1/groups/{groupId}/owner": {
+    "/v1/groups/{group_id}/owner": {
       "get": {
         "summary": "Get group owner.",
-        "operationId": "MruVGroupsService_GetOwner",
+        "operationId": "GetOwner",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/groupsGetOwnerResponse"
             }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
           {
-            "name": "groupId",
+            "name": "group_id",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -399,24 +327,18 @@
       },
       "put": {
         "summary": "Assign an owner. Group can have only one owner. Owner can be a player, a group or an account.",
-        "operationId": "MruVGroupsService_AssignOwner",
+        "operationId": "AssignOwner",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/groupsAssignOwnerResponse"
             }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
           {
-            "name": "groupId",
+            "name": "group_id",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -428,27 +350,21 @@
         ]
       }
     },
-    "/v1/groups/{groupId}/permissions": {
+    "/v1/groups/{group_id}/permissions": {
       "get": {
         "summary": "Get all group permissions.",
-        "operationId": "MruVGroupsService_GetPermissions",
+        "operationId": "GetPermissions",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/groupsGetPermissionsResponse"
             }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
           {
-            "name": "groupId",
+            "name": "group_id",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -461,31 +377,25 @@
       },
       "delete": {
         "summary": "Remove group permission.",
-        "operationId": "MruVGroupsService_RemovePermission",
+        "operationId": "RemovePermission",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/groupsRemovePermissionResponse"
             }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
           {
-            "name": "groupId",
+            "name": "group_id",
             "in": "path",
             "required": true,
             "type": "integer",
             "format": "int64"
           },
           {
-            "name": "permissionId",
+            "name": "permission_id",
             "in": "query",
             "required": false,
             "type": "integer",
@@ -498,24 +408,18 @@
       },
       "post": {
         "summary": "Add a permission to a group.",
-        "operationId": "MruVGroupsService_AddPermission",
+        "operationId": "AddPermission",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/groupsAddPermissionResponse"
             }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
           {
-            "name": "groupId",
+            "name": "group_id",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -527,27 +431,21 @@
         ]
       }
     },
-    "/v1/groups/{groupId}/subgroups": {
+    "/v1/groups/{group_id}/subgroups": {
       "get": {
         "summary": "Get all subgroups.",
-        "operationId": "MruVGroupsService_GetSubgroups",
+        "operationId": "GetSubgroups",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/groupsGetSubgroupsResponse"
             }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
           {
-            "name": "groupId",
+            "name": "group_id",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -559,34 +457,28 @@
         ]
       }
     },
-    "/v1/groups/{groupId}/subgroups/{subgroupId}": {
+    "/v1/groups/{group_id}/subgroups/{subgroup_id}": {
       "delete": {
         "summary": "Remove a subgroup from group.",
-        "operationId": "MruVGroupsService_RemoveSubgroup",
+        "operationId": "RemoveSubgroup",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/groupsRemoveSubgroupResponse"
             }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
           {
-            "name": "groupId",
+            "name": "group_id",
             "in": "path",
             "required": true,
             "type": "integer",
             "format": "int64"
           },
           {
-            "name": "subgroupId",
+            "name": "subgroup_id",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -599,31 +491,25 @@
       },
       "post": {
         "summary": "Add a subgroup to a group.",
-        "operationId": "MruVGroupsService_AddSubgroup",
+        "operationId": "AddSubgroup",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/groupsAddSubgroupResponse"
             }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
           {
-            "name": "groupId",
+            "name": "group_id",
             "in": "path",
             "required": true,
             "type": "integer",
             "format": "int64"
           },
           {
-            "name": "subgroupId",
+            "name": "subgroup_id",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -681,13 +567,13 @@
         "version": {
           "type": "string"
         },
-        "buildDate": {
+        "build_date": {
           "type": "string"
         },
         "commit": {
           "type": "string"
         },
-        "osArch": {
+        "os_arch": {
           "type": "string"
         }
       }
@@ -699,7 +585,7 @@
     "groupsAddPermissionResponse": {
       "type": "object",
       "properties": {
-        "permissionId": {
+        "permission_id": {
           "type": "integer",
           "format": "int64"
         }
@@ -717,7 +603,7 @@
     "groupsCreateGroupResponse": {
       "type": "object",
       "properties": {
-        "groupId": {
+        "group_id": {
           "type": "integer",
           "format": "int64"
         }
@@ -755,10 +641,10 @@
     "groupsGetMembersResponse": {
       "type": "object",
       "properties": {
-        "memberType": {
+        "member_type": {
           "$ref": "#/definitions/groupsMemberType"
         },
-        "memberIds": {
+        "member_ids": {
           "type": "array",
           "items": {
             "type": "integer",
@@ -771,11 +657,11 @@
     "groupsGetOwnerResponse": {
       "type": "object",
       "properties": {
-        "ownerId": {
+        "owner_id": {
           "type": "integer",
           "format": "int64"
         },
-        "ownerType": {
+        "owner_type": {
           "$ref": "#/definitions/groupsOwnerType"
         }
       },
@@ -796,7 +682,7 @@
     "groupsGetSubgroupsResponse": {
       "type": "object",
       "properties": {
-        "subgroupIds": {
+        "subgroup_ids": {
           "type": "array",
           "items": {
             "type": "integer",
@@ -810,7 +696,8 @@
       "type": "object",
       "properties": {
         "permitted": {
-          "type": "boolean"
+          "type": "boolean",
+          "format": "boolean"
         }
       },
       "description": "Response message for rpc `IsPermitted`."
@@ -851,36 +738,6 @@
     "groupsUpdateGroupResponse": {
       "type": "object",
       "description": "Response message for rpc `UpdateGroup`."
-    },
-    "protobufAny": {
-      "type": "object",
-      "properties": {
-        "typeUrl": {
-          "type": "string"
-        },
-        "value": {
-          "type": "string",
-          "format": "byte"
-        }
-      }
-    },
-    "rpcStatus": {
-      "type": "object",
-      "properties": {
-        "code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "message": {
-          "type": "string"
-        },
-        "details": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/protobufAny"
-          }
-        }
-      }
     }
   }
 }

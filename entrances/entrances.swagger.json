@@ -14,18 +14,12 @@
     "/v1/entrances": {
       "post": {
         "summary": "Create an entrance to building or teleport to location.",
-        "operationId": "MruVEntrancesService_CreateEntrance",
+        "operationId": "CreateEntrance",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/entrancesCreateEntranceResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -37,18 +31,12 @@
     "/v1/entrances/nearest": {
       "get": {
         "summary": "Find gate that is closest to a specific position.",
-        "operationId": "MruVEntrancesService_FindNearestEntrance",
+        "operationId": "FindNearestEntrance",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/entrancesFindNearestEntranceResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -75,7 +63,7 @@
             "format": "float"
           },
           {
-            "name": "maxDistance",
+            "name": "max_distance",
             "in": "query",
             "required": false,
             "type": "number",
@@ -90,18 +78,12 @@
     "/v1/entrances/{id}": {
       "get": {
         "summary": "Get an entrance to building or a teleport to location.",
-        "operationId": "MruVEntrancesService_GetEntrance",
+        "operationId": "GetEntrance",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/entrancesGetEntranceResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -120,18 +102,12 @@
       },
       "delete": {
         "summary": "Delete an entrance to building or a teleport to location.",
-        "operationId": "MruVEntrancesService_DeleteEntrance",
+        "operationId": "DeleteEntrance",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/entrancesDeleteEntranceResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -150,18 +126,12 @@
       },
       "patch": {
         "summary": "Update an entrance to building or a teleport to location.",
-        "operationId": "MruVEntrancesService_UpdateEntrance",
+        "operationId": "UpdateEntrance",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/entrancesUpdateEntranceResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -182,18 +152,12 @@
     "/v1/entrances/{id}/enter": {
       "post": {
         "summary": "Enter an entrance (player teleport from in spot position to out spot position).",
-        "operationId": "MruVEntrancesService_Enter",
+        "operationId": "Enter",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/entrancesEnterResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -214,18 +178,12 @@
     "/v1/entrances/{id}/exit": {
       "post": {
         "summary": "Exit from entrance (player teleport from out spot position to in spot position).",
-        "operationId": "MruVEntrancesService_Exit",
+        "operationId": "Exit",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/entrancesExitResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -246,18 +204,12 @@
     "/v1/entrances/{id}/lock": {
       "post": {
         "summary": "Lock entrance.",
-        "operationId": "MruVEntrancesService_Lock",
+        "operationId": "Lock",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/entrancesLockResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -278,18 +230,12 @@
     "/v1/entrances/{id}/unlock": {
       "post": {
         "summary": "Unload entrance.",
-        "operationId": "MruVEntrancesService_Unlock",
+        "operationId": "Unlock",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/entrancesUnlockResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -370,6 +316,7 @@
         },
         "inside": {
           "type": "boolean",
+          "format": "boolean",
           "title": "Is found entrance position is in spot (out spot otherwise)"
         }
       },
@@ -381,10 +328,10 @@
         "name": {
           "type": "string"
         },
-        "inSpot": {
+        "in_spot": {
           "$ref": "#/definitions/spotsSpot"
         },
-        "outSpot": {
+        "out_spot": {
           "$ref": "#/definitions/spotsSpot"
         }
       },
@@ -405,7 +352,7 @@
     "protobufAny": {
       "type": "object",
       "properties": {
-        "typeUrl": {
+        "type_url": {
           "type": "string"
         },
         "value": {
@@ -414,14 +361,21 @@
         }
       }
     },
-    "rpcStatus": {
+    "runtimeStreamError": {
       "type": "object",
       "properties": {
-        "code": {
+        "grpc_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "http_code": {
           "type": "integer",
           "format": "int32"
         },
         "message": {
+          "type": "string"
+        },
+        "http_status": {
           "type": "string"
         },
         "details": {
@@ -471,6 +425,20 @@
         }
       },
       "description": "Spot."
+    }
+  },
+  "x-stream-definitions": {
+    "entrancesFetchAllEntrancesResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/entrancesFetchAllEntrancesResponse"
+        },
+        "error": {
+          "$ref": "#/definitions/runtimeStreamError"
+        }
+      },
+      "title": "Stream result of entrancesFetchAllEntrancesResponse"
     }
   }
 }

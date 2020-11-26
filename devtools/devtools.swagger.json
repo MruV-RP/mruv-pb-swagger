@@ -14,18 +14,12 @@
     "/v1/devtools/animations": {
       "get": {
         "summary": "Get all saved animations.",
-        "operationId": "MruVDevToolsService_GetAnimations",
+        "operationId": "GetAnimations",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/devtoolsGetAnimationsResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -56,18 +50,12 @@
       },
       "post": {
         "summary": "Save animation.",
-        "operationId": "MruVDevToolsService_SaveAnimation",
+        "operationId": "SaveAnimation",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/devtoolsSaveAnimationResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -79,18 +67,12 @@
     "/v1/devtools/animations/{name}": {
       "get": {
         "summary": "Get saved animation by name.",
-        "operationId": "MruVDevToolsService_GetAnimation",
+        "operationId": "GetAnimation",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/devtoolsGetAnimationResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -116,18 +98,12 @@
     "/v1/devtools/outfits": {
       "get": {
         "summary": "Get saved outfit.",
-        "operationId": "MruVDevToolsService_GetOutfits",
+        "operationId": "GetOutfits",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/devtoolsGetOutfitsResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -157,18 +133,12 @@
       },
       "post": {
         "summary": "Save outfit.",
-        "operationId": "MruVDevToolsService_SaveOutfit",
+        "operationId": "SaveOutfit",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/devtoolsSaveOutfitResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -180,18 +150,12 @@
     "/v1/devtools/position": {
       "delete": {
         "summary": "Delete position.",
-        "operationId": "MruVDevToolsService_DeletePosition",
+        "operationId": "DeletePosition",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/devtoolsDeletePositionResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -240,18 +204,12 @@
     "/v1/devtools/positions": {
       "get": {
         "summary": "Get saved positions.",
-        "operationId": "MruVDevToolsService_GetPositions",
+        "operationId": "GetPositions",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/devtoolsGetPositionsResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -298,18 +256,12 @@
       },
       "post": {
         "summary": "Save position.",
-        "operationId": "MruVDevToolsService_SavePosition",
+        "operationId": "SavePosition",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/devtoolsSavePositionResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -321,18 +273,12 @@
     "/v1/devtools/status": {
       "get": {
         "summary": "Get service status.",
-        "operationId": "MruVDevToolsService_GetServiceStatus",
+        "operationId": "GetServiceStatus",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/commonServiceStatusResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -344,18 +290,12 @@
     "/v1/devtools/version": {
       "get": {
         "summary": "Get service version.",
-        "operationId": "MruVDevToolsService_GetServiceVersion",
+        "operationId": "GetServiceVersion",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/commonVersionResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -380,13 +320,13 @@
         "version": {
           "type": "string"
         },
-        "buildDate": {
+        "build_date": {
           "type": "string"
         },
         "commit": {
           "type": "string"
         },
-        "osArch": {
+        "os_arch": {
           "type": "string"
         }
       }
@@ -402,7 +342,7 @@
           "type": "string",
           "description": "Animation name."
         },
-        "readableCategory": {
+        "readable_category": {
           "type": "string",
           "description": "Animation category, specified by author."
         },
@@ -416,7 +356,8 @@
       "type": "object",
       "properties": {
         "success": {
-          "type": "boolean"
+          "type": "boolean",
+          "format": "boolean"
         }
       },
       "description": "Delete position response message."
@@ -565,7 +506,8 @@
       "type": "object",
       "properties": {
         "success": {
-          "type": "boolean"
+          "type": "boolean",
+          "format": "boolean"
         }
       },
       "description": "Save animation response message."
@@ -574,7 +516,8 @@
       "type": "object",
       "properties": {
         "success": {
-          "type": "boolean"
+          "type": "boolean",
+          "format": "boolean"
         }
       },
       "description": "Save outfit response message."
@@ -583,40 +526,11 @@
       "type": "object",
       "properties": {
         "success": {
-          "type": "boolean"
+          "type": "boolean",
+          "format": "boolean"
         }
       },
       "description": "Save position response message."
-    },
-    "protobufAny": {
-      "type": "object",
-      "properties": {
-        "typeUrl": {
-          "type": "string"
-        },
-        "value": {
-          "type": "string",
-          "format": "byte"
-        }
-      }
-    },
-    "rpcStatus": {
-      "type": "object",
-      "properties": {
-        "code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "message": {
-          "type": "string"
-        },
-        "details": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/protobufAny"
-          }
-        }
-      }
     }
   }
 }

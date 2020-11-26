@@ -11,27 +11,21 @@
     "application/json"
   ],
   "paths": {
-    "/v1/estate/{estateId}/entrances": {
+    "/v1/estate/{estate_id}/entrances": {
       "get": {
         "summary": "Get all estate entrances.",
-        "operationId": "MruVEstateService_GetEstateEntrances",
+        "operationId": "GetEstateEntrances",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/estatesGetEstateEntrancesResponse"
             }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
           {
-            "name": "estateId",
+            "name": "estate_id",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -43,27 +37,21 @@
         ]
       }
     },
-    "/v1/estate/{estateId}/gates": {
+    "/v1/estate/{estate_id}/gates": {
       "get": {
         "summary": "Get all estate gates.",
-        "operationId": "MruVEstateService_GetEstateGates",
+        "operationId": "GetEstateGates",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/estatesGetEstateGatesResponse"
             }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
           {
-            "name": "estateId",
+            "name": "estate_id",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -78,18 +66,12 @@
     "/v1/estates": {
       "get": {
         "summary": "Get all created real estates.",
-        "operationId": "MruVEstateService_GetEstates",
+        "operationId": "GetEstates",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/estatesGetEstatesResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -115,19 +97,13 @@
       },
       "post": {
         "summary": "Create real estate.",
-        "operationId": "MruVEstateService_CreateEstate",
+        "operationId": "CreateEstate",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/estatesCreateEstateResponse"
             }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "tags": [
@@ -135,27 +111,21 @@
         ]
       }
     },
-    "/v1/estates/{estateId}/entrances": {
+    "/v1/estates/{estate_id}/entrances": {
       "post": {
         "summary": "Add an entrance to estate.",
-        "operationId": "MruVEstateService_AddEntrance",
+        "operationId": "AddEntrance",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/estatesAddEntranceResponse"
             }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
           {
-            "name": "estateId",
+            "name": "estate_id",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -167,34 +137,28 @@
         ]
       }
     },
-    "/v1/estates/{estateId}/entrances/{entranceId}": {
+    "/v1/estates/{estate_id}/entrances/{entrance_id}": {
       "delete": {
         "summary": "Remove an entrance from estate.",
-        "operationId": "MruVEstateService_RemoveEntrance",
+        "operationId": "RemoveEntrance",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/estatesRemoveEntranceResponse"
             }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
           {
-            "name": "estateId",
+            "name": "estate_id",
             "in": "path",
             "required": true,
             "type": "integer",
             "format": "int64"
           },
           {
-            "name": "entranceId",
+            "name": "entrance_id",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -206,27 +170,21 @@
         ]
       }
     },
-    "/v1/estates/{estateId}/gates": {
+    "/v1/estates/{estate_id}/gates": {
       "post": {
         "summary": "Add a gate to an estate.",
-        "operationId": "MruVEstateService_AddGate",
+        "operationId": "AddGate",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/estatesAddGateResponse"
             }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
           {
-            "name": "estateId",
+            "name": "estate_id",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -238,34 +196,28 @@
         ]
       }
     },
-    "/v1/estates/{estateId}/gates/{gateId}": {
+    "/v1/estates/{estate_id}/gates/{gate_id}": {
       "delete": {
         "summary": "Delete a gate from estate.",
-        "operationId": "MruVEstateService_RemoveGate",
+        "operationId": "RemoveGate",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/estatesRemoveGateResponse"
             }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
           {
-            "name": "estateId",
+            "name": "estate_id",
             "in": "path",
             "required": true,
             "type": "integer",
             "format": "int64"
           },
           {
-            "name": "gateId",
+            "name": "gate_id",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -280,18 +232,12 @@
     "/v1/estates/{id}": {
       "get": {
         "summary": "Get real estate.",
-        "operationId": "MruVEstateService_GetEstate",
+        "operationId": "GetEstate",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/estatesEstate"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -310,18 +256,12 @@
       },
       "delete": {
         "summary": "Delete real estate.",
-        "operationId": "MruVEstateService_DeleteEstate",
+        "operationId": "DeleteEstate",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/estatesDeleteEstateResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -340,18 +280,12 @@
       },
       "patch": {
         "summary": "Update real estate.",
-        "operationId": "MruVEstateService_UpdateEstate",
+        "operationId": "UpdateEstate",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/estatesUpdateEstateResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -441,7 +375,7 @@
             "format": "int64"
           }
         },
-        "productId": {
+        "product_id": {
           "type": "integer",
           "format": "int64"
         }
@@ -478,7 +412,7 @@
             "$ref": "#/definitions/objectsObject"
           }
         },
-        "removedBuildings": {
+        "removed_buildings": {
           "type": "object",
           "additionalProperties": {
             "$ref": "#/definitions/objectsRemovedBuilding"
@@ -552,7 +486,7 @@
         "name": {
           "type": "string"
         },
-        "gateObjects": {
+        "gate_objects": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/objectsMovableObject"
@@ -562,30 +496,32 @@
           "$ref": "#/definitions/spotsSpot"
         },
         "opened": {
-          "type": "boolean"
+          "type": "boolean",
+          "format": "boolean"
         },
         "locked": {
-          "type": "boolean"
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
     "objectsMaterial": {
       "type": "object",
       "properties": {
-        "modelId": {
+        "model_id": {
           "type": "integer",
           "format": "int32",
           "description": "The modelid on which the replacement texture is located. Use 0 for alpha. Use -1 to change the material color without altering the texture."
         },
-        "txdName": {
+        "txd_name": {
           "type": "string",
           "title": "The name of the txd file which contains the replacement texture (use \"none\" if not required)"
         },
-        "textureName": {
+        "texture_name": {
           "type": "string",
           "title": "The name of the texture to use as the replacement (use \"none\" if not required)"
         },
-        "materialColor": {
+        "material_color": {
           "type": "integer",
           "format": "int32",
           "description": "The object color to set, as an integer or hex in ARGB color format. Using 0 keeps the existing material color."
@@ -621,34 +557,35 @@
           "type": "string",
           "description": "The text to show on the object (MAX 2048 characters)."
         },
-        "materialSize": {
+        "material_size": {
           "$ref": "#/definitions/objectsMaterialSize",
           "description": "The size of the material (default: 256x128)."
         },
-        "fontFace": {
+        "font_face": {
           "type": "string",
           "description": "The font to use (default: Arial)."
         },
-        "fontSize": {
+        "font_size": {
           "type": "integer",
           "format": "int64",
           "description": "The size of the text (default: 24) (MAX 255)."
         },
         "bold": {
           "type": "boolean",
+          "format": "boolean",
           "description": "Bold text. Set to 1 for bold, 0 for not (default: 1)."
         },
-        "fontColor": {
+        "font_color": {
           "type": "integer",
           "format": "int32",
           "description": "The color of the text, in ARGB format (default: White)."
         },
-        "backColor": {
+        "back_color": {
           "type": "integer",
           "format": "int32",
           "description": "The background color, in ARGB format (default: None (transparent))."
         },
-        "textAlignment": {
+        "text_alignment": {
           "type": "integer",
           "format": "int32",
           "description": "The alignment of the text (default: left)."
@@ -703,32 +640,32 @@
           "type": "number",
           "format": "float"
         },
-        "worldId": {
+        "world_id": {
           "type": "integer",
           "format": "int32",
           "description": "Virtual world id for which object will be visible. Set -1 to be visible for all."
         },
-        "interiorId": {
+        "interior_id": {
           "type": "integer",
           "format": "int32",
           "description": "Interior id for which object will be visible. Set -1 to be visible for all."
         },
-        "playerId": {
+        "player_id": {
           "type": "integer",
           "format": "int32",
           "description": "SA-MP player id for which object will be visible. Set -1 to be visible for all."
         },
-        "areaId": {
+        "area_id": {
           "type": "integer",
           "format": "int32",
           "description": "Dynamic area id for which object will be visible. Set -1 to be visible for all."
         },
-        "streamDistance": {
+        "stream_distance": {
           "type": "number",
           "format": "float",
           "title": "Default streamer setting is 300.0"
         },
-        "drawDistance": {
+        "draw_distance": {
           "type": "number",
           "format": "float",
           "title": "Default streamer setting is 0.0 = default game draw distance"
@@ -737,7 +674,7 @@
           "type": "integer",
           "format": "int32"
         },
-        "estateId": {
+        "estate_id": {
           "type": "integer",
           "format": "int64"
         },
@@ -747,7 +684,7 @@
             "$ref": "#/definitions/objectsMaterial"
           }
         },
-        "materialTexts": {
+        "material_texts": {
           "type": "object",
           "additionalProperties": {
             "$ref": "#/definitions/objectsMaterialText"
@@ -784,7 +721,7 @@
           "format": "float",
           "description": "The radius around the specified point to remove objects with the specified model."
         },
-        "estateId": {
+        "estate_id": {
           "type": "integer",
           "format": "int64",
           "description": "Estate to with removed object belong."
@@ -822,7 +759,7 @@
           "type": "number",
           "format": "float"
         },
-        "transitionSpeed": {
+        "transition_speed": {
           "type": "number",
           "format": "float"
         }
@@ -832,7 +769,7 @@
     "protobufAny": {
       "type": "object",
       "properties": {
-        "typeUrl": {
+        "type_url": {
           "type": "string"
         },
         "value": {
@@ -841,14 +778,21 @@
         }
       }
     },
-    "rpcStatus": {
+    "runtimeStreamError": {
       "type": "object",
       "properties": {
-        "code": {
+        "grpc_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "http_code": {
           "type": "integer",
           "format": "int32"
         },
         "message": {
+          "type": "string"
+        },
+        "http_status": {
           "type": "string"
         },
         "details": {
@@ -898,6 +842,20 @@
         }
       },
       "description": "Spot."
+    }
+  },
+  "x-stream-definitions": {
+    "estatesFetchAllEstatesResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/estatesFetchAllEstatesResponse"
+        },
+        "error": {
+          "$ref": "#/definitions/runtimeStreamError"
+        }
+      },
+      "title": "Stream result of estatesFetchAllEstatesResponse"
     }
   }
 }

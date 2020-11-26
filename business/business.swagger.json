@@ -14,18 +14,12 @@
     "/v1/business": {
       "post": {
         "summary": "Create a business.",
-        "operationId": "MruVBusinessService_CreateBusiness",
+        "operationId": "CreateBusiness",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/businessCreateBusinessResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -34,27 +28,21 @@
         ]
       }
     },
-    "/v1/business/{businessId}/estates": {
+    "/v1/business/{business_id}/estates": {
       "post": {
         "summary": "Assign an estate to a business.",
-        "operationId": "MruVBusinessService_AssignEstate",
+        "operationId": "AssignEstate",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/businessAssignEstateResponse"
             }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
           {
-            "name": "businessId",
+            "name": "business_id",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -66,33 +54,27 @@
         ]
       }
     },
-    "/v1/business/{businessId}/estates/{estateId}": {
+    "/v1/business/{business_id}/estates/{estate_id}": {
       "delete": {
-        "operationId": "MruVBusinessService_UnassignEstate",
+        "operationId": "UnassignEstate",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/businessUnassignEstateResponse"
             }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
           }
         },
         "parameters": [
           {
-            "name": "businessId",
+            "name": "business_id",
             "in": "path",
             "required": true,
             "type": "integer",
             "format": "int64"
           },
           {
-            "name": "estateId",
+            "name": "estate_id",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -107,18 +89,12 @@
     "/v1/business/{id}": {
       "get": {
         "summary": "Get a business.",
-        "operationId": "MruVBusinessService_GetBusiness",
+        "operationId": "GetBusiness",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/businessBusiness"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -137,18 +113,12 @@
       },
       "delete": {
         "summary": "Delete a business.",
-        "operationId": "MruVBusinessService_DeleteBusiness",
+        "operationId": "DeleteBusiness",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/businessDeleteBusinessResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -167,18 +137,12 @@
       },
       "patch": {
         "summary": "Update a business.",
-        "operationId": "MruVBusinessService_UpdateBusiness",
+        "operationId": "UpdateBusiness",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/businessBusiness"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -199,18 +163,12 @@
     "/v1/business/{id}/buy": {
       "post": {
         "summary": "Buy a business.",
-        "operationId": "MruVBusinessService_BuyBusiness",
+        "operationId": "BuyBusiness",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/businessBuyBusinessResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -231,18 +189,12 @@
     "/v1/business/{id}/owner": {
       "post": {
         "summary": "Assign a business owner.",
-        "operationId": "MruVBusinessService_AssignOwner",
+        "operationId": "AssignOwner",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/businessAssignOwnerResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -265,7 +217,7 @@
     "businessAssignEstateResponse": {
       "type": "object",
       "properties": {
-        "estateCount": {
+        "estate_count": {
           "type": "integer",
           "format": "int64"
         }
@@ -275,10 +227,10 @@
     "businessAssignOwnerResponse": {
       "type": "object",
       "properties": {
-        "ownerType": {
+        "owner_type": {
           "$ref": "#/definitions/businessOwnerType"
         },
-        "ownerId": {
+        "owner_id": {
           "type": "integer",
           "format": "int64"
         }
@@ -294,7 +246,7 @@
         "description": {
           "type": "string"
         },
-        "estateIds": {
+        "estate_ids": {
           "type": "array",
           "items": {
             "type": "string",
@@ -302,21 +254,21 @@
           },
           "description": "Estates that belongs to a business."
         },
-        "productId": {
+        "product_id": {
           "type": "integer",
           "format": "int64",
           "description": "Purchase price in economy system."
         },
-        "ownerType": {
+        "owner_type": {
           "$ref": "#/definitions/businessOwnerType",
           "description": "Owner type of the business."
         },
-        "ownerId": {
+        "owner_id": {
           "type": "integer",
           "format": "int64",
           "description": "Owner of the business."
         },
-        "businessItems": {
+        "business_items": {
           "type": "array",
           "items": {
             "type": "integer",
@@ -324,7 +276,7 @@
           },
           "description": "Items that belongs to business."
         },
-        "businessGroup": {
+        "business_group": {
           "type": "integer",
           "format": "int64",
           "title": "Business group"
@@ -364,7 +316,7 @@
     "businessUnassignEstateResponse": {
       "type": "object",
       "properties": {
-        "estateCount": {
+        "estate_count": {
           "type": "integer",
           "format": "int64"
         }
@@ -382,7 +334,7 @@
     "protobufAny": {
       "type": "object",
       "properties": {
-        "typeUrl": {
+        "type_url": {
           "type": "string"
         },
         "value": {
@@ -391,14 +343,21 @@
         }
       }
     },
-    "rpcStatus": {
+    "runtimeStreamError": {
       "type": "object",
       "properties": {
-        "code": {
+        "grpc_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "http_code": {
           "type": "integer",
           "format": "int32"
         },
         "message": {
+          "type": "string"
+        },
+        "http_status": {
           "type": "string"
         },
         "details": {
@@ -408,6 +367,32 @@
           }
         }
       }
+    }
+  },
+  "x-stream-definitions": {
+    "businessWatchBusinessResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/businessWatchBusinessResponse"
+        },
+        "error": {
+          "$ref": "#/definitions/runtimeStreamError"
+        }
+      },
+      "title": "Stream result of businessWatchBusinessResponse"
+    },
+    "businessWatchBusinessesResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/businessWatchBusinessesResponse"
+        },
+        "error": {
+          "$ref": "#/definitions/runtimeStreamError"
+        }
+      },
+      "title": "Stream result of businessWatchBusinessesResponse"
     }
   }
 }

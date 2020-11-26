@@ -14,18 +14,12 @@
     "/v1/movableObjects": {
       "post": {
         "summary": "Create a movable object.",
-        "operationId": "MruVMovableObjectsService_CreateMovableObject",
+        "operationId": "CreateMovableObject",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/objectsCreateMovableObjectResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -37,18 +31,12 @@
     "/v1/movableObjects/moves": {
       "post": {
         "summary": "Move an object to other state.",
-        "operationId": "MruVMovableObjectsService_MoveObject",
+        "operationId": "MoveObject",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/objectsMoveObjectResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -60,18 +48,12 @@
     "/v1/movableObjects/moves/next": {
       "post": {
         "summary": "Move an object to next state.",
-        "operationId": "MruVMovableObjectsService_MoveObjectNext",
+        "operationId": "MoveObjectNext",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/objectsMoveObjectNextResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -83,18 +65,12 @@
     "/v1/movableObjects/moves/previous": {
       "post": {
         "summary": "Move an object to previous state.",
-        "operationId": "MruVMovableObjectsService_MoveObjectPrevious",
+        "operationId": "MoveObjectPrevious",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/objectsMoveObjectPreviousResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -106,18 +82,12 @@
     "/v1/movableObjects/{id}": {
       "get": {
         "summary": "Get a movable object.",
-        "operationId": "MruVMovableObjectsService_GetMovableObject",
+        "operationId": "GetMovableObject",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/objectsGetMovableObjectResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -136,18 +106,12 @@
       },
       "delete": {
         "summary": "Delete a movable object.",
-        "operationId": "MruVMovableObjectsService_DeleteMovableObject",
+        "operationId": "DeleteMovableObject",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/objectsDeleteMovableObjectResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -166,18 +130,12 @@
       },
       "patch": {
         "summary": "Update a movable object.",
-        "operationId": "MruVMovableObjectsService_UpdateMovableObject",
+        "operationId": "UpdateMovableObject",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/objectsUpdateMovableObjectResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -214,7 +172,7 @@
     "objectsFetchAllMovableObjectsResponse": {
       "type": "object",
       "properties": {
-        "movableObjects": {
+        "movable_objects": {
           "type": "object",
           "additionalProperties": {
             "$ref": "#/definitions/objectsMovableObject"
@@ -235,11 +193,11 @@
             "$ref": "#/definitions/objectsState"
           }
         },
-        "currentStateId": {
+        "current_state_id": {
           "type": "integer",
           "format": "int64"
         },
-        "currentStateName": {
+        "current_state_name": {
           "type": "string"
         }
       },
@@ -248,20 +206,20 @@
     "objectsMaterial": {
       "type": "object",
       "properties": {
-        "modelId": {
+        "model_id": {
           "type": "integer",
           "format": "int32",
           "description": "The modelid on which the replacement texture is located. Use 0 for alpha. Use -1 to change the material color without altering the texture."
         },
-        "txdName": {
+        "txd_name": {
           "type": "string",
           "title": "The name of the txd file which contains the replacement texture (use \"none\" if not required)"
         },
-        "textureName": {
+        "texture_name": {
           "type": "string",
           "title": "The name of the texture to use as the replacement (use \"none\" if not required)"
         },
-        "materialColor": {
+        "material_color": {
           "type": "integer",
           "format": "int32",
           "description": "The object color to set, as an integer or hex in ARGB color format. Using 0 keeps the existing material color."
@@ -297,34 +255,35 @@
           "type": "string",
           "description": "The text to show on the object (MAX 2048 characters)."
         },
-        "materialSize": {
+        "material_size": {
           "$ref": "#/definitions/objectsMaterialSize",
           "description": "The size of the material (default: 256x128)."
         },
-        "fontFace": {
+        "font_face": {
           "type": "string",
           "description": "The font to use (default: Arial)."
         },
-        "fontSize": {
+        "font_size": {
           "type": "integer",
           "format": "int64",
           "description": "The size of the text (default: 24) (MAX 255)."
         },
         "bold": {
           "type": "boolean",
+          "format": "boolean",
           "description": "Bold text. Set to 1 for bold, 0 for not (default: 1)."
         },
-        "fontColor": {
+        "font_color": {
           "type": "integer",
           "format": "int32",
           "description": "The color of the text, in ARGB format (default: White)."
         },
-        "backColor": {
+        "back_color": {
           "type": "integer",
           "format": "int32",
           "description": "The background color, in ARGB format (default: None (transparent))."
         },
-        "textAlignment": {
+        "text_alignment": {
           "type": "integer",
           "format": "int32",
           "description": "The alignment of the text (default: left)."
@@ -351,11 +310,11 @@
     "objectsMoveObjectNextResponse": {
       "type": "object",
       "properties": {
-        "stateId": {
+        "state_id": {
           "type": "integer",
           "format": "int64"
         },
-        "stateName": {
+        "state_name": {
           "type": "string"
         }
       },
@@ -364,11 +323,11 @@
     "objectsMoveObjectPreviousResponse": {
       "type": "object",
       "properties": {
-        "stateId": {
+        "state_id": {
           "type": "integer",
           "format": "int64"
         },
-        "stateName": {
+        "state_name": {
           "type": "string"
         }
       },
@@ -409,32 +368,32 @@
           "type": "number",
           "format": "float"
         },
-        "worldId": {
+        "world_id": {
           "type": "integer",
           "format": "int32",
           "description": "Virtual world id for which object will be visible. Set -1 to be visible for all."
         },
-        "interiorId": {
+        "interior_id": {
           "type": "integer",
           "format": "int32",
           "description": "Interior id for which object will be visible. Set -1 to be visible for all."
         },
-        "playerId": {
+        "player_id": {
           "type": "integer",
           "format": "int32",
           "description": "SA-MP player id for which object will be visible. Set -1 to be visible for all."
         },
-        "areaId": {
+        "area_id": {
           "type": "integer",
           "format": "int32",
           "description": "Dynamic area id for which object will be visible. Set -1 to be visible for all."
         },
-        "streamDistance": {
+        "stream_distance": {
           "type": "number",
           "format": "float",
           "title": "Default streamer setting is 300.0"
         },
-        "drawDistance": {
+        "draw_distance": {
           "type": "number",
           "format": "float",
           "title": "Default streamer setting is 0.0 = default game draw distance"
@@ -443,7 +402,7 @@
           "type": "integer",
           "format": "int32"
         },
-        "estateId": {
+        "estate_id": {
           "type": "integer",
           "format": "int64"
         },
@@ -453,7 +412,7 @@
             "$ref": "#/definitions/objectsMaterial"
           }
         },
-        "materialTexts": {
+        "material_texts": {
           "type": "object",
           "additionalProperties": {
             "$ref": "#/definitions/objectsMaterialText"
@@ -492,7 +451,7 @@
           "type": "number",
           "format": "float"
         },
-        "transitionSpeed": {
+        "transition_speed": {
           "type": "number",
           "format": "float"
         }
@@ -506,7 +465,7 @@
     "protobufAny": {
       "type": "object",
       "properties": {
-        "typeUrl": {
+        "type_url": {
           "type": "string"
         },
         "value": {
@@ -515,14 +474,21 @@
         }
       }
     },
-    "rpcStatus": {
+    "runtimeStreamError": {
       "type": "object",
       "properties": {
-        "code": {
+        "grpc_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "http_code": {
           "type": "integer",
           "format": "int32"
         },
         "message": {
+          "type": "string"
+        },
+        "http_status": {
           "type": "string"
         },
         "details": {
@@ -532,6 +498,20 @@
           }
         }
       }
+    }
+  },
+  "x-stream-definitions": {
+    "objectsFetchAllMovableObjectsResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/objectsFetchAllMovableObjectsResponse"
+        },
+        "error": {
+          "$ref": "#/definitions/runtimeStreamError"
+        }
+      },
+      "title": "Stream result of objectsFetchAllMovableObjectsResponse"
     }
   }
 }

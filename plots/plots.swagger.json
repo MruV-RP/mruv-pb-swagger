@@ -14,18 +14,12 @@
     "/v1/plots": {
       "post": {
         "summary": "Create a plot.",
-        "operationId": "MruVPlotsService_CreatePlot",
+        "operationId": "CreatePlot",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/plotsCreatePlotResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -37,18 +31,12 @@
     "/v1/plots/{id}": {
       "get": {
         "summary": "Get a plot.",
-        "operationId": "MruVPlotsService_GetPlot",
+        "operationId": "GetPlot",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/plotsGetPlotResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -67,18 +55,12 @@
       },
       "delete": {
         "summary": "Delete a plot.",
-        "operationId": "MruVPlotsService_DeletePlot",
+        "operationId": "DeletePlot",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/plotsDeletePlotResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -97,18 +79,12 @@
       },
       "patch": {
         "summary": "Update a plot.",
-        "operationId": "MruVPlotsService_UpdatePlot",
+        "operationId": "UpdatePlot",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/plotsUpdatePlotResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -184,36 +160,6 @@
     "plotsUpdatePlotResponse": {
       "type": "object",
       "description": "Response message for rpc `UpdatePlot`."
-    },
-    "protobufAny": {
-      "type": "object",
-      "properties": {
-        "typeUrl": {
-          "type": "string"
-        },
-        "value": {
-          "type": "string",
-          "format": "byte"
-        }
-      }
-    },
-    "rpcStatus": {
-      "type": "object",
-      "properties": {
-        "code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "message": {
-          "type": "string"
-        },
-        "details": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/protobufAny"
-          }
-        }
-      }
     }
   }
 }
