@@ -14,12 +14,18 @@
     "/v1/houses": {
       "post": {
         "summary": "Create a house.",
-        "operationId": "CreateHouse",
+        "operationId": "MruVHousesService_CreateHouse",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/housesCreateHouseResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -31,12 +37,18 @@
     "/v1/houses/{id}": {
       "get": {
         "summary": "Get a house.",
-        "operationId": "GetHouse",
+        "operationId": "MruVHousesService_GetHouse",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/housesGetHouseResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -55,12 +67,18 @@
       },
       "delete": {
         "summary": "Delete a house.",
-        "operationId": "DeleteHouse",
+        "operationId": "MruVHousesService_DeleteHouse",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/housesDeleteHouseResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -79,12 +97,18 @@
       },
       "patch": {
         "summary": "Update a house.",
-        "operationId": "UpdateHouse",
+        "operationId": "MruVHousesService_UpdateHouse",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/housesUpdateHouseResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -119,6 +143,36 @@
     "housesUpdateHouseResponse": {
       "type": "object",
       "description": "Response message for rpc `UpdateHouse`."
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "typeUrl": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
     }
   }
 }

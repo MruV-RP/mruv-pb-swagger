@@ -14,18 +14,33 @@
     "/v1/objectTypes": {
       "get": {
         "summary": "Get all models.",
-        "operationId": "FetchAllModels",
+        "operationId": "MruVObjectModelsService_FetchAllModels",
         "responses": {
           "200": {
             "description": "A successful response.(streaming responses)",
             "schema": {
-              "$ref": "#/x-stream-definitions/objectsFetchAllModelsResponse"
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/objectsFetchAllModelsResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of objectsFetchAllModelsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
         "parameters": [
           {
-            "name": "chunk_size",
+            "name": "chunkSize",
             "in": "query",
             "required": false,
             "type": "integer",
@@ -38,12 +53,18 @@
       },
       "post": {
         "summary": "Create an object model.",
-        "operationId": "CreateObjectModel",
+        "operationId": "MruVObjectModelsService_CreateObjectModel",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/objectsCreateObjectModelResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -55,12 +76,18 @@
     "/v1/objectTypes/{model}": {
       "get": {
         "summary": "Get an object model.",
-        "operationId": "GetObjectModel",
+        "operationId": "MruVObjectModelsService_GetObjectModel",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/objectsGetObjectModelResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -79,12 +106,18 @@
       },
       "delete": {
         "summary": "Delete an object model.",
-        "operationId": "DeleteObjectModel",
+        "operationId": "MruVObjectModelsService_DeleteObjectModel",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/objectsDeleteObjectModelResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -102,21 +135,27 @@
         ]
       }
     },
-    "/v1/objectTypes/{object_type.model}": {
+    "/v1/objectTypes/{objectType.model}": {
       "patch": {
         "summary": "Update an object model.",
-        "operationId": "UpdateObjectModel",
+        "operationId": "MruVObjectModelsService_UpdateObjectModel",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/objectsUpdateObjectModelResponse"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
           }
         },
         "parameters": [
           {
-            "name": "object_type.model",
+            "name": "objectType.model",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -159,7 +198,7 @@
     "objectsGetObjectModelResponse": {
       "type": "object",
       "properties": {
-        "object_type": {
+        "objectType": {
           "$ref": "#/definitions/objectsObjectModel"
         }
       },
@@ -172,7 +211,7 @@
           "type": "integer",
           "format": "int32"
         },
-        "model_name": {
+        "modelName": {
           "type": "string"
         },
         "name": {
@@ -204,27 +243,23 @@
             "type": "string"
           }
         },
-        "has_collision": {
-          "type": "boolean",
-          "format": "boolean"
+        "hasCollision": {
+          "type": "boolean"
         },
-        "breaks_on_hit": {
-          "type": "boolean",
-          "format": "boolean"
+        "breaksOnHit": {
+          "type": "boolean"
         },
-        "has_animation": {
-          "type": "boolean",
-          "format": "boolean"
+        "hasAnimation": {
+          "type": "boolean"
         },
-        "visible_by_time": {
-          "type": "boolean",
-          "format": "boolean"
+        "visibleByTime": {
+          "type": "boolean"
         },
-        "visible_from": {
+        "visibleFrom": {
           "type": "integer",
           "format": "int64"
         },
-        "visible_to": {
+        "visibleTo": {
           "type": "integer",
           "format": "int64"
         }
@@ -238,7 +273,7 @@
     "protobufAny": {
       "type": "object",
       "properties": {
-        "type_url": {
+        "typeUrl": {
           "type": "string"
         },
         "value": {
@@ -247,21 +282,14 @@
         }
       }
     },
-    "runtimeStreamError": {
+    "rpcStatus": {
       "type": "object",
       "properties": {
-        "grpc_code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "http_code": {
+        "code": {
           "type": "integer",
           "format": "int32"
         },
         "message": {
-          "type": "string"
-        },
-        "http_status": {
           "type": "string"
         },
         "details": {
@@ -271,20 +299,6 @@
           }
         }
       }
-    }
-  },
-  "x-stream-definitions": {
-    "objectsFetchAllModelsResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/objectsFetchAllModelsResponse"
-        },
-        "error": {
-          "$ref": "#/definitions/runtimeStreamError"
-        }
-      },
-      "title": "Stream result of objectsFetchAllModelsResponse"
     }
   }
 }

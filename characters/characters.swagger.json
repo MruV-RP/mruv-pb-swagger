@@ -11,15 +11,21 @@
     "application/json"
   ],
   "paths": {
-    "/v1/character/{id}/clothes/{clothes_id}": {
+    "/v1/character/{id}/clothes/{clothesId}": {
       "put": {
         "summary": "Change player clothes.",
-        "operationId": "ChangeClothes",
+        "operationId": "MruVCharactersService_ChangeClothes",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/charactersChangeClothesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -32,7 +38,7 @@
             "format": "int64"
           },
           {
-            "name": "clothes_id",
+            "name": "clothesId",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -47,12 +53,18 @@
     "/v1/characters": {
       "post": {
         "summary": "Create a character.",
-        "operationId": "CreateCharacter",
+        "operationId": "MruVCharactersService_CreateCharacter",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/charactersCreateCharacterResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -64,12 +76,18 @@
     "/v1/characters/permanentKill/{id}": {
       "delete": {
         "summary": "Kill a character. A character that is killed cannot be played anymore.",
-        "operationId": "PermanentCharacterKill",
+        "operationId": "MruVCharactersService_PermanentCharacterKill",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/charactersCharacterID"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -90,12 +108,18 @@
     "/v1/characters/status": {
       "get": {
         "summary": "Service status",
-        "operationId": "GetServiceStatus",
+        "operationId": "MruVCharactersService_GetServiceStatus",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/commonServiceStatusResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -106,12 +130,18 @@
     },
     "/v1/characters/version": {
       "get": {
-        "operationId": "GetServiceVersion",
+        "operationId": "MruVCharactersService_GetServiceVersion",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/commonVersionResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -123,12 +153,18 @@
     "/v1/characters/{id}": {
       "get": {
         "summary": "Get a character.",
-        "operationId": "GetCharacter",
+        "operationId": "MruVCharactersService_GetCharacter",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/charactersGetCharacterResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -147,12 +183,18 @@
       },
       "delete": {
         "summary": "Delete a character.",
-        "operationId": "DeleteCharacter",
+        "operationId": "MruVCharactersService_DeleteCharacter",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/charactersDeleteCharacterResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -171,12 +213,18 @@
       },
       "patch": {
         "summary": "Update a character.",
-        "operationId": "UpdateCharacter",
+        "operationId": "MruVCharactersService_UpdateCharacter",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/charactersUpdateCharacterResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -207,14 +255,14 @@
           "type": "integer",
           "format": "int64"
         },
-        "owner_id": {
+        "ownerId": {
           "type": "integer",
           "format": "int64"
         },
-        "first_name": {
+        "firstName": {
           "type": "string"
         },
-        "second_name": {
+        "secondName": {
           "type": "string"
         },
         "age": {
@@ -225,7 +273,7 @@
           "type": "integer",
           "format": "int64"
         },
-        "clothes_id": {
+        "clothesId": {
           "type": "integer",
           "format": "int64"
         },
@@ -268,7 +316,7 @@
         "character": {
           "$ref": "#/definitions/charactersCharacter"
         },
-        "death_type": {
+        "deathType": {
           "$ref": "#/definitions/charactersDeathType"
         }
       }
@@ -294,14 +342,14 @@
           "type": "integer",
           "format": "int64"
         },
-        "owner_id": {
+        "ownerId": {
           "type": "integer",
           "format": "int64"
         },
-        "first_name": {
+        "firstName": {
           "type": "string"
         },
-        "second_name": {
+        "secondName": {
           "type": "string"
         },
         "age": {
@@ -312,7 +360,7 @@
           "type": "integer",
           "format": "int64"
         },
-        "clothes_id": {
+        "clothesId": {
           "type": "integer",
           "format": "int64"
         },
@@ -349,13 +397,13 @@
         "version": {
           "type": "string"
         },
-        "build_date": {
+        "buildDate": {
           "type": "string"
         },
         "commit": {
           "type": "string"
         },
-        "os_arch": {
+        "osArch": {
           "type": "string"
         }
       }
@@ -363,7 +411,7 @@
     "protobufAny": {
       "type": "object",
       "properties": {
-        "type_url": {
+        "typeUrl": {
           "type": "string"
         },
         "value": {
@@ -372,21 +420,14 @@
         }
       }
     },
-    "runtimeStreamError": {
+    "rpcStatus": {
       "type": "object",
       "properties": {
-        "grpc_code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "http_code": {
+        "code": {
           "type": "integer",
           "format": "int32"
         },
         "message": {
-          "type": "string"
-        },
-        "http_status": {
           "type": "string"
         },
         "details": {
@@ -396,20 +437,6 @@
           }
         }
       }
-    }
-  },
-  "x-stream-definitions": {
-    "charactersDeathStreamResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/charactersDeathStreamResponse"
-        },
-        "error": {
-          "$ref": "#/definitions/runtimeStreamError"
-        }
-      },
-      "title": "Stream result of charactersDeathStreamResponse"
     }
   }
 }

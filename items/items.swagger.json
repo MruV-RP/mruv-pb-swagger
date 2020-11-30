@@ -14,12 +14,18 @@
     "/v1/containerTypes": {
       "get": {
         "summary": "Get all container types.",
-        "operationId": "GetContainerTypes",
+        "operationId": "MruVItemService_GetContainerTypes",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/itemsGetContainerTypesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -39,12 +45,18 @@
       },
       "post": {
         "summary": "Create a container type.",
-        "operationId": "CreateContainerType",
+        "operationId": "MruVItemService_CreateContainerType",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/itemsContainerTypeID"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -56,12 +68,18 @@
     "/v1/containerTypes/{id}": {
       "get": {
         "summary": "Get a container type by id.",
-        "operationId": "GetContainerType",
+        "operationId": "MruVItemService_GetContainerType",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/itemsContainerType"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -80,12 +98,18 @@
       },
       "delete": {
         "summary": "Delete a container type by id.",
-        "operationId": "DeleteContainerType",
+        "operationId": "MruVItemService_DeleteContainerType",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/itemsContainerTypeID"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -106,12 +130,18 @@
     "/v1/containers": {
       "get": {
         "summary": "Get all containers.",
-        "operationId": "GetContainers",
+        "operationId": "MruVItemService_GetContainers",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/itemsGetContainersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -131,12 +161,18 @@
       },
       "post": {
         "summary": "Create container.",
-        "operationId": "CreateContainer",
+        "operationId": "MruVItemService_CreateContainer",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/itemsContainerID"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -145,21 +181,27 @@
         ]
       }
     },
-    "/v1/containers/{container_id}/items": {
+    "/v1/containers/{containerId}/items": {
       "get": {
         "summary": "Get items inside a container.",
-        "operationId": "GetContainerItems",
+        "operationId": "MruVItemService_GetContainerItems",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/itemsGetContainerItemsResponse"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
           }
         },
         "parameters": [
           {
-            "name": "container_id",
+            "name": "containerId",
             "description": "ID of container with items.",
             "in": "path",
             "required": true,
@@ -180,21 +222,27 @@
         ]
       }
     },
-    "/v1/containers/{container_id}/items/nearest/x/{position.x}/y/{position.y}/z/{position.z}": {
+    "/v1/containers/{containerId}/items/nearest/x/{position.x}/y/{position.y}/z/{position.z}": {
       "get": {
         "summary": "Retrieves from the container the list of items nearest to the given position.",
-        "operationId": "GetNearestItems",
+        "operationId": "MruVItemService_GetNearestItems",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/itemsGetNearestItemsResponse"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
           }
         },
         "parameters": [
           {
-            "name": "container_id",
+            "name": "containerId",
             "description": "ID of container that contains items.",
             "in": "path",
             "required": true,
@@ -223,7 +271,7 @@
             "format": "double"
           },
           {
-            "name": "distance_limit",
+            "name": "distanceLimit",
             "description": "The distance over which the items are ignored.",
             "in": "query",
             "required": false,
@@ -236,21 +284,27 @@
         ]
       }
     },
-    "/v1/containers/{container_id}/items/sort/{sort_by}": {
+    "/v1/containers/{containerId}/items/sort/{sortBy}": {
       "get": {
         "summary": "Sort items inside container.\nThis procedure change order of items inside container.",
-        "operationId": "SortItems",
+        "operationId": "MruVItemService_SortItems",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/itemsSortItemsResponse"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
           }
         },
         "parameters": [
           {
-            "name": "container_id",
+            "name": "containerId",
             "description": "ID of the container which contain items.",
             "in": "path",
             "required": true,
@@ -258,7 +312,7 @@
             "format": "int64"
           },
           {
-            "name": "sort_by",
+            "name": "sortBy",
             "description": "Sorting mode.",
             "in": "path",
             "required": true,
@@ -277,21 +331,27 @@
         ]
       }
     },
-    "/v1/containers/{container_id}/items/{item_id}": {
+    "/v1/containers/{containerId}/items/{itemId}": {
       "delete": {
         "summary": "Pull an item from container.",
-        "operationId": "PullItem",
+        "operationId": "MruVItemService_PullItem",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/itemsItem"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
           }
         },
         "parameters": [
           {
-            "name": "container_id",
+            "name": "containerId",
             "description": "ID of the container from which we pull out a item.",
             "in": "path",
             "required": true,
@@ -299,7 +359,7 @@
             "format": "int64"
           },
           {
-            "name": "item_id",
+            "name": "itemId",
             "description": "ID of the item we want to pull out.\nThat item must be inside the container.",
             "in": "path",
             "required": true,
@@ -313,18 +373,24 @@
       },
       "put": {
         "summary": "Put an item into container.",
-        "operationId": "PutItem",
+        "operationId": "MruVItemService_PutItem",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/itemsPutItemResponse"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
           }
         },
         "parameters": [
           {
-            "name": "container_id",
+            "name": "containerId",
             "description": "ID of container where to put item.",
             "in": "path",
             "required": true,
@@ -332,7 +398,7 @@
             "format": "int64"
           },
           {
-            "name": "item_id",
+            "name": "itemId",
             "description": "ID of item we wan to put in.",
             "in": "path",
             "required": true,
@@ -348,12 +414,18 @@
     "/v1/containers/{id}": {
       "get": {
         "summary": "Get container by id.",
-        "operationId": "GetContainer",
+        "operationId": "MruVItemService_GetContainer",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/itemsContainer"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -372,12 +444,18 @@
       },
       "delete": {
         "summary": "Delete container by id.",
-        "operationId": "DeleteContainer",
+        "operationId": "MruVItemService_DeleteContainer",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/itemsContainerID"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -398,12 +476,18 @@
     "/v1/itemTypes": {
       "get": {
         "summary": "Gets all item types.",
-        "operationId": "GetItemTypes",
+        "operationId": "MruVItemService_GetItemTypes",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/itemsGetItemTypesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -423,12 +507,18 @@
       },
       "post": {
         "summary": "Create item type.",
-        "operationId": "CreateItemType",
+        "operationId": "MruVItemService_CreateItemType",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/itemsItemTypeID"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -440,12 +530,18 @@
     "/v1/itemTypes/{id}": {
       "get": {
         "summary": "Get item type by id.",
-        "operationId": "GetItemType",
+        "operationId": "MruVItemService_GetItemType",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/itemsItemType"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -464,12 +560,18 @@
       },
       "delete": {
         "summary": "Delete item type by id.",
-        "operationId": "DeleteItemType",
+        "operationId": "MruVItemService_DeleteItemType",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/itemsItemTypeID"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -490,12 +592,18 @@
     "/v1/items": {
       "get": {
         "summary": "Gets all items.",
-        "operationId": "GetItems",
+        "operationId": "MruVItemService_GetItems",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/itemsGetItemsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -515,12 +623,18 @@
       },
       "post": {
         "summary": "Create new item.",
-        "operationId": "CreateItem",
+        "operationId": "MruVItemService_CreateItem",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/itemsItemID"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -532,12 +646,18 @@
     "/v1/items/status": {
       "get": {
         "summary": "Get service health status.",
-        "operationId": "GetServiceStatus",
+        "operationId": "MruVItemService_GetServiceStatus",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/commonServiceStatusResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -549,12 +669,18 @@
     "/v1/items/version": {
       "get": {
         "summary": "Get service current version.",
-        "operationId": "GetServiceVersion",
+        "operationId": "MruVItemService_GetServiceVersion",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/commonVersionResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -566,12 +692,18 @@
     "/v1/items/{id}": {
       "get": {
         "summary": "Get item by id.",
-        "operationId": "GetItem",
+        "operationId": "MruVItemService_GetItem",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/itemsItem"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -590,12 +722,18 @@
       },
       "delete": {
         "summary": "Delete item by id.",
-        "operationId": "DeleteItem",
+        "operationId": "MruVItemService_DeleteItem",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/itemsItemID"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -613,21 +751,27 @@
         ]
       }
     },
-    "/v1/items/{item_id}/use": {
+    "/v1/items/{itemId}/use": {
       "get": {
         "summary": "Trigger action associated with the item usage.",
-        "operationId": "UseItem",
+        "operationId": "MruVItemService_UseItem",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/itemsUseItemResponse"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
           }
         },
         "parameters": [
           {
-            "name": "item_id",
+            "name": "itemId",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -672,13 +816,13 @@
         "version": {
           "type": "string"
         },
-        "build_date": {
+        "buildDate": {
           "type": "string"
         },
         "commit": {
           "type": "string"
         },
-        "os_arch": {
+        "osArch": {
           "type": "string"
         }
       }
@@ -690,17 +834,17 @@
           "type": "integer",
           "format": "int64"
         },
-        "type_id": {
+        "typeId": {
           "type": "integer",
           "format": "int64",
           "description": "ID of an container type."
         },
-        "item_id": {
+        "itemId": {
           "type": "integer",
           "format": "int64",
           "description": "ID of container item representing container."
         },
-        "items_inside": {
+        "itemsInside": {
           "type": "integer",
           "format": "int64",
           "description": "Number of items inside container."
@@ -732,27 +876,27 @@
           "type": "integer",
           "format": "int64"
         },
-        "container_item_type_id": {
+        "containerItemTypeId": {
           "type": "integer",
           "format": "int64",
           "description": "ID of an item type."
         },
-        "max_number": {
+        "maxNumber": {
           "type": "integer",
           "format": "int64",
           "description": "Max items in the container."
         },
-        "max_volume": {
+        "maxVolume": {
           "type": "number",
           "format": "float",
           "description": "Max volume of items in the container."
         },
-        "max_weight": {
+        "maxWeight": {
           "type": "number",
           "format": "float",
           "description": "Max weight of items in the container."
         },
-        "valid_item_types": {
+        "validItemTypes": {
           "type": "array",
           "items": {
             "type": "string",
@@ -788,7 +932,7 @@
     "itemsGetContainerTypesResponse": {
       "type": "object",
       "properties": {
-        "container_types": {
+        "containerTypes": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/itemsContainerType"
@@ -814,7 +958,7 @@
     "itemsGetItemTypesResponse": {
       "type": "object",
       "properties": {
-        "item_types": {
+        "itemTypes": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/itemsItemType"
@@ -853,12 +997,12 @@
     "itemsInsideItem": {
       "type": "object",
       "properties": {
-        "container_id": {
+        "containerId": {
           "type": "integer",
           "format": "int64",
           "description": "ID of container containing the item."
         },
-        "item_id": {
+        "itemId": {
           "type": "integer",
           "format": "int64"
         },
@@ -880,7 +1024,7 @@
           "type": "integer",
           "format": "int64"
         },
-        "item_type_id": {
+        "itemTypeId": {
           "type": "integer",
           "format": "int64",
           "description": "ID of an item type."
@@ -923,21 +1067,21 @@
           "type": "string",
           "description": "Description of item type."
         },
-        "base_weight": {
+        "baseWeight": {
           "type": "number",
           "format": "float",
           "description": "Default weight of items created with that item type."
         },
-        "base_volume": {
+        "baseVolume": {
           "type": "number",
           "format": "float",
           "description": "Default volume of items created with that item type."
         },
-        "model_name": {
+        "modelName": {
           "type": "string",
           "description": "GTA V model name."
         },
-        "model_hash": {
+        "modelHash": {
           "type": "integer",
           "format": "int32",
           "description": "GTA V model hash."
@@ -958,7 +1102,7 @@
     "itemsPutItemResponse": {
       "type": "object",
       "properties": {
-        "inside_item": {
+        "insideItem": {
           "$ref": "#/definitions/itemsInsideItem",
           "description": "Container with items inside."
         }
@@ -992,11 +1136,40 @@
       "properties": {
         "success": {
           "type": "boolean",
-          "format": "boolean",
           "description": "Is item usage was successful."
         }
       },
       "description": "Response message for `MruVItemsService.UseItem`."
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "typeUrl": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
     }
   }
 }

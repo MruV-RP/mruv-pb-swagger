@@ -14,12 +14,18 @@
     "/v1/punishments/aj/{character}": {
       "get": {
         "summary": "Get player admin jail time.",
-        "operationId": "GetPlayerAdminJail",
+        "operationId": "MruVPunishmentsService_GetPlayerAdminJail",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/punishmentsGetPlayerAdminJailResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -38,12 +44,18 @@
       },
       "delete": {
         "summary": "Remove player from admin jail.",
-        "operationId": "UnAdminJail",
+        "operationId": "MruVPunishmentsService_UnAdminJail",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/punishmentsUnAdminJailResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -62,12 +74,18 @@
       },
       "post": {
         "summary": "Put player in an admin jail.",
-        "operationId": "AdminJail",
+        "operationId": "MruVPunishmentsService_AdminJail",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/punishmentsAdminJailResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -85,21 +103,27 @@
         ]
       }
     },
-    "/v1/punishments/ban/{ban_id}": {
+    "/v1/punishments/ban/{banId}": {
       "delete": {
         "summary": "Deactivate a specific player ban.",
-        "operationId": "UnBan",
+        "operationId": "MruVPunishmentsService_UnBan",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/punishmentsUnBanResponse"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
           }
         },
         "parameters": [
           {
-            "name": "ban_id",
+            "name": "banId",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -120,12 +144,18 @@
     "/v1/punishments/ban/{player}": {
       "post": {
         "summary": "Ban player on account and/or ip.\nIf ban_time is 0, ban will never expire.",
-        "operationId": "Ban",
+        "operationId": "MruVPunishmentsService_Ban",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/punishmentsBanResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -146,12 +176,18 @@
     "/v1/punishments/bans/{id}": {
       "get": {
         "summary": "Get ban info.",
-        "operationId": "GetBan",
+        "operationId": "MruVPunishmentsService_GetBan",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/punishmentsBanMessage"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -172,12 +208,18 @@
     "/v1/punishments/bans/{player}": {
       "get": {
         "summary": "Get all player bans.",
-        "operationId": "GetPlayerBans",
+        "operationId": "MruVPunishmentsService_GetPlayerBans",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/punishmentsGetPlayerBansResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -204,12 +246,18 @@
     "/v1/punishments/bans/{player}/{ip}": {
       "get": {
         "summary": "Check is player or ip banned.",
-        "operationId": "IsPlayerBanned",
+        "operationId": "MruVPunishmentsService_IsPlayerBanned",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/punishmentsIsPlayerBannedResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -236,12 +284,18 @@
     "/v1/punishments/block/{character}": {
       "post": {
         "summary": "Block player character.",
-        "operationId": "Block",
+        "operationId": "MruVPunishmentsService_Block",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/punishmentsBlockResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -259,21 +313,27 @@
         ]
       }
     },
-    "/v1/punishments/blocks/{block_id}": {
+    "/v1/punishments/blocks/{blockId}": {
       "delete": {
         "summary": "Deactivate a character block.",
-        "operationId": "UnBlock",
+        "operationId": "MruVPunishmentsService_UnBlock",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/punishmentsUnBlockResponse"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
           }
         },
         "parameters": [
           {
-            "name": "block_id",
+            "name": "blockId",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -294,12 +354,18 @@
     "/v1/punishments/blocks/{id}": {
       "get": {
         "summary": "Get block info.",
-        "operationId": "GetBlock",
+        "operationId": "MruVPunishmentsService_GetBlock",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/punishmentsBlockMessage"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -319,12 +385,18 @@
     },
     "/v1/punishments/mute/{account}": {
       "delete": {
-        "operationId": "UnMuteGlobalChats",
+        "operationId": "MruVPunishmentsService_UnMuteGlobalChats",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/punishmentsUnMuteGlobalChatsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -343,12 +415,18 @@
       },
       "post": {
         "summary": "Mute player global chats.",
-        "operationId": "MuteGlobalChats",
+        "operationId": "MruVPunishmentsService_MuteGlobalChats",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/punishmentsMuteGlobalChatsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -369,12 +447,18 @@
     "/v1/punishments/warn/{player}": {
       "post": {
         "summary": "Warn player.\nIf warn_time is 0, warn will never expire.",
-        "operationId": "Warn",
+        "operationId": "MruVPunishmentsService_Warn",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/punishmentsWarnResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -392,21 +476,27 @@
         ]
       }
     },
-    "/v1/punishments/warn/{warn_id}": {
+    "/v1/punishments/warn/{warnId}": {
       "delete": {
         "summary": "Deactivate a specific player warning. If a player was banned by reaching the warning limit, a player will be unbanned.",
-        "operationId": "UnWarn",
+        "operationId": "MruVPunishmentsService_UnWarn",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/punishmentsUnWarnResponse"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
           }
         },
         "parameters": [
           {
-            "name": "warn_id",
+            "name": "warnId",
             "in": "path",
             "required": true,
             "type": "integer",
@@ -427,12 +517,18 @@
     "/v1/punishments/warns/{id}": {
       "get": {
         "summary": "Get warn info.",
-        "operationId": "GetWarn",
+        "operationId": "MruVPunishmentsService_GetWarn",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/punishmentsWarnMessage"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -453,12 +549,18 @@
     "/v1/punishments/warns/{player}": {
       "get": {
         "summary": "Get all player warns.",
-        "operationId": "GetPlayerWarns",
+        "operationId": "MruVPunishmentsService_GetPlayerWarns",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/punishmentsGetPlayerWarnsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
             }
           }
         },
@@ -481,7 +583,7 @@
     "protobufAny": {
       "type": "object",
       "properties": {
-        "type_url": {
+        "typeUrl": {
           "type": "string"
         },
         "value": {
@@ -512,12 +614,12 @@
           "format": "int64",
           "description": "Admin that jail a player. 0 = system jail."
         },
-        "aj_date": {
+        "ajDate": {
           "type": "string",
           "format": "int64",
           "description": "Date on which an admin jail was issued in Unix time."
         },
-        "jail_time": {
+        "jailTime": {
           "type": "integer",
           "format": "int64",
           "description": "Time of admin jail in seconds."
@@ -542,7 +644,7 @@
         "ip": {
           "type": "string"
         },
-        "expiration_date": {
+        "expirationDate": {
           "type": "string",
           "format": "int64",
           "description": "Expiration date in Unix time."
@@ -556,22 +658,21 @@
           "format": "int64",
           "description": "Admin that banned a player. 0 = system ban."
         },
-        "ban_date": {
+        "banDate": {
           "type": "string",
           "format": "int64",
           "description": "Date on which a ban was issued in Unix time."
         },
         "active": {
           "type": "boolean",
-          "format": "boolean",
           "description": "Ban status. True = active, false = deactivated."
         },
-        "unban_date": {
+        "unbanDate": {
           "type": "string",
           "format": "int64",
           "description": "Date of unban in Unix time.\nThis field is set only when ban was deactivated."
         },
-        "unban_admin": {
+        "unbanAdmin": {
           "type": "integer",
           "format": "int64",
           "description": "Admin that deactivated this ban.\nThis field is set only when ban was deactivated."
@@ -581,7 +682,7 @@
     "punishmentsBanResponse": {
       "type": "object",
       "properties": {
-        "ban_id": {
+        "banId": {
           "type": "integer",
           "format": "int64"
         }
@@ -610,21 +711,20 @@
           "format": "int64",
           "description": "Admin that blocked a player. 0 = system block."
         },
-        "block_date": {
+        "blockDate": {
           "type": "string",
           "format": "int64",
           "description": "Date on which a block was issued in Unix time."
         },
         "active": {
-          "type": "boolean",
-          "format": "boolean"
+          "type": "boolean"
         },
-        "unblock_date": {
+        "unblockDate": {
           "type": "string",
           "format": "int64",
           "description": "Date of unblock in Unix time.\nThis field is set only when a block was deactivated."
         },
-        "unblock_admin": {
+        "unblockAdmin": {
           "type": "integer",
           "format": "int64",
           "description": "An admin that unblocked a player.\nThis field is set only when a block was deactivated."
@@ -634,7 +734,7 @@
     "punishmentsBlockResponse": {
       "type": "object",
       "properties": {
-        "block_id": {
+        "blockId": {
           "type": "integer",
           "format": "int64"
         }
@@ -644,7 +744,7 @@
     "punishmentsGetPlayerAdminJailResponse": {
       "type": "object",
       "properties": {
-        "jail_time": {
+        "jailTime": {
           "type": "integer",
           "format": "int64",
           "description": "Time of admin jail in seconds."
@@ -694,10 +794,9 @@
       "type": "object",
       "properties": {
         "blocked": {
-          "type": "boolean",
-          "format": "boolean"
+          "type": "boolean"
         },
-        "block_id": {
+        "blockId": {
           "type": "integer",
           "format": "int64"
         }
@@ -708,10 +807,9 @@
       "type": "object",
       "properties": {
         "jailed": {
-          "type": "boolean",
-          "format": "boolean"
+          "type": "boolean"
         },
-        "jail_time": {
+        "jailTime": {
           "type": "integer",
           "format": "int64"
         }
@@ -722,10 +820,9 @@
       "type": "object",
       "properties": {
         "banned": {
-          "type": "boolean",
-          "format": "boolean"
+          "type": "boolean"
         },
-        "ban_id": {
+        "banId": {
           "type": "integer",
           "format": "int64"
         }
@@ -771,7 +868,7 @@
           "type": "integer",
           "format": "int64"
         },
-        "ban_id": {
+        "banId": {
           "type": "integer",
           "format": "int64"
         }
@@ -788,7 +885,7 @@
           "type": "integer",
           "format": "int64"
         },
-        "block_id": {
+        "blockId": {
           "type": "integer",
           "format": "int64"
         }
@@ -809,7 +906,7 @@
           "type": "integer",
           "format": "int64"
         },
-        "warn_id": {
+        "warnId": {
           "type": "integer",
           "format": "int64"
         }
@@ -831,7 +928,7 @@
           "format": "int64",
           "description": "A character, that was given a warning."
         },
-        "expiration_date": {
+        "expirationDate": {
           "type": "string",
           "format": "int64",
           "description": "Expiration date in Unix time."
@@ -845,22 +942,21 @@
           "format": "int64",
           "description": "Admin that warned a player. 0 = system warn."
         },
-        "warn_date": {
+        "warnDate": {
           "type": "string",
           "format": "int64",
           "description": "Date on which a warn was issued in Unix time."
         },
         "active": {
           "type": "boolean",
-          "format": "boolean",
           "description": "Warn status. True = active, false = deactivated."
         },
-        "unwarn_date": {
+        "unwarnDate": {
           "type": "string",
           "format": "int64",
           "description": "Date of unwarn in Unix time.\nThis field is set only when warn was deactivated."
         },
-        "unwarn_admin": {
+        "unwarnAdmin": {
           "type": "integer",
           "format": "int64",
           "description": "Admin that deactivated a warn.\nThis field is set only when warn was deactivated."
@@ -870,7 +966,7 @@
     "punishmentsWarnResponse": {
       "type": "object",
       "properties": {
-        "warn_id": {
+        "warnId": {
           "type": "integer",
           "format": "int64"
         }
@@ -887,7 +983,7 @@
         "type": {
           "$ref": "#/definitions/punishmentsPunishmentType"
         },
-        "punishment_id": {
+        "punishmentId": {
           "type": "integer",
           "format": "int64"
         }
@@ -900,7 +996,7 @@
         "type": {
           "$ref": "#/definitions/punishmentsPunishmentType"
         },
-        "punishment_id": {
+        "punishmentId": {
           "type": "integer",
           "format": "int64"
         },
@@ -915,21 +1011,14 @@
       },
       "description": "Response message for rpc `WatchPunishments`."
     },
-    "runtimeStreamError": {
+    "rpcStatus": {
       "type": "object",
       "properties": {
-        "grpc_code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "http_code": {
+        "code": {
           "type": "integer",
           "format": "int32"
         },
         "message": {
-          "type": "string"
-        },
-        "http_status": {
           "type": "string"
         },
         "details": {
@@ -939,140 +1028,6 @@
           }
         }
       }
-    }
-  },
-  "x-stream-definitions": {
-    "punishmentsAdminJailMessage": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/punishmentsAdminJailMessage"
-        },
-        "error": {
-          "$ref": "#/definitions/runtimeStreamError"
-        }
-      },
-      "title": "Stream result of punishmentsAdminJailMessage"
-    },
-    "punishmentsBanMessage": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/punishmentsBanMessage"
-        },
-        "error": {
-          "$ref": "#/definitions/runtimeStreamError"
-        }
-      },
-      "title": "Stream result of punishmentsBanMessage"
-    },
-    "punishmentsBlockMessage": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/punishmentsBlockMessage"
-        },
-        "error": {
-          "$ref": "#/definitions/runtimeStreamError"
-        }
-      },
-      "title": "Stream result of punishmentsBlockMessage"
-    },
-    "punishmentsUnAdminJailMessage": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/punishmentsUnAdminJailMessage"
-        },
-        "error": {
-          "$ref": "#/definitions/runtimeStreamError"
-        }
-      },
-      "title": "Stream result of punishmentsUnAdminJailMessage"
-    },
-    "punishmentsUnBanMessage": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/punishmentsUnBanMessage"
-        },
-        "error": {
-          "$ref": "#/definitions/runtimeStreamError"
-        }
-      },
-      "title": "Stream result of punishmentsUnBanMessage"
-    },
-    "punishmentsUnBlockMessage": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/punishmentsUnBlockMessage"
-        },
-        "error": {
-          "$ref": "#/definitions/runtimeStreamError"
-        }
-      },
-      "title": "Stream result of punishmentsUnBlockMessage"
-    },
-    "punishmentsUnWarnMessage": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/punishmentsUnWarnMessage"
-        },
-        "error": {
-          "$ref": "#/definitions/runtimeStreamError"
-        }
-      },
-      "title": "Stream result of punishmentsUnWarnMessage"
-    },
-    "punishmentsWarnMessage": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/punishmentsWarnMessage"
-        },
-        "error": {
-          "$ref": "#/definitions/runtimeStreamError"
-        }
-      },
-      "title": "Stream result of punishmentsWarnMessage"
-    },
-    "punishmentsWatchPlayerAcquittalsResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/punishmentsWatchPlayerAcquittalsResponse"
-        },
-        "error": {
-          "$ref": "#/definitions/runtimeStreamError"
-        }
-      },
-      "title": "Stream result of punishmentsWatchPlayerAcquittalsResponse"
-    },
-    "punishmentsWatchPlayerPunishmentsResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/punishmentsWatchPlayerPunishmentsResponse"
-        },
-        "error": {
-          "$ref": "#/definitions/runtimeStreamError"
-        }
-      },
-      "title": "Stream result of punishmentsWatchPlayerPunishmentsResponse"
-    },
-    "punishmentsWatchPunishmentsResponse": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "$ref": "#/definitions/punishmentsWatchPunishmentsResponse"
-        },
-        "error": {
-          "$ref": "#/definitions/runtimeStreamError"
-        }
-      },
-      "title": "Stream result of punishmentsWatchPunishmentsResponse"
     }
   }
 }
