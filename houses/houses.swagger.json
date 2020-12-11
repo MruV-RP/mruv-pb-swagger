@@ -29,6 +29,16 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/housesCreateHouseRequest"
+            }
+          }
+        ],
         "tags": [
           "MruVHousesService"
         ]
@@ -119,6 +129,14 @@
             "required": true,
             "type": "integer",
             "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/housesUpdateHouseRequest"
+            }
           }
         ],
         "tags": [
@@ -128,6 +146,10 @@
     }
   },
   "definitions": {
+    "housesCreateHouseRequest": {
+      "type": "object",
+      "description": "Request message for rpc `CreateHouse`."
+    },
     "housesCreateHouseResponse": {
       "type": "object",
       "description": "Response message for rpc `CreateHouse`."
@@ -139,6 +161,16 @@
     "housesGetHouseResponse": {
       "type": "object",
       "description": "Response message for rpc `GetHouse`."
+    },
+    "housesUpdateHouseRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "description": "Request message for rpc `UpdateHouse`."
     },
     "housesUpdateHouseResponse": {
       "type": "object",

@@ -71,6 +71,16 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/devtoolsSaveAnimationRequest"
+            }
+          }
+        ],
         "tags": [
           "MruVDevToolsService"
         ]
@@ -172,6 +182,16 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/devtoolsSaveOutfitRequest"
+            }
+          }
+        ],
         "tags": [
           "MruVDevToolsService"
         ]
@@ -313,6 +333,16 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/devtoolsSavePositionRequest"
+            }
+          }
+        ],
         "tags": [
           "MruVDevToolsService"
         ]
@@ -561,6 +591,15 @@
       },
       "description": "Position structure."
     },
+    "devtoolsSaveAnimationRequest": {
+      "type": "object",
+      "properties": {
+        "animation": {
+          "$ref": "#/definitions/devtoolsAnimation"
+        }
+      },
+      "description": "Save animation request message."
+    },
     "devtoolsSaveAnimationResponse": {
       "type": "object",
       "properties": {
@@ -570,6 +609,15 @@
       },
       "description": "Save animation response message."
     },
+    "devtoolsSaveOutfitRequest": {
+      "type": "object",
+      "properties": {
+        "outfit": {
+          "$ref": "#/definitions/devtoolsOutfit"
+        }
+      },
+      "description": "Save outfit request message."
+    },
     "devtoolsSaveOutfitResponse": {
       "type": "object",
       "properties": {
@@ -578,6 +626,15 @@
         }
       },
       "description": "Save outfit response message."
+    },
+    "devtoolsSavePositionRequest": {
+      "type": "object",
+      "properties": {
+        "position": {
+          "$ref": "#/definitions/devtoolsPosition"
+        }
+      },
+      "description": "Save position request message."
     },
     "devtoolsSavePositionResponse": {
       "type": "object",

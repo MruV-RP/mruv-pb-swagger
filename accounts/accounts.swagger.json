@@ -29,6 +29,16 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/accountsLogInRequest"
+            }
+          }
+        ],
         "tags": [
           "MruVAccountsService"
         ]
@@ -52,6 +62,16 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/accountsRegisterAccountRequest"
+            }
+          }
+        ],
         "tags": [
           "MruVAccountsService"
         ]
@@ -190,6 +210,18 @@
       },
       "description": "Response message for rpc `IsAccountExist`."
     },
+    "accountsLogInRequest": {
+      "type": "object",
+      "properties": {
+        "login": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "description": "Request message for rpc `LogIn`."
+    },
     "accountsLogInResponse": {
       "type": "object",
       "properties": {
@@ -202,6 +234,21 @@
         }
       },
       "description": "Response message for rpc `LogIn`."
+    },
+    "accountsRegisterAccountRequest": {
+      "type": "object",
+      "properties": {
+        "login": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      },
+      "description": "Request message for rpc `RegisterAccount`."
     },
     "accountsRegisterAccountResponse": {
       "type": "object",

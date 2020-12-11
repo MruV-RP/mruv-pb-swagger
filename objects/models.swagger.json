@@ -68,6 +68,16 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/objectsCreateObjectModelRequest"
+            }
+          }
+        ],
         "tags": [
           "MruVObjectModelsService"
         ]
@@ -160,6 +170,14 @@
             "required": true,
             "type": "integer",
             "format": "int32"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/objectsUpdateObjectModelRequest"
+            }
           }
         ],
         "tags": [
@@ -169,6 +187,15 @@
     }
   },
   "definitions": {
+    "objectsCreateObjectModelRequest": {
+      "type": "object",
+      "properties": {
+        "objectType": {
+          "$ref": "#/definitions/objectsObjectModel"
+        }
+      },
+      "description": "Request message for rpc `CreateObjectModel`."
+    },
     "objectsCreateObjectModelResponse": {
       "type": "object",
       "properties": {
@@ -265,6 +292,15 @@
         }
       },
       "description": "SA-MP Object type data structure."
+    },
+    "objectsUpdateObjectModelRequest": {
+      "type": "object",
+      "properties": {
+        "objectType": {
+          "$ref": "#/definitions/objectsObjectModel"
+        }
+      },
+      "description": "Request message for rpc `UpdateObjectModel`."
     },
     "objectsUpdateObjectModelResponse": {
       "type": "object",

@@ -29,6 +29,16 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/organizationsCreateOrganizationRequest"
+            }
+          }
+        ],
         "tags": [
           "MruVOrganizationsService"
         ]
@@ -119,6 +129,14 @@
             "required": true,
             "type": "integer",
             "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/organizationsUpdateOrganizationRequest"
+            }
           }
         ],
         "tags": [
@@ -180,6 +198,14 @@
             "required": true,
             "type": "integer",
             "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/organizationsAssignLeaderRequest"
+            }
           }
         ],
         "tags": [
@@ -189,9 +215,23 @@
     }
   },
   "definitions": {
+    "organizationsAssignLeaderRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "description": "Request message for rpc `AssignLeader`."
+    },
     "organizationsAssignLeaderResponse": {
       "type": "object",
       "description": "Response message for rpc `AssignLeader`."
+    },
+    "organizationsCreateOrganizationRequest": {
+      "type": "object",
+      "description": "Request message for rpc `CreateOrganization`."
     },
     "organizationsCreateOrganizationResponse": {
       "type": "object",
@@ -208,6 +248,16 @@
     "organizationsUnassignLeaderResponse": {
       "type": "object",
       "description": "Response message for rpc `UnassignLeader`."
+    },
+    "organizationsUpdateOrganizationRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "description": "Request message for rpc `UpdateOrganization`."
     },
     "organizationsUpdateOrganizationResponse": {
       "type": "object",

@@ -66,6 +66,16 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/groupsCreateGroupRequest"
+            }
+          }
+        ],
         "tags": [
           "MruVGroupsService"
         ]
@@ -251,6 +261,14 @@
             "required": true,
             "type": "integer",
             "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/groupsUpdateGroupRequest"
+            }
           }
         ],
         "tags": [
@@ -359,6 +377,14 @@
             "required": true,
             "type": "integer",
             "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/groupsAddMemberRequest"
+            }
           }
         ],
         "tags": [
@@ -421,6 +447,14 @@
             "required": true,
             "type": "integer",
             "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/groupsAssignOwnerRequest"
+            }
           }
         ],
         "tags": [
@@ -520,6 +554,14 @@
             "required": true,
             "type": "integer",
             "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/groupsAddPermissionRequest"
+            }
           }
         ],
         "tags": [
@@ -628,6 +670,14 @@
             "required": true,
             "type": "integer",
             "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/groupsAddSubgroupRequest"
+            }
           }
         ],
         "tags": [
@@ -692,9 +742,39 @@
         }
       }
     },
+    "groupsAddMemberRequest": {
+      "type": "object",
+      "properties": {
+        "groupId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "memberId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "description": "Request message for rpc `AddMember`."
+    },
     "groupsAddMemberResponse": {
       "type": "object",
       "description": "Response message for rpc `AddMember`."
+    },
+    "groupsAddPermissionRequest": {
+      "type": "object",
+      "properties": {
+        "groupId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "definition": {
+          "type": "string"
+        }
+      },
+      "description": "Request message for rpc `AddPermission`."
     },
     "groupsAddPermissionResponse": {
       "type": "object",
@@ -706,13 +786,56 @@
       },
       "description": "Response message for rpc `AddPermission`."
     },
+    "groupsAddSubgroupRequest": {
+      "type": "object",
+      "properties": {
+        "groupId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "subgroupId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "description": "Request message for rpc `AddSubgroup`."
+    },
     "groupsAddSubgroupResponse": {
       "type": "object",
       "description": "Response message for rpc `AddSubgroup`."
     },
+    "groupsAssignOwnerRequest": {
+      "type": "object",
+      "properties": {
+        "groupId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "ownerType": {
+          "$ref": "#/definitions/groupsOwnerType"
+        },
+        "ownerId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "description": "Request message for rpc `AssignOwner`."
+    },
     "groupsAssignOwnerResponse": {
       "type": "object",
       "description": "Response message for rpc `AssignOwner`."
+    },
+    "groupsCreateGroupRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "description": "Request message for rpc `CreateGroup`."
     },
     "groupsCreateGroupResponse": {
       "type": "object",
@@ -847,6 +970,22 @@
     "groupsRemoveSubgroupResponse": {
       "type": "object",
       "description": "Response message for rpc `RemoveSubgroup`."
+    },
+    "groupsUpdateGroupRequest": {
+      "type": "object",
+      "properties": {
+        "groupId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "description": "Request message for rpc `UpdateGroup`."
     },
     "groupsUpdateGroupResponse": {
       "type": "object",

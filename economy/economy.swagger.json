@@ -35,6 +35,14 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/economyBuyProductRequest"
+            }
           }
         ],
         "tags": [
@@ -98,6 +106,16 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/economyRegisterProductRequest"
+            }
+          }
+        ],
         "tags": [
           "MruVEconomyService"
         ]
@@ -198,6 +216,14 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/economyUpdateProductRequest"
+            }
           }
         ],
         "tags": [
@@ -229,6 +255,14 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/economyUpdatePriceRequest"
+            }
           }
         ],
         "tags": [
@@ -248,6 +282,19 @@
         "PRODUCT_DELETED"
       ],
       "default": "UNKNOWN"
+    },
+    "economyBuyProductRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "description": "Request message for rpc `BuyProduct`."
     },
     "economyBuyProductResponse": {
       "type": "object",
@@ -298,6 +345,33 @@
       },
       "description": "Response message for rpc `GetProduct`."
     },
+    "economyRegisterProductRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "fullName": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "priceClass": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "priceRatio": {
+          "type": "number",
+          "format": "float"
+        },
+        "startingPrice": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "description": "Request message for rpc `RegisterProduct`."
+    },
     "economyRegisterProductResponse": {
       "type": "object",
       "properties": {
@@ -308,9 +382,53 @@
       },
       "description": "Response message for rpc `RegisterProduct`."
     },
+    "economyUpdatePriceRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "newPrice": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "description": "Request message for rpc `UpdatePrice`."
+    },
     "economyUpdatePriceResponse": {
       "type": "object",
       "description": "Response message for rpc `UpdatePrice`."
+    },
+    "economyUpdateProductRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "fullName": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "priceClass": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "priceRatio": {
+          "type": "number",
+          "format": "float"
+        }
+      },
+      "description": "Request message for rpc `UpdateProduct`."
     },
     "economyUpdateProductResponse": {
       "type": "object",

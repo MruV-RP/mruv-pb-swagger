@@ -29,6 +29,16 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/offersCreateOfferRequest"
+            }
+          }
+        ],
         "tags": [
           "MruVOffersService"
         ]
@@ -119,6 +129,14 @@
             "required": true,
             "type": "integer",
             "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/offersUpdateOfferRequest"
+            }
           }
         ],
         "tags": [
@@ -151,6 +169,14 @@
             "required": true,
             "type": "integer",
             "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/offersAcceptOfferRequest"
+            }
           }
         ],
         "tags": [
@@ -160,9 +186,49 @@
     }
   },
   "definitions": {
+    "offersAcceptOfferRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "description": "Request message for rpc `AcceptOffer`."
+    },
     "offersAcceptOfferResponse": {
       "type": "object",
       "description": "Response message for rpc `AcceptOffer`."
+    },
+    "offersCreateOfferRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "offer": {
+          "type": "string"
+        },
+        "endDate": {
+          "type": "string",
+          "format": "int64"
+        },
+        "price": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "offerType": {
+          "$ref": "#/definitions/offersOfferType"
+        },
+        "offerEntityId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "description": "Request message for rpc `CreateOffer`."
     },
     "offersCreateOfferResponse": {
       "type": "object",
@@ -188,6 +254,16 @@
         "UNKNOWN"
       ],
       "default": "UNKNOWN"
+    },
+    "offersUpdateOfferRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "description": "Request message for rpc `UpdateOffer`."
     },
     "offersUpdateOfferResponse": {
       "type": "object",

@@ -96,6 +96,14 @@
             "required": true,
             "type": "integer",
             "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/punishmentsAdminJailRequest"
+            }
           }
         ],
         "tags": [
@@ -166,6 +174,14 @@
             "required": true,
             "type": "integer",
             "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/punishmentsBanRequest"
+            }
           }
         ],
         "tags": [
@@ -306,6 +322,14 @@
             "required": true,
             "type": "integer",
             "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/punishmentsBlockRequest"
+            }
           }
         ],
         "tags": [
@@ -437,6 +461,14 @@
             "required": true,
             "type": "integer",
             "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/punishmentsMuteGlobalChatsRequest"
+            }
           }
         ],
         "tags": [
@@ -469,6 +501,14 @@
             "required": true,
             "type": "integer",
             "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/punishmentsWarnRequest"
+            }
           }
         ],
         "tags": [
@@ -626,6 +666,30 @@
         }
       }
     },
+    "punishmentsAdminJailRequest": {
+      "type": "object",
+      "properties": {
+        "character": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "time": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Admin jail time."
+        },
+        "reason": {
+          "type": "string",
+          "description": "Admin jail reason."
+        },
+        "admin": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Admin that gave an admin jail to a player."
+        }
+      },
+      "description": "Request message for rpc `AdminJail`."
+    },
     "punishmentsAdminJailResponse": {
       "type": "object",
       "description": "Response message for rpc `AdminJail`."
@@ -679,6 +743,38 @@
         }
       }
     },
+    "punishmentsBanRequest": {
+      "type": "object",
+      "properties": {
+        "player": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "character": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Player character that was accused.\nOptional."
+        },
+        "ip": {
+          "type": "string"
+        },
+        "time": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Ban expiration time in days. 0 = permanent ban."
+        },
+        "reason": {
+          "type": "string",
+          "description": "Ban reason."
+        },
+        "admin": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Admin that banned a player. 0 = system ban."
+        }
+      },
+      "description": "Request message for rpc `Ban`."
+    },
     "punishmentsBanResponse": {
       "type": "object",
       "properties": {
@@ -730,6 +826,25 @@
           "description": "An admin that unblocked a player.\nThis field is set only when a block was deactivated."
         }
       }
+    },
+    "punishmentsBlockRequest": {
+      "type": "object",
+      "properties": {
+        "character": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "reason": {
+          "type": "string",
+          "description": "Block reason."
+        },
+        "admin": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Admin that blocked a player. 0 = system ban."
+        }
+      },
+      "description": "Request message for rpc `Block`."
     },
     "punishmentsBlockResponse": {
       "type": "object",
@@ -828,6 +943,16 @@
         }
       },
       "description": "Response message for rpc `IsPlayerBanned`."
+    },
+    "punishmentsMuteGlobalChatsRequest": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "description": "Request message for rpc `MuteGlobalChats`."
     },
     "punishmentsMuteGlobalChatsResponse": {
       "type": "object",
@@ -962,6 +1087,35 @@
           "description": "Admin that deactivated a warn.\nThis field is set only when warn was deactivated."
         }
       }
+    },
+    "punishmentsWarnRequest": {
+      "type": "object",
+      "properties": {
+        "player": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "character": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Player character that was accused.\nOptional."
+        },
+        "time": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Warn expiration time in days. 0 = permanent warn."
+        },
+        "reason": {
+          "type": "string",
+          "description": "Warn reason."
+        },
+        "admin": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Admin that warned player. 0 = system warn."
+        }
+      },
+      "description": "Request message for rpc `Warn`."
     },
     "punishmentsWarnResponse": {
       "type": "object",

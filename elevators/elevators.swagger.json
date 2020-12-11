@@ -29,6 +29,16 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/elevatorsCreateElevatorRequest"
+            }
+          }
+        ],
         "tags": [
           "MruVElevatorsService"
         ]
@@ -119,6 +129,14 @@
             "required": true,
             "type": "integer",
             "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/elevatorsUpdateElevatorRequest"
+            }
           }
         ],
         "tags": [
@@ -160,6 +178,10 @@
     }
   },
   "definitions": {
+    "elevatorsCreateElevatorRequest": {
+      "type": "object",
+      "description": "Request message for rpc `CreateElevator`."
+    },
     "elevatorsCreateElevatorResponse": {
       "type": "object",
       "properties": {
@@ -181,6 +203,16 @@
     "elevatorsGetElevatorResponse": {
       "type": "object",
       "description": "Response message for rpc `GetElevator`."
+    },
+    "elevatorsUpdateElevatorRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "description": "Request message for rpc `UpdateElevator`."
     },
     "elevatorsUpdateElevatorResponse": {
       "type": "object",

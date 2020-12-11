@@ -60,6 +60,16 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/itemsContainerType"
+            }
+          }
+        ],
         "tags": [
           "MruVItemService"
         ]
@@ -176,6 +186,16 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/itemsContainer"
+            }
+          }
+        ],
         "tags": [
           "MruVItemService"
         ]
@@ -404,6 +424,14 @@
             "required": true,
             "type": "integer",
             "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/itemsPutItemRequest"
+            }
           }
         ],
         "tags": [
@@ -522,6 +550,16 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/itemsItemType"
+            }
+          }
+        ],
         "tags": [
           "MruVItemService"
         ]
@@ -638,6 +676,16 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/itemsItem"
+            }
+          }
+        ],
         "tags": [
           "MruVItemService"
         ]
@@ -1098,6 +1146,27 @@
         }
       },
       "description": "Item type ID."
+    },
+    "itemsPutItemRequest": {
+      "type": "object",
+      "properties": {
+        "containerId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "ID of container where to put item."
+        },
+        "itemId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "ID of item we wan to put in."
+        },
+        "slot": {
+          "type": "integer",
+          "format": "int32",
+          "title": "Position used for sorting items"
+        }
+      },
+      "description": "Request message for `MruVItemsService.PutItem`."
     },
     "itemsPutItemResponse": {
       "type": "object",

@@ -50,6 +50,16 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/texture_studioCreateServerRequest"
+            }
+          }
+        ],
         "tags": [
           "TextureStudioManagerService"
         ]
@@ -135,6 +145,14 @@
             "required": true,
             "type": "integer",
             "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/texture_studioTransferOwnershipRequest"
+            }
           }
         ],
         "tags": [
@@ -173,6 +191,16 @@
           }
         }
       }
+    },
+    "texture_studioCreateServerRequest": {
+      "type": "object",
+      "properties": {
+        "ownerId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "description": "Request message for rpc `CreateServer`."
     },
     "texture_studioCreateServerResponse": {
       "type": "object",
@@ -214,6 +242,20 @@
         }
       },
       "description": "Response message for rpc `MyServer`."
+    },
+    "texture_studioTransferOwnershipRequest": {
+      "type": "object",
+      "properties": {
+        "serverId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "ownerId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "description": "Request message for rpc `TransferOwnership`."
     },
     "texture_studioTransferOwnershipResponse": {
       "type": "object",

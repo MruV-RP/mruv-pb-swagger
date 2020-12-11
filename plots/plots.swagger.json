@@ -29,6 +29,16 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/plotsCreatePlotRequest"
+            }
+          }
+        ],
         "tags": [
           "MruVPlotsService"
         ]
@@ -119,6 +129,14 @@
             "required": true,
             "type": "integer",
             "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/plotsUpdatePlotRequest"
+            }
           }
         ],
         "tags": [
@@ -144,6 +162,24 @@
           "format": "double"
         }
       }
+    },
+    "plotsCreatePlotRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "points": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/commonPosition"
+          }
+        }
+      },
+      "description": "Request message for rpc `CreatePlot`."
     },
     "plotsCreatePlotResponse": {
       "type": "object",
@@ -180,6 +216,22 @@
         }
       },
       "description": "Response message for rpc `GetPlot`."
+    },
+    "plotsUpdatePlotRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "description": "Request message for rpc `UpdatePlot`."
     },
     "plotsUpdatePlotResponse": {
       "type": "object",

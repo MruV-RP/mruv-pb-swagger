@@ -50,6 +50,16 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/serverServerInfo"
+            }
+          }
+        ],
         "tags": [
           "MruVServerService"
         ]
@@ -113,6 +123,14 @@
             "required": true,
             "type": "integer",
             "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/serverUpdateServerStatusRequest"
+            }
           }
         ],
         "tags": [
@@ -239,6 +257,26 @@
         "OFF"
       ],
       "default": "UNKNOWN"
+    },
+    "serverUpdateServerStatusRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Id of the server."
+        },
+        "status": {
+          "$ref": "#/definitions/serverServerStatus",
+          "description": "Status of the server."
+        },
+        "players": {
+          "type": "integer",
+          "format": "int64",
+          "description": "How many players are registered on that server."
+        }
+      },
+      "description": "Request message for `MruVServerService.UpdateServerStatus`."
     },
     "serverUpdateServerStatusResponse": {
       "type": "object",
